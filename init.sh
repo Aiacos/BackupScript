@@ -20,7 +20,7 @@ brew cask install blender
 brew cask install discord
 brew cask install qsync-client
 
-## Intsall Dev Envairoment
+## Intsall Dev Environment
 mas lucky Xcode
 sudo xcodebuild -license accept
 
