@@ -9,7 +9,6 @@ mas signin uni.lorenzo.a@gmail.com "CaccaSecca86"
 # Install AppStore apps
 mas lucky iStatMenus
 mas lucky MeisterTask
-mas lucky ForkLift
 mas lucky AffinityPhoto
 mas lucky MoneyPro
 mas lucky TheUnarchiver
