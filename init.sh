@@ -30,10 +30,10 @@ brew install python
 
 pip install PySide2
 
-# Install Dev Editor and IDE
+## Install Dev Editor and IDE
 brew install kite
 
-# Intsall Brew Cask
+# Intsall Brew Cask Dev
 brew cask install pycharm
 brew cask install gitkraken
 brew cask install atom
