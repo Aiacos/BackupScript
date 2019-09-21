@@ -33,24 +33,24 @@ pip install PySide2
 brew install kite
 
 # Intsall Brew Cask Dev
-brew cask install pycharm
+brew cask install pycharm-ce
 brew cask install gitkraken
-brew cask install atom
+
+# VSCode Packages
+# if...
+# wget file config
+# delete file 
+brew cask install visual-studio-code
+code --install-extension akamud.vscode-theme-onedark
+code --install-extension felipe.nasc-touchbar
+code --install-extension FXTD-Odyssey.mayapy
+code --install-extension JacquesLucke.blender-development
+code --install-extension ms-python.python
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension PKief.material-icon-theme
+code --install-extension saviof.mayacode
+code --install-extension kiteco.kite
 
 # Atom Packages
-apm install teletype
-apm install file-icons
-apm install atom-file-icons
-apm install script
-apm install tool-bar
-apm install tool-bar-atom
-
-apm install python-tools
-apm install atom-beautify
-apm install tool-bar
-apm install tool-bar-atom
-apm install atom-ide-debugger-python
-apm install atom-ide-ui
-apm install ide-python
-apm install kite
-apm install atom-package-sync
+#if...
