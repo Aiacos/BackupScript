@@ -37,10 +37,9 @@ brew cask install pycharm-ce
 brew cask install gitkraken
 
 # VSCode Packages
-# if...
-# wget file config
-# delete file 
 brew cask install visual-studio-code
+
+# VSCode Extension
 code --install-extension akamud.vscode-theme-onedark
 code --install-extension felipe.nasc-touchbar
 code --install-extension FXTD-Odyssey.mayapy
@@ -53,4 +52,21 @@ code --install-extension saviof.mayacode
 code --install-extension kiteco.kite
 
 # Atom Packages
-#if...
+brew cask install atom
+apm install teletype
+apm install file-icons
+apm install atom-file-icons
+apm install script
+apm install tool-bar
+apm install tool-bar-atom
+
+# Atom Extension
+apm install python-tools
+apm install atom-beautify
+apm install tool-bar
+apm install tool-bar-atom
+apm install atom-ide-debugger-python
+apm install atom-ide-ui
+apm install ide-python
+apm install kite
+apm install atom-package-sync
