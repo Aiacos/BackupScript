@@ -40,13 +40,15 @@ brew cask install gitkraken
 # if...
 # wget file config
 # delete file 
-brew cask install visual-studio-code
-code --install-extension akamud.vscode-theme-onedark
-code --install-extension felipe.nasc-touchbar
-code --install-extension FXTD-Odyssey.mayapy
-code --install-extension JacquesLucke.blender-development
-code --install-extension ms-python.python
-code --install-extension ms-vscode.cpptools
+brew install wget
+wget https://raw.githubusercontent.com/Aiacos/BackupScript/master/vscode.sh?token=AET6NHOW7MKC7XQTNBH6YA25QZ6YG -o vscode.sh
+# search *.sh
+config_file=$(find -L "${PWD}" -name \vscode.sh | sort)
+echo "==> Found ${config_file}"
+
+
+# Atom Packages
+#if...e --install-extension ms-vscode.cpptools
 code --install-extension ms-vsliveshare.vsliveshare
 code --install-extension PKief.material-icon-theme
 code --install-extension saviof.mayacode
@@ -54,3 +56,5 @@ code --install-extension kiteco.kite
 
 # Atom Packages
 #if...
+brew install wget
+wget https://raw.githubusercontent.com/Aiacos/BackupScript/master/atom.sh?token=AET6NHJ77I52Q3NCA3KILLS5QZ664 -o atom.sh
