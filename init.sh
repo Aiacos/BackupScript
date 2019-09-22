@@ -42,6 +42,7 @@ brew cask install visual-studio-code
 # VSCode Extension
 code --install-extension akamud.vscode-theme-onedark
 code --install-extension felipe.nasc-touchbar
+code --install-extension formulahendry.code-runner
 code --install-extension FXTD-Odyssey.mayapy
 code --install-extension JacquesLucke.blender-development
 code --install-extension ms-python.python
