@@ -50,6 +50,7 @@ code --install-extension ms-vscode.cpptools
 code --install-extension ms-vsliveshare.vsliveshare
 code --install-extension PKief.material-icon-theme
 code --install-extension saviof.mayacode
+code --install-extension njpwerner.autodocstring
 code --install-extension kiteco.kite
 
 # Atom Packages
