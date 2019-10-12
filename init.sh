@@ -66,8 +66,6 @@ apm install tool-bar-atom
 # Atom Extension
 apm install python-tools
 apm install atom-beautify
-apm install tool-bar
-apm install tool-bar-atom
 apm install atom-ide-debugger-python
 apm install atom-ide-ui
 apm install ide-python
