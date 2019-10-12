@@ -56,14 +56,14 @@ code --install-extension kiteco.kite
 
 # Atom Packages
 brew cask install atom
+
+# Atom Extension
 apm install teletype
 apm install file-icons
 apm install atom-file-icons
 apm install script
 apm install tool-bar
 apm install tool-bar-atom
-
-# Atom Extension
 apm install python-tools
 apm install atom-beautify
 apm install atom-ide-debugger-python
