@@ -18,6 +18,7 @@ brew cask install google-chrome
 brew cask install blender
 brew cask install discord
 brew cask install qsync-client
+brew cask install battle-net
 
 ## Intsall Dev Environment
 mas lucky Xcode
