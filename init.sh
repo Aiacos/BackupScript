@@ -15,6 +15,7 @@ mas lucky TheUnarchiver
 
 # Intsall Brew Cask
 brew cask install google-chrome
+brew cask install opera
 brew cask install blender
 brew cask install discord
 brew cask install qsync-client
