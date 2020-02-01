@@ -21,6 +21,12 @@ brew cask install discord
 brew cask install qsync-client
 brew cask install battle-net
 
+# Brew management
+#brew doctor
+#brew update
+#brew upgrade
+#brew cask upgrade --greedy
+
 ## Intsall Dev Environment
 mas lucky Xcode
 sudo xcodebuild -license accept
