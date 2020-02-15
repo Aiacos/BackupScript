@@ -1,6 +1,14 @@
 ## Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# Brew management
+# brew doctor
+# brew update
+# brew upgrade
+# brew cask upgrade --greedy
+
+# brew update && brew upgrade && brew cask upgrade --greedy
+
 # Install mas (AppStore from terminal)
 brew install mas
 mas signin uni.lorenzo.a@gmail.com "CaccaSecca86"
@@ -21,13 +29,6 @@ brew cask install discord
 brew cask install qsync-client
 brew cask install battle-net
 
-# Brew management
-#brew doctor
-#brew update
-#brew upgrade
-#brew cask upgrade --greedy
-
-# brew update && brew upgrade && brew cask upgrade --greedy
 
 ## Intsall Dev Environment
 mas lucky Xcode
