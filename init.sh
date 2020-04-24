@@ -20,6 +20,7 @@ mas lucky MeisterTask
 mas lucky AffinityPhoto
 mas lucky MoneyPro
 mas lucky TheUnarchiver
+mas lucky MicrosoftRemoteDesktop
 
 # Intsall Brew Cask
 brew cask install google-chrome
