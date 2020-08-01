@@ -29,6 +29,7 @@ brew cask install blender
 brew cask install discord
 brew cask install qsync-client
 brew cask install battle-net
+brew cask install speedify
 
 
 ## Intsall Dev Environment
