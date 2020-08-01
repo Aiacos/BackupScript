@@ -23,7 +23,7 @@ mas lucky TheUnarchiver
 mas lucky MicrosoftRemoteDesktop
 
 # Intsall Brew Cask
-brew cask install google-chrome
+#brew cask install google-chrome
 brew cask install opera
 brew cask install blender
 brew cask install discord
