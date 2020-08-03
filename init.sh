@@ -64,7 +64,6 @@ code --install-extension ms-vsliveshare.vsliveshare
 code --install-extension PKief.material-icon-theme
 code --install-extension saviof.mayacode
 code --install-extension njpwerner.autodocstring
-code --install-extension kiteco.kite
 
 # Atom Packages
 brew cask install atom
@@ -81,5 +80,3 @@ apm install atom-beautify
 apm install atom-ide-debugger-python
 apm install atom-ide-ui
 apm install ide-python
-apm install kite
-apm install atom-package-sync
