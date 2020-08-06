@@ -1,7 +1,7 @@
 ## Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Brew management
+## Brew management
 # brew doctor
 # brew update
 # brew upgrade
@@ -37,35 +37,17 @@ mas lucky Xcode
 sudo xcodebuild -license accept
 
 # Install Python
-brew install python@2
 brew install python
+brew install python@2
 
 pip install PySide2
 
 ## Install Dev Editor and IDE
-brew install kite
-
 # Intsall Brew Cask Dev
 brew cask install pycharm-ce
 brew cask install gitkraken
 
-# VSCode Packages
-brew cask install visual-studio-code
-
-# VSCode Extension
-code --install-extension akamud.vscode-theme-onedark
-code --install-extension felipe.nasc-touchbar
-code --install-extension formulahendry.code-runner
-code --install-extension FXTD-Odyssey.mayapy
-code --install-extension JacquesLucke.blender-development
-code --install-extension ms-python.python
-code --install-extension ms-vscode.cpptools
-code --install-extension ms-vsliveshare.vsliveshare
-code --install-extension PKief.material-icon-theme
-code --install-extension saviof.mayacode
-code --install-extension njpwerner.autodocstring
-
-# Atom Packages
+# Atom
 brew cask install atom
 
 # Atom Extension
