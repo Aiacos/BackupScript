@@ -40,6 +40,7 @@ sudo xcodebuild -license accept
 brew install python
 brew install python@2
 
+/usr/local/bin/python3 -m pip install 'python-language-server[all]'
 pip install PySide2
 
 ## Install Dev Editor and IDE
@@ -49,7 +50,6 @@ brew cask install gitkraken
 
 # Atom
 brew cask install atom
-/usr/local/bin/python3 -m pip install 'python-language-server[all]'
 
 # Atom Extension
 apm install teletype
