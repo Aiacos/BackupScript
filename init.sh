@@ -49,6 +49,7 @@ brew cask install gitkraken
 
 # Atom
 brew cask install atom
+/usr/local/bin/python3 -m pip install 'python-language-server[all]'
 
 # Atom Extension
 apm install teletype
