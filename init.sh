@@ -5,6 +5,7 @@
 # brew doctor
 # brew update
 # brew upgrade
+# brew cask upgrade
 # brew cask upgrade --greedy
 
 # brew update && brew upgrade && brew cask upgrade --greedy
