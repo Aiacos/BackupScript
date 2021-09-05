@@ -15,6 +15,9 @@ scoop install steam
 
 # System
 scoop intsall 7zip
+# iCue
+#scoop bucket add TheRandomLabs https://github.com/TheRandomLabs/Scoop-Bucket.git
+#scoop install corsair-icue
 
 # Programming
 scoop install gitkraken
