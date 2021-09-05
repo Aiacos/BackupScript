@@ -34,7 +34,7 @@ scoop intsall -g 7zip
 # Programming
 scoop install -g gitkraken
 scoop install -g pycharm
-scoop inatall -g atom
+scoop install -g atom
 
 # Atom Extension
 apm install language-powershell
