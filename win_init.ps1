@@ -48,4 +48,3 @@ apm install atom-ide-debugger-python
 apm install atom-ide-ui
 apm install ide-python
 apm install atom-maya-quick-help
-apm install maya
