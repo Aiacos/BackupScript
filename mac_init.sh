@@ -64,5 +64,7 @@ apm install atom-beautify
 apm install atom-ide-debugger-python
 apm install atom-ide-ui
 apm install ide-python
+apm install atom-maya-quick-help
+apm install maya
 
 /usr/local/bin/python3 -m pip install 'python-language-server[all]'

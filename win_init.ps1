@@ -35,6 +35,7 @@ scoop install -g pycharm
 scoop inatall -g atom
 
 # Atom Extension
+apm install language-powershell
 apm install teletype
 apm install file-icons
 apm install atom-file-icons
@@ -46,3 +47,5 @@ apm install atom-beautify
 apm install atom-ide-debugger-python
 apm install atom-ide-ui
 apm install ide-python
+apm install atom-maya-quick-help
+apm install maya
