@@ -26,6 +26,9 @@ scoop intsall -g 7zip
 #scoop bucket add TheRandomLabs https://github.com/TheRandomLabs/Scoop-Bucket.git
 #scoop install -g corsair-icue
 
+# Driver
+#scoop install -g snappy-driver-installer-origin
+
 # Programming
 scoop install -g gitkraken
 scoop install -g pycharm
