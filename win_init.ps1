@@ -1,4 +1,11 @@
+<# Windows Install Script #>
 ﻿## Install Scoop
+$env:SCOOP='C:\Scoop'
+[environment]::setEnvironmentVariable('SCOOP',$env:SCOOP,'User')
+
+$env:SCOOP_GLOBAL='c:\Apps'
+[Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
+
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 iwr -useb get.scoop.sh | iex
 
@@ -7,22 +14,22 @@ scoop bucket add extras
 ## Install Software
 
 # Internet
-scoop install opera
-scoop intsall discord
+scoop install -g opera
+scoop intsall -g discord
 
 # Game
-scoop install steam
+scoop install -g steam
 
 # System
-scoop intsall 7zip
+scoop intsall -g 7zip
 # iCue
 #scoop bucket add TheRandomLabs https://github.com/TheRandomLabs/Scoop-Bucket.git
-#scoop install corsair-icue
+#scoop install -g corsair-icue
 
 # Programming
-scoop install gitkraken
-scoop install pycharm
-scoop inatall atom
+scoop install -g gitkraken
+scoop install -g pycharm
+scoop inatall -g atom
 
 # Atom Extension
 apm install teletype
