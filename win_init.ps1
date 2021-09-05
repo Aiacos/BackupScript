@@ -10,6 +10,7 @@ Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 iwr -useb get.scoop.sh | iex
 
 scoop bucket add extras
+#scoop bucket add nonportable
 
 ## Install Software
 
@@ -28,6 +29,7 @@ scoop intsall -g 7zip
 
 # Driver
 #scoop install -g snappy-driver-installer-origin
+#scoop install -g nvidia-display-driver-dch-np
 
 # Programming
 scoop install -g gitkraken
