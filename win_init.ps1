@@ -13,6 +13,7 @@ scoop bucket add extras
 #scoop bucket add nonportable
 
 ## Install Software
+scoop install -g git
 
 # Internet
 scoop install -g opera
