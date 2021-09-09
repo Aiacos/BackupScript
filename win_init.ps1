@@ -1,41 +1,32 @@
-<# Windows Install Script #>
-﻿## Install Scoop
-$env:SCOOP='C:\Scoop'
-[environment]::setEnvironmentVariable('SCOOP',$env:SCOOP,'User')
-
-$env:SCOOP_GLOBAL='c:\Apps'
-[Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
-
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-iwr -useb get.scoop.sh | iex
-
-scoop bucket add extras
-#scoop bucket add nonportable
+## Install Chocolatey
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+choco feature enable -n allowGlobalConfirmation
 
 ## Install Software
-scoop install -g git
-
 # Internet
-scoop install -g opera
-scoop intsall -g discord
+choco install opera
+choco install discord.install
 
 # Game
-scoop install -g steam
+choco install battle.net
+choco install steam
+
+# Graphics
+choco install maya
 
 # System
-scoop intsall -g 7zip
-# iCue
-#scoop bucket add TheRandomLabs https://github.com/TheRandomLabs/Scoop-Bucket.git
-#scoop install -g corsair-icue
+choco install 7zip.install
+#choco install icue
 
 # Driver
-#scoop install -g snappy-driver-installer-origin
-#scoop install -g nvidia-display-driver-dch-np
+#choco install intel-dsa
+#choco install nvidia-display-driver --package-parameters="'/dch'"
 
 # Programming
-scoop install -g gitkraken
-scoop install -g pycharm
-scoop install -g atom
+choco install gitkraken
+choco install pycharm-community
+choco install atom.install
 
 # Atom Extension
 apm install language-powershell
