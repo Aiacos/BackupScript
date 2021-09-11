@@ -16,6 +16,7 @@ choco install steam
 choco install maya
 
 # System
+choco install parsec --params "/Shared"
 choco install 7zip.install
 #choco install icue
 
