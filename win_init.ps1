@@ -7,6 +7,7 @@ choco feature enable -n allowGlobalConfirmation
 # Internet
 choco install opera
 choco install discord.install
+choco install qsync
 
 # Game
 choco install battle.net
