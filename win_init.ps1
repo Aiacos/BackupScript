@@ -29,6 +29,18 @@ choco install 7zip.install
 choco install gitkraken
 choco install pycharm-community
 choco install atom.install
+choco install vscode
+
+# VSCode Extension
+code --install-extension ms-vsliveshare.vsliveshare
+code --install-extension PKief.material-icon-theme
+code --install-extension akamud.vscode-theme-onedark
+#code --install-extension felipe.nasc-touchbar
+
+code --install-extension ms-python.python
+code --install-extension saviof.mayacode
+code --install-extension FXTD-Odyssey.mayapy
+code --install-extension JacquesLucke.blender-development
 
 # Atom Extension
 apm install language-powershell
