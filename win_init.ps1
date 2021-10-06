@@ -29,7 +29,7 @@ choco install 7zip.install
 choco install gitkraken
 choco install pycharm-community
 choco install atom.install
-choco install vscode.install
+choco install vscode.install --params "/NoDesktopIcon"
 
 # VSCode Extension
 code --install-extension ms-vsliveshare.vsliveshare
