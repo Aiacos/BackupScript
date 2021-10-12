@@ -26,33 +26,34 @@ choco install 7zip.install
 #choco install nvidia-display-driver --package-parameters="'/dch'"
 
 # Programming
+choco install git.install
 choco install gitkraken
 choco install pycharm-community
 choco install atom.install
 choco install vscode.install --params "/NoDesktopIcon"
 
 # VSCode Extension
-code --install-extension ms-vsliveshare.vsliveshare
-code --install-extension PKief.material-icon-theme
-code --install-extension akamud.vscode-theme-onedark
-#code --install-extension felipe.nasc-touchbar
+cmd.exe /c "code --install-extension ms-vsliveshare.vsliveshare"
+cmd.exe /c "code --install-extension PKief.material-icon-theme"
+cmd.exe /c "code --install-extension akamud.vscode-theme-onedark"
+#cmd.exe /c "code --install-extension felipe.nasc-touchbar"
 
-code --install-extension ms-python.python
-code --install-extension saviof.mayacode
-code --install-extension FXTD-Odyssey.mayapy
-code --install-extension JacquesLucke.blender-development
+cmd.exe /c "code --install-extension ms-python.python"
+cmd.exe /c "code --install-extension saviof.mayacode"
+cmd.exe /c "code --install-extension FXTD-Odyssey.mayapy"
+cmd.exe /c "code --install-extension JacquesLucke.blender-development"
 
 # Atom Extension
-apm install language-powershell
-apm install teletype
-apm install file-icons
-apm install atom-file-icons
-apm install script
-apm install tool-bar
-apm install tool-bar-atom
-apm install python-tools
-apm install atom-beautify
-apm install atom-ide-debugger-python
-apm install atom-ide-ui
-apm install ide-python
-apm install atom-maya-quick-help
+cmd.exe /c "apm install language-powershell"
+cmd.exe /c "apm install teletype"
+cmd.exe /c "apm install file-icons"
+cmd.exe /c "apm install atom-file-icons"
+cmd.exe /c "apm install script"
+cmd.exe /c "apm install tool-bar"
+cmd.exe /c "apm install tool-bar-atom"
+cmd.exe /c "apm install python-tools"
+cmd.exe /c "apm install atom-beautify"
+cmd.exe /c "apm install atom-ide-debugger-python"
+cmd.exe /c "apm install atom-ide-ui"
+cmd.exe /c "apm install ide-python"
+cmd.exe /c "apm install atom-maya-quick-help"
