@@ -16,6 +16,9 @@ choco install steam
 # Graphics
 choco install maya
 
+# Utils
+#choco install ledger-live
+
 # System
 choco install parsec --params "/Shared"
 choco install 7zip.install
