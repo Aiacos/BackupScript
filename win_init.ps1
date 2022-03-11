@@ -16,6 +16,7 @@ choco install steam
 # Graphics
 choco install wacom-drivers
 # choco install maya
+# choco install blender
 
 # Utils
 # choco install ledger-live
