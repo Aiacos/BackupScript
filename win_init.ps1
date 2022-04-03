@@ -14,10 +14,12 @@ choco install battle.net
 choco install steam
 
 # Graphics
-choco install maya
+choco install wacom-drivers
+# choco install maya
+# choco install blender
 
 # Utils
-#choco install ledger-live
+# choco install ledger-live
 
 # System
 choco install parsec --params "/Shared"
