@@ -16,7 +16,6 @@ mas signin uni.lorenzo.a@gmail.com "CaccaSecca86"
 
 ## Install Apps
 # Install AppStore apps
-mas lucky iStatMenus
 mas lucky MeisterTask
 mas lucky AffinityPhoto
 mas lucky MoneyPro
@@ -28,6 +27,7 @@ mas lucky MicrosoftRemoteDesktop
 brew cask install opera
 brew cask install blender
 brew cask install discord
+brew install --cask sensei
 brew cask install qsync-client
 brew cask install battle-net
 brew cask install speedify
