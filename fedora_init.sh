@@ -1,6 +1,5 @@
 # Update
 sudo dnf update -y
-sudo dnf -y --refresh upgrade
 
 # Install Tweak
 pip3 install --user gnome-extensions-cli
