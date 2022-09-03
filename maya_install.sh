@@ -44,7 +44,7 @@ sudo dnf install compat-openssl10-1.0.2o-4.el8.x86_64.rpm -y
 
 wget https://up.autodesk.com/2023/PLC0000036/CA2DD799-0513-3E69-927A-F50C976E1FCC/AdskLicensingInstaller-12.2.0.17.tar.gz
 tar xvf AdskLicensingInstaller-12.2.0.17.tar.gz
-cd /adsklicensinginstaller
+cd adsklicensinginstaller/
 sudo dnf install -y adlmapps26-26.0.7-0.x86_64.rpm adskflexnetclient-11.18.0-0.x86_64.rpm adsklicensing12.2.0.17-0-0.x86_64.rpm
 
 cd ..
