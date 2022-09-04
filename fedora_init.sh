@@ -11,4 +11,5 @@ sudo systemctl enable sshd
 sudo systemctl start sshd
 
 # Install Apps
+sudo dnf install neofetch -y
 sudo dnf install btop -y
