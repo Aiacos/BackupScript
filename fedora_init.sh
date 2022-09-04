@@ -4,6 +4,7 @@ sudo dnf update -y
 # Install Tweak
 pip3 install --user gnome-extensions-cli
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,close'
+sudo dnf install gnome-shell-extension-openweather -y
 
 # Configure SSH
 sudo dnf install openssh-server -y
