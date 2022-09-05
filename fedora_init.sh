@@ -3,7 +3,15 @@ sudo dnf update -y
 
 # Install Tweak
 pip3 install --user gnome-extensions-cli
-gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,close'
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+
+gnome-extensions-cli install arcmenu@arcmenu.com
+gnome-extensions-cli install background-logo@fedorahosted.org
+gnome-extensions-cli install rocketbar@chepkun.github.com
+gnome-extensions-cli install tiling-assistant@leleat-on-github
+gnome-extensions-cli install trayIconsReloaded@selfmade.pl
+gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gnome-extensions-cli install tophat@fflewddur.github.io
 
 # Configure SSH
 sudo dnf install openssh-server -y
