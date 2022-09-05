@@ -36,7 +36,6 @@ choco install git.install
 choco install gitkraken
 choco install pycharm-community
 choco install vscode.install --params "/NoDesktopIcon"
-# choco install atom.install
 
 # VSCode Extension
 cmd.exe /c "code --install-extension ms-vsliveshare.vsliveshare"
@@ -48,18 +47,3 @@ cmd.exe /c "code --install-extension ms-python.python"
 cmd.exe /c "code --install-extension saviof.mayacode"
 cmd.exe /c "code --install-extension FXTD-Odyssey.mayapy"
 cmd.exe /c "code --install-extension JacquesLucke.blender-development"
-
-# Atom Extension
-# cmd.exe /c "apm install language-powershell"
-# cmd.exe /c "apm install teletype"
-# cmd.exe /c "apm install file-icons"
-# cmd.exe /c "apm install atom-file-icons"
-# cmd.exe /c "apm install script"
-# cmd.exe /c "apm install tool-bar"
-# cmd.exe /c "apm install tool-bar-atom"
-# cmd.exe /c "apm install python-tools"
-# cmd.exe /c "apm install atom-beautify"
-# cmd.exe /c "apm install atom-ide-debugger-python"
-# cmd.exe /c "apm install atom-ide-ui"
-# cmd.exe /c "apm install ide-python"
-# cmd.exe /c "apm install atom-maya-quick-help"
