@@ -33,3 +33,11 @@ sudo flatpak install flathub com.anydesk.Anydesk -y
 sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
 sudo flatpak install flathub com.axosoft.GitKraken -y
+
+## Environment setup
+echo "# Startup tmux admin console" >> ~/.bashrc
+echo "if tmux has-session ; then" >> ~/.bashrc
+echo "	clear" >> ~/.bashrc
+echo "else" >> ~/.bashrc
+echo "  printf '\e[8;50;180t'; tmux new-session 'btop'\; split-window -h -p 50 \; split-window -v -p 50 \; select-pane -t 1 \; send-keys 'neofetch' C-m \; select-pane -t 2 \; send-keys 'clear' C-m \;" >> ~/.bashrc
+echo "fi" >> ~/.bashrc
