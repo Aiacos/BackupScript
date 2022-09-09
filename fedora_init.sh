@@ -12,6 +12,9 @@ gnome-extensions-cli install trayIconsReloaded@selfmade.pl
 gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gnome-extensions-cli install tophat@fflewddur.github.io
 
+sudo dnf install mint-y-icons -y
+gsettings set org.gnome.desktop.interface icon-theme 'Mint-Y-Blue'
+
 # Configure SSH
 sudo dnf install openssh-server -y
 sudo systemctl enable sshd
