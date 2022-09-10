@@ -13,7 +13,10 @@ gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.
 gnome-extensions-cli install tophat@fflewddur.github.io
 
 sudo dnf install mint-y-icons -y
-gsettings set org.gnome.desktop.interface icon-theme 'Mint-Y-Blue'
+sudo dnf install numix-icon-theme -y
+sudo dnf install numix-icon-theme-square -y
+sudo dnf install numix-icon-theme-circle -y
+gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 
 # Configure SSH
 sudo dnf install openssh-server -y
