@@ -17,6 +17,7 @@ sudo dnf install numix-icon-theme -y
 sudo dnf install numix-icon-theme-square -y
 sudo dnf install numix-icon-theme-circle -y
 gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 # Configure SSH
 sudo dnf install openssh-server -y
