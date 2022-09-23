@@ -20,6 +20,16 @@ gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
+# RGB setup
+sudo usermod -a -G video admin
+sudo dnf install openrgb libi2c openal-soft -y
+sudo modprobe i2c_dev
+sudo openrgb
+
+# NVIDIA Driver
+sudo dnf install akmod-nvidia -y
+sudo dnf install xorg-x11-drv-nvidia-cuda -y
+
 # Configure SSH
 sudo dnf install openssh-server -y
 sudo systemctl enable sshd
