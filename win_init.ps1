@@ -4,6 +4,10 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://com
 choco feature enable -n allowGlobalConfirmation
 
 ## Install Software
+# Driver
+choco install intel-dsa
+choco install nvidia-display-driver --package-parameters="'/dch'"
+
 # Internet
 choco install opera
 choco install discord.install
@@ -24,12 +28,9 @@ choco install wacom-drivers
 # System
 choco install parsec --params "/Shared"
 choco install 7zip.install
+choco install openrgb
 # choco install icue
 # choco install logitechgaming
-
-# Driver
-# choco install intel-dsa
-# choco install nvidia-display-driver --package-parameters="'/dch'"
 
 # Programming
 choco install git.install
