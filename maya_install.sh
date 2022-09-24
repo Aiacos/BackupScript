@@ -34,6 +34,7 @@ sudo dnf install glibc -y
 sudo dnf install zlib -y
 sudo dnf install libSM -y
 sudo dnf install libICE -y
+sudo dnf install gtk2 -y
 
 # Download Maya .rpm
 mkdir -p ~/Downloads/maya_build
