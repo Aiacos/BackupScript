@@ -24,7 +24,6 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 sudo usermod -a -G video admin
 sudo dnf install openrgb libi2c openal-soft -y
 sudo modprobe i2c_dev
-sudo openrgb
 
 # NVIDIA Driver
 sudo dnf install akmod-nvidia -y
