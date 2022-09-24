@@ -12,6 +12,7 @@ choco install nvidia-display-driver --package-parameters="'/dch'"
 choco install opera
 choco install discord.install
 choco install qsync
+choco install anydesk.install
 
 # Game
 choco install battle.net
@@ -19,8 +20,7 @@ choco install steam
 
 # Graphics
 choco install wacom-drivers
-# choco install maya
-# choco install blender
+choco install maya
 
 # Utils
 # choco install ledger-live
