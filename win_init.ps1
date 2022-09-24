@@ -12,7 +12,7 @@ choco install nvidia-display-driver --package-parameters="'/dch'"
 choco install opera
 choco install discord.install
 choco install qsync
-choco install anydesk.install
+choco install filezilla
 
 # Game
 choco install battle.net
@@ -27,6 +27,7 @@ choco install maya
 
 # System
 choco install parsec --params "/Shared"
+choco install anydesk.install
 choco install 7zip.install
 choco install openrgb
 # choco install icue
