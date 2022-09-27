@@ -53,11 +53,16 @@ wget https://dds.autodesk.com/NetSWDLD/2022/MAYA/C6122BA7-C730-31C1-BBA8-315D8E9
 tar xvf Autodesk_Maya_2022_4_ML_Linux_64bit.tgz
 
 # 3Delight
+sudo dnf install tcsh -y
+chsh root
 cd 
 mkdir -p ~/Downloads/delight
 cd ~/Downloads/delight
 wget https://3delight-downloads.s3-us-east-2.amazonaws.com/free/beta/2022-09-16-prF4Dcip/3DelightNSI-2.9.7-Linux-x86_64.tar.xz
 tar xvf 3DelightNSI-2.9.7-Linux-x86_64.tar.xz
+cd /usr/local/3delight-2.9.7/
+unsetenv DELIGHT
+source .3delight_csh
 
 # Env Settings
 #echo "MAYA_NO_HOME=1" >> maya/2022/Maya.env
