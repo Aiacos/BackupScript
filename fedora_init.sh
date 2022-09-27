@@ -40,7 +40,7 @@ sudo dnf install xrdp -y
 sudo systemctl enable --now xrdp
 
 # Add Flatpack
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install Apps
 sudo dnf install neofetch -y
