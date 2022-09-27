@@ -63,13 +63,13 @@ tar xvf 3DelightNSI-2.9.7-Linux-x86_64.tar.xz
 cd /usr/local/3delight-2.9.7/
 unset DELIGHT
 source .3delight_bash
-cd
-echo "# set DELIGHT path" >> .bashrc
-echo "export DELIGHT=/usr/local/3delight-2.9.7/Linux-x86_64" >> .bashrc
-echo "source /usr/local/3delight-2.9.7/.3delight_bash" >> .bashrc
-echo "source /usr/local/3delight-2.9.7/.3delight_bash" >> .bashrc
-echo "export MAYA_PLUG_IN_PATH=/usr/local/3delight-2.9.7/maya/2022/plug-ins" >> .bashrc
+#cd
+#echo "# set DELIGHT path" >> .bashrc
+#echo "export DELIGHT=/usr/local/3delight-2.9.7/Linux-x86_64" >> .bashrc
+#echo "source /usr/local/3delight-2.9.7/.3delight_bash" >> .bashrc
+#echo "export MAYA_PLUG_IN_PATH=/usr/local/3delight-2.9.7/maya/2022/plug-ins" >> .bashrc
 
 # Env Settings
 #echo "MAYA_NO_HOME=1" >> maya/2022/Maya.env
 #echo "MAYA_NO_HOME_ICON=1" >> maya/2022/Maya.env
+#echo "MAYA_PLUG_IN_PATH=/usr/local/3delight-2.9.7/maya/2022/plug-ins" >> maya/2022/Maya.env
