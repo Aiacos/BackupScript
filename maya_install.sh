@@ -51,3 +51,7 @@ sudo dnf install -y adlmapps26-26.0.7-0.x86_64.rpm adskflexnetclient-11.18.0-0.x
 cd ..
 wget https://dds.autodesk.com/NetSWDLD/2022/MAYA/C6122BA7-C730-31C1-BBA8-315D8E96B8A8/ESD/Autodesk_Maya_2022_4_ML_Linux_64bit.tgz
 tar xvf Autodesk_Maya_2022_4_ML_Linux_64bit.tgz
+
+# Env Settings
+#echo "MAYA_NO_HOME=1" >> maya/2022/Maya.env
+#echo "MAYA_NO_HOME_ICON=1" >> maya/2022/Maya.env
