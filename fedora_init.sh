@@ -2,7 +2,7 @@
 sudo dnf upgrade --refresh -y
 
 # Install Tweak
-sudo dnf install python -y
+sudo dnf install python3-pip -y
 pip3 install --user gnome-extensions-cli
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 
