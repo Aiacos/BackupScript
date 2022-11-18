@@ -58,7 +58,7 @@ tar xvf Autodesk_Maya_2022_4_ML_Linux_64bit.tgz
 cd 
 mkdir -p ~/Downloads/delight
 cd ~/Downloads/delight
-wget https://3delight-downloads.s3-us-east-2.amazonaws.com/free/beta/2022-09-16-prF4Dcip/3DelightNSI-2.9.7-Linux-x86_64.tar.xz
+wget https://3delight-downloads.s3-us-east-2.amazonaws.com/free/beta/2022-11-08-IaH0j6go/3DelightNSI-2.9.14-Linux-x86_64.tar.xz
 tar xvf 3DelightNSI-2.9.7-Linux-x86_64.tar.xz
 cd /usr/local/3delight-2.9.7/
 unset DELIGHT
