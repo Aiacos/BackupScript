@@ -70,6 +70,6 @@ source .3delight_bash
 #echo "export MAYA_PLUG_IN_PATH=/usr/local/3delight-2.9.7/maya/2022/plug-ins" >> .bashrc
 
 # Env Settings
-#echo "MAYA_NO_HOME=1" >> maya/2022/Maya.env
-#echo "MAYA_NO_HOME_ICON=1" >> maya/2022/Maya.env
-#echo "MAYA_PLUG_IN_PATH=/usr/local/3delight-2.9.7/maya/2022/plug-ins" >> maya/2022/Maya.env
+#echo "MAYA_NO_HOME=1" >> /home/admin/maya/2022/Maya.env
+#echo "MAYA_NO_HOME_ICON=1" >> /home/admin/maya/2022/Maya.env
+#echo "MAYA_PLUG_IN_PATH=/usr/local/3delight-2.9.7/maya/2022/plug-ins" >> /home/admin/maya/2022/Maya.env
