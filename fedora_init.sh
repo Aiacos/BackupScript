@@ -22,7 +22,7 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 # Deepin Desktop
-
+sudo dnf group install "Deepin Desktop" -y
 
 # RGB setup
 sudo usermod -a -G video admin
