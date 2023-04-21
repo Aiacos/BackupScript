@@ -21,6 +21,9 @@ gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
+# Deepin Desktop
+
+
 # RGB setup
 sudo usermod -a -G video admin
 sudo dnf install openrgb libi2c openal-soft -y
@@ -52,6 +55,10 @@ sudo flatpak install flathub com.anydesk.Anydesk -y
 sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
 sudo flatpak install flathub com.axosoft.GitKraken -y
+
+# Dev Tools
+sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
+sudo dnf install cmake -y
 
 ## Environment setup
 echo "# Startup tmux admin console" >> ~/.bashrc
