@@ -2,7 +2,7 @@
 sudo dnf upgrade --refresh -y
 
 # Install Tweak
-sudo dnf install python3-pip -y
+sudo dnf install python3 python3-pip -y
 pip3 install --user gnome-extensions-cli
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 
@@ -55,7 +55,7 @@ sudo flatpak install flathub com.anydesk.Anydesk -y
 sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
 sudo flatpak install flathub com.axosoft.GitKraken -y
-
+sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
 # Dev Tools
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
 sudo dnf install cmake -y
