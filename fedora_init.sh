@@ -56,6 +56,7 @@ sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
 sudo flatpak install flathub com.axosoft.GitKraken -y
 sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
+
 # Dev Tools
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
 sudo dnf install cmake -y
