@@ -59,7 +59,7 @@ sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
 
 # Dev Tools
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
-sudo dnf install cmake -y
+sudo dnf install mesa-libGL-devel cmake -y
 
 ## Environment setup
 echo "# Startup tmux admin console" >> ~/.bashrc
