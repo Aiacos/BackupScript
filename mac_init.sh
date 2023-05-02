@@ -1,5 +1,5 @@
 ## Install Homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 ## Brew management
 # brew doctor
@@ -18,53 +18,26 @@ mas signin uni.lorenzo.a@gmail.com "CaccaSecca86"
 # Install AppStore apps
 mas lucky MeisterTask
 mas lucky AffinityPhoto
-mas lucky MoneyPro
 mas lucky TheUnarchiver
 mas lucky MicrosoftRemoteDesktop
 
 # Intsall Brew Cask
-#brew cask install google-chrome
-brew cask install opera
-brew cask install blender
-brew cask install discord
+brew install btop
+brew install --cask opera
+brew install --cask blender
+brew install --cask discord
 brew install --cask sensei
-brew cask install qsync-client
-brew cask install battle-net
-brew cask install speedify
+brew install --cask anydesk
+brew install --cask qsync-client
+brew install --cask battle-net
+brew install --cask speedify
 
 
 ## Intsall Dev Environment
 mas lucky Xcode
 sudo xcodebuild -license accept
 
-# Install Python
-brew install python
-brew install python@2
-
-/usr/local/bin/python3 -m pip install 'python-language-server[all]'
-pip install PySide2
-
 ## Install Dev Editor and IDE
 # Intsall Brew Cask Dev
-brew cask install pycharm-ce
-brew cask install gitkraken
-
-# Atom
-brew cask install atom
-
-# Atom Extension
-apm install teletype
-apm install file-icons
-apm install atom-file-icons
-apm install script
-apm install tool-bar
-apm install tool-bar-atom
-apm install python-tools
-apm install atom-beautify
-apm install atom-ide-debugger-python
-apm install atom-ide-ui
-apm install ide-python
-apm install atom-maya-quick-help
-apm install maya
-
-/usr/local/bin/python3 -m pip install 'python-language-server[all]'
+brew install --cask pycharm-ce
+brew install --cask gitkraken

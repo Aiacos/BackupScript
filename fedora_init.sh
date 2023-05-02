@@ -24,12 +24,6 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 # Deepin Desktop
 sudo dnf group install "Deepin Desktop" -y
 
-# RGB setup
-sudo usermod -a -G video admin
-sudo dnf install openrgb libi2c openal-soft -y
-sudo modprobe i2c_dev
-echo "i2c_dev" >> /etc/modules
-
 # NVIDIA Driver
 sudo dnf install akmod-nvidia -y
 sudo dnf install xorg-x11-drv-nvidia-cuda -y
@@ -60,6 +54,12 @@ sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
 # Dev Tools
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
 sudo dnf install mesa-libGL-devel cmake -y
+
+# RGB setup
+sudo usermod -a -G video admin
+sudo dnf install openrgb libi2c openal-soft -y
+sudo modprobe i2c_dev
+echo "i2c_dev" >> /etc/modules
 
 ## Environment setup
 echo "# Startup tmux admin console" >> ~/.bashrc
