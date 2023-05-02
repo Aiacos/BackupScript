@@ -21,6 +21,14 @@ gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
+# Dracula Theme
+sudo dnf install snapd -y
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install dracula-gtk-theme
+git clone https://github.com/dracula/wallpaper.git /usr/share/backgrounds
+gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+
 # Deepin Desktop
 sudo dnf group install "Deepin Desktop" -y
 
