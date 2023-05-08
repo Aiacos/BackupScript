@@ -1,15 +1,19 @@
 # Update
-yay -Syu
+sudo pacman -Syu
+sudo pacman -S yay
 
-# Install Deepin
-yay -S deepin-extra
+# Install Software
+sudo pacman -S neofetch
+sudo pacman -S btop
+sudo pacman -S cmatrix
 
-# Install
-yay -S opera
-yay -S blender
-yay -S krita
-yay -S atom
+sudo pacman -S opera
+sudo pacman -S blender
+sudo pacman -S krita
 
-# Install Maya
-gpg --keyserver pool.sks-keyservers.net --recv-keys 8048643BA2C840F4F92A195FF54984BFA16C640F
-yay -S maya
+# Install Develpment Tools
+sudo pacman -S base-devel
+sudo pacman -S gitkraken
+sudo pacman -S pycharm-community-edition
+
+
