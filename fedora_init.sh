@@ -55,6 +55,7 @@ sudo dnf install neofetch -y
 sudo dnf install btop -y
 sudo dnf install gedit -y
 sudo dnf install geany -y
+sudo dnf install cmatrix -y
 
 sudo flatpak install flathub com.anydesk.Anydesk -y
 sudo flatpak install flathub org.blender.Blender -y
