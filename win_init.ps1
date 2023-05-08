@@ -5,7 +5,7 @@ choco feature enable -n allowGlobalConfirmation
 
 ## Install Software
 # Driver
-choco install intel-dsa
+# choco install intel-dsa
 choco install nvidia-display-driver --package-parameters="'/dch'"
 
 # Internet
@@ -29,7 +29,7 @@ choco install maya
 choco install parsec --params "/Shared"
 choco install anydesk.install
 choco install 7zip.install
-choco install openrgb
+# choco install openrgb
 # choco install icue
 # choco install logitechgaming
 
@@ -37,15 +37,4 @@ choco install openrgb
 choco install git.install
 choco install gitkraken
 choco install pycharm-community
-choco install vscode.install --params "/NoDesktopIcon"
-
-# VSCode Extension
-cmd.exe /c "code --install-extension ms-vsliveshare.vsliveshare"
-cmd.exe /c "code --install-extension PKief.material-icon-theme"
-cmd.exe /c "code --install-extension akamud.vscode-theme-onedark"
-#cmd.exe /c "code --install-extension felipe.nasc-touchbar"
-
-cmd.exe /c "code --install-extension ms-python.python"
-cmd.exe /c "code --install-extension saviof.mayacode"
-cmd.exe /c "code --install-extension FXTD-Odyssey.mayapy"
-cmd.exe /c "code --install-extension JacquesLucke.blender-development"
+choco install notepadplusplus
