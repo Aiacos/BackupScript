@@ -1,6 +1,5 @@
 # Update
 sudo pacman -Syu
-sudo pacman -S yay
 
 # Install Software
 sudo pacman -S neofetch
