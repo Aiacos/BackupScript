@@ -15,5 +15,3 @@ sudo pacman -S krita
 sudo pacman -S base-devel
 sudo pacman -S gitkraken
 sudo pacman -S pycharm-community-edition
-
-
