@@ -1,12 +1,13 @@
 # Update
-echo "max_parallel_downloads=10" >> /etc/dnf/dnf.conf
-echo "fastestmirror=True" >> /etc/dnf/dnf.conf
+sudo echo "max_parallel_downloads=10" >> /etc/dnf/dnf.conf
+sudo echo "fastestmirror=True" >> /etc/dnf/dnf.conf
 
 #sudo dnf upgrade --refresh -y
 sudo dnf update -y
 sudo dnf upgrade -y
 
 # Install Tweak
+#sudo dnf install gnome-tweaks -y
 sudo dnf install python3 python3-pip -y
 pip3 install --user gnome-extensions-cli
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
@@ -28,6 +29,39 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 # Deepin Desktop
 #sudo dnf group install "Deepin Desktop" -y
+
+# Configure ZSH
+sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
+cd .nerd-fonts
+sudo ./install.sh
+
+chsh -s /usr/bin/zsh
+
+sudo dnf install fontawesome-fonts -y
+sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts -y
+
+echo "
+if [ -f `which powerline-daemon` ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  . /usr/share/powerline/bash/powerline.sh
+fi
+" >> ~/.bashrc
+
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+echo "ZSH_THEME=powerlevel10k/powerlevel10k" >> ~/.zshrc
+echo "plugins=(firewalld git)" >> ~/.zshrc
+echo "plugins=( [plugins...] zsh-syntax-highlighting zsh-autosuggestions)" >> ~/.zshrc
+
+sudo gem install colorls
+echo "alias ll='colorls -lA --sd --gs --group-directories-first'" >> ~/.zshrc
+echo "alias ls='colorls --group-directories-first'" >> ~/.zshrc
+echo "source $(dirname $(gem which colorls))/tab_complete.sh" >> ~/.zshrc
 
 # Configure SSH
 sudo dnf install openssh-server -y
@@ -60,12 +94,3 @@ sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
 sudo flatpak install flathub com.axosoft.GitKraken -y
 sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
-
-
-## Environment setup
-echo "# Startup tmux admin console" >> ~/.bashrc
-echo "if tmux has-session ; then" >> ~/.bashrc
-echo "	clear" >> ~/.bashrc
-echo "else" >> ~/.bashrc
-echo "  printf '\e[8;50;180t'; tmux new-session 'btop'\; split-window -h -p 50 \; split-window -v -p 50 \; select-pane -t 1 \; send-keys 'neofetch' C-m \; select-pane -t 2 \; send-keys 'clear' C-m \;" >> ~/.bashrc
-echo "fi" >> ~/.bashrc
