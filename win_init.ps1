@@ -14,27 +14,27 @@ choco install discord.install
 choco install qsync
 choco install filezilla
 
-# Game
-choco install battle.net
-choco install steam
-
 # Graphics
 choco install wacom-drivers
 choco install maya
-
-# Utils
-# choco install ledger-live
 
 # System
 choco install parsec --params "/Shared"
 choco install anydesk.install
 choco install 7zip.install
-# choco install openrgb
-# choco install icue
-# choco install logitechgaming
 
 # Programming
 choco install git.install
 choco install gitkraken
 choco install pycharm-community
 choco install notepadplusplus
+
+# Game
+choco install battle.net
+choco install steam
+
+# Utils
+# choco install ledger-live
+# choco install openrgb
+# choco install icue
+# choco install logitechgaming
