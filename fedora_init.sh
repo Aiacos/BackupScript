@@ -6,6 +6,10 @@ sudo echo "fastestmirror=True" >> /etc/dnf/dnf.conf
 sudo dnf update -y
 sudo dnf upgrade -y
 
+# Dev Tools
+sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
+sudo dnf install gcc gcc-c++ g++ cmake mesa-libGL-devel -y
+
 # Install Tweak
 #sudo dnf install gnome-tweaks -y
 sudo dnf install python3 python3-pip -y
@@ -41,27 +45,60 @@ chsh -s /usr/bin/zsh
 sudo dnf install fontawesome-fonts -y
 sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts -y
 
-echo "
-if [ -f `which powerline-daemon` ]; then
-  powerline-daemon -q
-  POWERLINE_BASH_CONTINUATION=1
-  POWERLINE_BASH_SELECT=1
-  . /usr/share/powerline/bash/powerline.sh
+## ZSH
+# Prezto
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+# zplug
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+tee -a ~/.zshrc << EOF
+# zplug configuration
+source ~/.zplug/init.zsh
+
+# Install and load plugins
+zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/osx",   from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "clvv/fasd"
+zplug "b4b4r07/enhancd"
+zplug "junegunn/fzf"
+zplug "Peltoche/lsd"
+zplug "g-plane/zsh-yarn-autocompletions"
+zplug "romkatv/powerlevel10k", as:theme, depth:1
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    read -r REPLY
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        zplug install
+    fi
 fi
-" >> ~/.bashrc
 
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-echo "ZSH_THEME=powerlevel10k/powerlevel10k" >> ~/.zshrc
-echo "plugins=(firewalld git)" >> ~/.zshrc
-echo "plugins=( [plugins...] zsh-syntax-highlighting zsh-autosuggestions)" >> ~/.zshrc
+# Load plugins
+zplug load
+EOF
 
-sudo gem install colorls
-echo "alias ll='colorls -lA --sd --gs --group-directories-first'" >> ~/.zshrc
-echo "alias ls='colorls --group-directories-first'" >> ~/.zshrc
-echo "source $(dirname $(gem which colorls))/tab_complete.sh" >> ~/.zshrc
+# install plugins
+source ~/.zshrc && zplug install
+
+# Theme
+# Set the prompt theme to load.
+# Setting it to 'random' loads a random theme.
+# Auto set to 'off' on dumb terminals.
+echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> ~/.zpreztorc
+p10k configure
+
+# Dracula theme
+cd
+mkdir settings
+cd settings
+git clone https://github.com/dracula/terminal-app.git
 
 # Configure SSH
 sudo dnf install openssh-server -y
@@ -70,10 +107,6 @@ sudo systemctl start sshd
 
 sudo dnf install xrdp -y
 sudo systemctl enable --now xrdp
-
-# Dev Tools
-sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
-sudo dnf install gcc gcc-c++ cmake mesa-libGL-devel -y
 
 # NVIDIA Driver
 sudo dnf install akmod-nvidia -y
