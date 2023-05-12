@@ -17,7 +17,6 @@ mas signin uni.lorenzo.a@gmail.com "CaccaSecca86"
 ## Install Apps
 # Install AppStore apps
 mas lucky MeisterTask
-mas lucky AffinityPhoto
 mas lucky TheUnarchiver
 mas lucky MicrosoftRemoteDesktop
 
@@ -35,6 +34,7 @@ brew install --cask qsync-client
 brew install --cask amethyst
 brew install --cask battle-net
 brew install --cask speedify
+brew install --cask affinity-photo
 
 
 ## Intsall Dev Environment
