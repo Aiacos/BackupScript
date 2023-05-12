@@ -11,6 +11,7 @@ choco install nvidia-display-driver --package-parameters="'/dch'"
 # Internet
 choco install opera
 choco install discord.install
+choco install megasync
 choco install qsync
 choco install filezilla
 
