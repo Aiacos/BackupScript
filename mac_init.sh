@@ -30,6 +30,7 @@ brew install --cask blender
 brew install --cask discord
 brew install --cask sensei
 brew install --cask anydesk
+brew install --cask megasync
 brew install --cask qsync-client
 brew install --cask amethyst
 brew install --cask battle-net

@@ -1,7 +1,8 @@
 ## Maya Installe Script
 # Variables
-### maya_version = 2022
-# Dipendencies
+maya_version=2022
+
+# Dependencies
 sudo dnf install mesa-libGLw -y
 sudo dnf install mesa-libGLU -y
 sudo dnf install libXp -y
@@ -49,7 +50,7 @@ cd adsklicensinginstaller/
 sudo dnf install -y adlmapps26-26.0.7-0.x86_64.rpm adskflexnetclient-11.18.0-0.x86_64.rpm adsklicensing12.2.0.17-0-0.x86_64.rpm
 
 cd ..
-wget https://dds.autodesk.com/NetSWDLD/2022/MAYA/C6122BA7-C730-31C1-BBA8-315D8E96B8A8/ESD/Autodesk_Maya_2022_4_ML_Linux_64bit.tgz
+wget https://dds.autodesk.com/NetSWDLD/2022/MAYA/C6122BA7-C730-31C1-BBA8-315D8E96B8A8/ESD/Autodesk_Maya_2022_5_ML_Linux_64bit.tgz
 tar xvf Autodesk_Maya_2022_4_ML_Linux_64bit.tgz
 
 # 3Delight
