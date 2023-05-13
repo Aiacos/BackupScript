@@ -24,6 +24,7 @@ mas lucky MicrosoftRemoteDesktop
 brew install btop
 brew install neofetch
 brew install cmatrix
+brew install tmux
 brew install --cask opera
 brew install --cask blender
 brew install --cask discord
@@ -45,6 +46,25 @@ sudo xcodebuild -license accept
 # Intsall Brew Cask Dev
 brew install --cask pycharm-ce
 brew install --cask gitkraken
+
+## Tmux
+## Environment setup
+tee -a ~/.zshrc << EOF
+# Startup tmux admin console
+session="init"
+
+# Check if the session exists, discarding output
+# We can check $? for the exit status (zero for success, non-zero for failure)
+tmux has-session -t $session 2>/dev/null
+
+if [ $? != 0 ]; then
+  # Set up your session
+  tmux new-session -s 'init' 'btop'\; split-window -h -p 40 \; split-window -v -p 50 \; select-pane -t 1 \; send-keys 'neofetch' C-m \; select-pane -t 2 \; send-keys 'clear' C-m \;
+fi
+
+# tmux attach-session -t $session
+# tmux kill-session
+EOF
 
 
 ## ZSH
