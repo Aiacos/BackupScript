@@ -18,11 +18,12 @@ choco install filezilla
 # Graphics
 choco install wacom-drivers
 choco install maya
+choco install quixelbridge
 
 # System
 choco install parsec --params "/Shared"
-choco install anydesk.install
 choco install 7zip.install
+choco install screentogif.install
 
 # Programming
 choco install git.install
