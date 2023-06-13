@@ -40,3 +40,10 @@ choco install steam
 # choco install openrgb
 # choco install icue
 # choco install logitechgaming
+
+## Scoop installer
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser # Optional: Needed to run a remote script the first time
+irm get.scoop.sh | iex
+
+# Btop4win-LHM
+scoop install btop-lhm
