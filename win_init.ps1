@@ -6,7 +6,7 @@ choco feature enable -n allowGlobalConfirmation
 ## Install Software
 # Driver
 # choco install intel-dsa
-choco install nvidia-display-driver --package-parameters="'/dch'"
+choco install nvidia-display-driver
 
 # Internet
 choco install opera
