@@ -25,6 +25,8 @@ brew install btop
 brew install neofetch
 brew install cmatrix
 brew install tmux
+brew tap teamookla/speedtest
+brew install speedtest --force
 brew install --cask opera
 brew install --cask blender
 brew install --cask discord
@@ -33,8 +35,8 @@ brew install --cask anydesk
 brew install --cask megasync
 brew install --cask qsync-client
 brew install --cask amethyst
-brew install --cask battle-net
-brew install --cask speedify
+#brew install --cask battle-net
+#brew install --cask speedify
 brew install --cask affinity-photo
 
 
