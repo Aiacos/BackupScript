@@ -114,15 +114,10 @@ git clone https://github.com/dracula/terminal-app.git
 ## Environment setup
 tee -a ~/.zshrc << EOF
 # Startup tmux admin console
-session="init"
+session_name="init"
 
-# Check if the session exists, discarding output
-# We can check $? for the exit status (zero for success, non-zero for failure)
-tmux has-session -t $session 2>/dev/null
-
-if [ $? != 0 ]; then
-  # Set up your session
-  tmux new-session -s 'init' 'btop'\; split-window -h -p 40 \; split-window -v -p 50 \; select-pane -t 1 \; send-keys 'neofetch' C-m \; select-pane -t 2 \; send-keys 'clear' C-m \;
+if ! tmux has-session -t $session_name 2>/dev/null; then
+ tmux new-session -s "$session_name" 'btop'\; split-window -h -p 40 \; split-window -v -p 50 \; select-pane -t 1 \; send-keys 'neofetch' C-m \; select-pane -t 2 \; send-keys 'cmatrix' C-m \;
 fi
 
 # tmux attach-session -t $session
