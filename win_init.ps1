@@ -17,6 +17,7 @@ choco install filezilla
 
 # Graphics
 choco install wacom-drivers
+choco install blender
 choco install maya
 choco install quixelbridge
 
