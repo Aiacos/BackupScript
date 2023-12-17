@@ -99,6 +99,7 @@ sudo apt install btop -y
 sudo apt install gedit -y
 sudo apt install geany -y
 sudo apt install cmatrix -y
+sudo apt install blackbox -y
 
 # Add Flatpack
 sudo apt install flatpak -y
