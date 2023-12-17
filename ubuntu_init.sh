@@ -1,6 +1,6 @@
 #sudo dnf upgrade --refresh -y
 sudo apt update -y
-sudo apt dist-upgrade -y
+sudo apt upgrade -y
 sudo apt autoremove -y
 
 # Install Tweak
