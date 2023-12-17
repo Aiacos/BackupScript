@@ -1,6 +1,7 @@
 #sudo dnf upgrade --refresh -y
 sudo apt update -y
 sudo apt dist-upgrade -y
+sudo apt autoremove -y
 
 # Install Tweak
 #sudo apt install gnome-tweaks -y
