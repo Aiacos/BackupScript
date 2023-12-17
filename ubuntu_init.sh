@@ -20,7 +20,7 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 
 # Configure ZSH
-sudo apt install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
+sudo apt install git wget curl ruby zsh -y
 git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
 cd .nerd-fonts
 sudo ./install.sh
