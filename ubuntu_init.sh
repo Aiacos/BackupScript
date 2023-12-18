@@ -80,10 +80,13 @@ echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> ~/.zpreztorc
 p10k configure
 
 # Dracula theme
+sudo apt-get install dconf-cli -y
 cd
 mkdir settings
 cd settings
-git clone https://github.com/dracula/terminal-app.git
+git clone https://github.com/dracula/gnome-terminal
+cd gnome-terminal
+./install.sh
 
 # Configure SSH
 sudo apt install openssh-server -y
