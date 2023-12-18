@@ -1,4 +1,4 @@
-#sudo dnf upgrade --refresh -y
+# Update
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt autoremove -y
