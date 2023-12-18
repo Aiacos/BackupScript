@@ -92,6 +92,9 @@ cd settings
 git clone https://github.com/dracula/gnome-terminal
 cd gnome-terminal
 ./install.sh
+cd ..
+git clone https://github.com/dracula/wallpaper.git
+cd 
 
 # Configure SSH
 sudo apt install openssh-server -y
