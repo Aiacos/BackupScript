@@ -7,6 +7,7 @@ sudo apt autoremove -y
 #sudo apt install gnome-tweaks -y
 sudo apt install python3 python3-pip pipx -y
 pipx install gnome-extensions-cli --system-site-packages
+pipx ensurepath
 
 gnome-extensions-cli install arcmenu@arcmenu.com
 gnome-extensions-cli install rocketbar@chepkun.github.com
