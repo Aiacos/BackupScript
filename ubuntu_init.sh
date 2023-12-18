@@ -17,6 +17,7 @@ cd $HOME/.local/pipx/venvs/gnome-extensions-cli/bin
 ./gnome-extensions-cli install trayIconsReloaded@selfmade.pl
 ./gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 ./gnome-extensions-cli install tophat@fflewddur.github.io
+./gnome-extensions-cli install blur-my-shell@aunetx
 
 cd
 
