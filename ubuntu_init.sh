@@ -33,7 +33,9 @@ sudo ./install.sh
 chsh -s /usr/bin/zsh
 
 sudo apt install fontawesome-fonts -y
-sudo apt install powerline vim-powerline tmux-powerline powerline-fonts -y
+sudo add-apt-repository universe -y
+sudo apt install powerline -y
+#sudo apt install vim-powerline tmux-powerline powerline-fonts -y
 
 ## ZSH
 # Prezto
