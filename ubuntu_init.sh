@@ -95,8 +95,6 @@ cd gnome-terminal
 
 # Configure SSH
 sudo apt install openssh-server -y
-sudo systemctl enable sshd
-sudo systemctl start sshd
 
 sudo apt install xrdp -y
 sudo systemctl enable --now xrdp
