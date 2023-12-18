@@ -9,18 +9,20 @@ sudo apt install net-tools -y
 #sudo apt install gnome-tweaks -y
 sudo apt install python3 python3-pip pipx -y
 pipx install gnome-extensions-cli --system-site-packages
-pipx ensurepath
+cd $HOME/.local/pipx/venvs/gnome-extensions-cli/bin
 
-gnome-extensions-cli install arcmenu@arcmenu.com
-gnome-extensions-cli install rocketbar@chepkun.github.com
-gnome-extensions-cli install tiling-assistant@leleat-on-github
-gnome-extensions-cli install trayIconsReloaded@selfmade.pl
-gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-gnome-extensions-cli install tophat@fflewddur.github.io
+./gnome-extensions-cli install arcmenu@arcmenu.com
+./gnome-extensions-cli install rocketbar@chepkun.github.com
+./gnome-extensions-cli install tiling-assistant@leleat-on-github
+./gnome-extensions-cli install trayIconsReloaded@selfmade.pl
+./gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+./gnome-extensions-cli install tophat@fflewddur.github.io
 
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
+cd
+
+#gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+#gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+#gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 
 # Configure ZSH
 sudo apt install git wget curl ruby zsh -y
