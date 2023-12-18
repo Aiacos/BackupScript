@@ -3,6 +3,8 @@ sudo apt update -y
 sudo apt upgrade -y
 sudo apt autoremove -y
 
+sudo apt install net-tools -y
+
 # Install Tweak
 #sudo apt install gnome-tweaks -y
 sudo apt install python3 python3-pip pipx -y
