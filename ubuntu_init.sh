@@ -17,7 +17,7 @@ gnome-extensions-cli install tophat@fflewddur.github.io
 
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-
+gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 
 # Configure ZSH
 sudo apt install git wget curl ruby zsh -y
