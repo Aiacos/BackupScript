@@ -27,64 +27,8 @@ cd
 
 # Configure ZSH
 sudo apt install git wget curl ruby zsh -y
-git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
-cd .nerd-fonts
-sudo ./install.sh
-
-chsh -s /usr/bin/zsh
-
-sudo apt install fontawesome-fonts -y
-sudo add-apt-repository universe -y
-sudo apt install powerline -y
-#sudo apt install vim-powerline tmux-powerline powerline-fonts -y
-
-## ZSH
-# Prezto
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-
-# zplug
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
-tee -a ~/.zshrc << EOF
-# zplug configuration
-source ~/.zplug/init.zsh
-
-# Install and load plugins
-zplug "plugins/git",   from:oh-my-zsh
-zplug "plugins/osx",   from:oh-my-zsh
-zplug "zsh-users/zsh-autosuggestions"
-zplug "clvv/fasd"
-zplug "b4b4r07/enhancd"
-zplug "junegunn/fzf"
-zplug "Peltoche/lsd"
-zplug "g-plane/zsh-yarn-autocompletions"
-zplug "romkatv/powerlevel10k", as:theme, depth:1
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    read -r REPLY
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        zplug install
-    fi
-fi
-
-# Load plugins
-zplug load
-EOF
-
-# install plugins
-source ~/.zshrc && zplug install
-
-# Theme
-# Set the prompt theme to load.
-# Setting it to 'random' loads a random theme.
-# Auto set to 'off' on dumb terminals.
-echo "zstyle ':prezto:module:prompt' theme 'powerlevel10k'" >> ~/.zpreztorc
+chsh -s $(which zsh)
+curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
 p10k configure
 
 # Dracula theme
@@ -129,6 +73,7 @@ sudo flatpak install flathub org.gnome.Builder -y
 
 ## Tmux
 ## Environment setup
+sudo apt install tmux -y
 tee -a ~/.zshrc << EOF
 # Startup tmux admin console
 session="init"
