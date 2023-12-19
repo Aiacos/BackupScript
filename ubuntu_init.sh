@@ -46,9 +46,6 @@ cd
 # Configure SSH
 sudo apt install openssh-server -y
 
-sudo apt install xrdp -y
-sudo systemctl enable --now xrdp
-
 # Install Apps
 sudo apt install neofetch -y
 sudo apt install btop -y
@@ -62,7 +59,7 @@ sudo apt install flatpak -y
 sudo apt install gnome-software-plugin-flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-sudo flatpak install flathub nz.mega.MEGAsync -y
+flatpak install com.freerdp.FreeRDP
 sudo flatpak install flathub com.anydesk.Anydesk -y
 sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
