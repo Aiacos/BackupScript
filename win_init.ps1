@@ -52,3 +52,9 @@ scoop install btop-lhm
 # Terminal
 choco install nerd-fonts-meslo
 choco install starship
+
+# Windows Settings
+Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
+
+# WSL
+#wsl --install
