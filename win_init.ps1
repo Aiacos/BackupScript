@@ -48,3 +48,7 @@ irm get.scoop.sh | iex
 
 # Btop4win-LHM
 scoop install btop-lhm
+
+# Terminal
+choco install nerd-fonts-meslo
+choco install starship
