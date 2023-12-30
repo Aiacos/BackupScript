@@ -1,6 +1,3 @@
-## Windows Settings
-Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
-
 ## Install Chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
@@ -54,7 +51,10 @@ scoop install btop-lhm
 
 # Terminal
 choco install nerd-fonts-meslo
-choco install starship
+#choco install starship
 
 # WSL
 #wsl --install
+
+## Windows Settings
+Enable-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
