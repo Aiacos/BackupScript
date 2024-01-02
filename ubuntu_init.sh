@@ -11,12 +11,14 @@ sudo apt install python3 python3-pip pipx -y
 pipx install gnome-extensions-cli --system-site-packages
 cd $HOME/.local/pipx/venvs/gnome-extensions-cli/bin
 
-./gnome-extensions-cli install arcmenu@arcmenu.com
-./gnome-extensions-cli install rocketbar@chepkun.github.com
+./gnome-extensions-cli install extensions@abteil.org
+./gnome-extensions-cli install services-systemd@abteil.org
+#./gnome-extensions-cli install arcmenu@arcmenu.com
+#./gnome-extensions-cli install rocketbar@chepkun.github.com
 ./gnome-extensions-cli install tiling-assistant@leleat-on-github
 ./gnome-extensions-cli install trayIconsReloaded@selfmade.pl
 ./gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-./gnome-extensions-cli install tophat@fflewddur.github.io
+#./gnome-extensions-cli install tophat@fflewddur.github.io
 ./gnome-extensions-cli install blur-my-shell@aunetx
 
 cd
@@ -59,7 +61,7 @@ sudo apt install flatpak -y
 sudo apt install gnome-software-plugin-flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-flatpak install com.freerdp.FreeRDP
+sudo flatpak install com.freerdp.FreeRDP
 sudo flatpak install flathub com.anydesk.Anydesk -y
 sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
