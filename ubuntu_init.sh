@@ -45,6 +45,9 @@ cd ..
 git clone https://github.com/dracula/wallpaper.git
 cd 
 
+# RDP
+sudo apt install xrdp -y
+
 # Configure SSH
 sudo apt install openssh-server -y
 
@@ -54,14 +57,13 @@ sudo apt install btop -y
 sudo apt install gedit -y
 sudo apt install geany -y
 sudo apt install cmatrix -y
-sudo apt install blackbox -y
 
 # Add Flatpack
 sudo apt install flatpak -y
 sudo apt install gnome-software-plugin-flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-sudo flatpak install com.freerdp.FreeRDP
+#sudo flatpak install com.freerdp.FreeRDP
 sudo flatpak install flathub com.anydesk.Anydesk -y
 sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
