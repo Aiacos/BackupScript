@@ -45,9 +45,6 @@ cd ..
 git clone https://github.com/dracula/wallpaper.git
 cd 
 
-# RDP
-sudo apt install xrdp -y
-
 # Configure SSH
 sudo apt install openssh-server -y
 
