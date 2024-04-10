@@ -67,6 +67,7 @@ sudo flatpak install flathub org.kde.krita -y
 sudo flatpak install flathub com.axosoft.GitKraken -y
 sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
 sudo flatpak install flathub org.gnome.Builder -y
+sudo flatpak install flathub nz.mega.MEGAsync -y
 
 
 ## Tmux
