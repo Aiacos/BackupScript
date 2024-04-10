@@ -69,6 +69,8 @@ sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
 sudo flatpak install flathub org.gnome.Builder -y
 sudo flatpak install flathub nz.mega.MEGAsync -y
 
+# CasaOS
+curl -fsSL https://get.casaos.io | sudo bash
 
 ## Tmux
 ## Environment setup
