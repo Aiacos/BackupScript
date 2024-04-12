@@ -3,11 +3,43 @@ sudo apt update -y
 sudo apt upgrade -y
 sudo apt autoremove -y
 
+# Dev Tools
 sudo apt install net-tools -y
+sudo apt install python3 python3-pip pipx -y
+
+# Configure SSH
+sudo apt install openssh-server -y
+
+# Install Apps
+sudo apt install neofetch -y
+sudo apt install btop -y
+sudo apt install gedit -y
+sudo apt install geany -y
+sudo apt install cmatrix -y
+sudo apt install tmux -y
+sudo apt install gnome-tweaks -y
+
+# Snap
+sudo snap install upnp-router-control
+
+# Add Flatpack
+sudo apt install flatpak -y
+sudo apt install gnome-software-plugin-flatpak -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+#sudo flatpak install com.freerdp.FreeRDP
+sudo flatpak install flathub com.anydesk.Anydesk -y
+sudo flatpak install flathub org.blender.Blender -y
+sudo flatpak install flathub org.kde.krita -y
+sudo flatpak install flathub com.axosoft.GitKraken -y
+sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
+sudo flatpak install flathub org.gnome.Builder -y
+sudo flatpak install flathub nz.mega.MEGAsync -y
+
+# CasaOS
+curl -fsSL https://get.casaos.io | sudo bash
 
 # Install Tweak
-#sudo apt install gnome-tweaks -y
-sudo apt install python3 python3-pip pipx -y
 pipx install gnome-extensions-cli --system-site-packages
 cd $HOME/.local/pipx/venvs/gnome-extensions-cli/bin
 
@@ -26,6 +58,7 @@ cd
 #gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 #gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 #gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
+#gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 
 # Configure ZSH
 sudo apt install git wget curl ruby zsh -y
@@ -45,36 +78,8 @@ cd ..
 git clone https://github.com/dracula/wallpaper.git
 cd 
 
-# Configure SSH
-sudo apt install openssh-server -y
-
-# Install Apps
-sudo apt install neofetch -y
-sudo apt install btop -y
-sudo apt install gedit -y
-sudo apt install geany -y
-sudo apt install cmatrix -y
-
-# Add Flatpack
-sudo apt install flatpak -y
-sudo apt install gnome-software-plugin-flatpak -y
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-#sudo flatpak install com.freerdp.FreeRDP
-sudo flatpak install flathub com.anydesk.Anydesk -y
-sudo flatpak install flathub org.blender.Blender -y
-sudo flatpak install flathub org.kde.krita -y
-sudo flatpak install flathub com.axosoft.GitKraken -y
-sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
-sudo flatpak install flathub org.gnome.Builder -y
-sudo flatpak install flathub nz.mega.MEGAsync -y
-
-# CasaOS
-curl -fsSL https://get.casaos.io | sudo bash
-
 ## Tmux
 ## Environment setup
-sudo apt install tmux -y
 tee -a ~/.zshrc << EOF
 # Startup tmux admin console
 session="init"
