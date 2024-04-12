@@ -60,12 +60,6 @@ cd
 #gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 #gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 
-# Configure ZSH
-sudo apt install git wget curl ruby zsh -y
-chsh -s $(which zsh)
-curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
-p10k configure
-
 # Dracula theme
 sudo apt-get install dconf-cli -y
 cd
@@ -77,6 +71,12 @@ cd gnome-terminal
 cd ..
 git clone https://github.com/dracula/wallpaper.git
 cd 
+
+# Configure ZSH
+sudo apt install git wget curl ruby zsh -y
+chsh -s $(which zsh)
+curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
+p10k configure
 
 ## Tmux
 ## Environment setup
