@@ -44,7 +44,6 @@ curl -fsSL https://get.casaos.io | sudo bash
 
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
-brew install dockly
 
 # Install Tweak
 pipx install gnome-extensions-cli --system-site-packages
