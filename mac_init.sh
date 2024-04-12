@@ -12,7 +12,7 @@
 
 # Install mas (AppStore from terminal)
 brew install mas
-mas signin uni.lorenzo.a@gmail.com "CaccaSecca86"
+mas signin uni.lorenzo.a@gmail.com "mypassword"
 
 ## Install Apps
 # Install AppStore apps
