@@ -39,6 +39,12 @@ sudo flatpak install flathub nz.mega.MEGAsync -y
 # CasaOS
 curl -fsSL https://get.casaos.io | sudo bash
 
+# Brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install jesseduffield/lazygit/lazygit
+brew install jesseduffield/lazydocker/lazydocker
+
 # Install Tweak
 pipx install gnome-extensions-cli --system-site-packages
 cd $HOME/.local/pipx/venvs/gnome-extensions-cli/bin
