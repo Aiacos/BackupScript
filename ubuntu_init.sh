@@ -42,6 +42,7 @@ curl -fsSL https://get.casaos.io | sudo bash
 # Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+sudo usermod -aG docker $USER
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
 
