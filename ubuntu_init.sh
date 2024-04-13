@@ -38,11 +38,11 @@ sudo flatpak install flathub nz.mega.MEGAsync -y
 
 # CasaOS
 curl -fsSL https://get.casaos.io | sudo bash
+sudo usermod -aG docker $USER
 
 # Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-sudo usermod -aG docker $USER
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
 
