@@ -70,8 +70,8 @@ cd
 # Dracula theme
 sudo apt-get install dconf-cli -y
 cd
-mkdir settings
-cd settings
+mkdir .settings
+cd .settings
 git clone https://github.com/dracula/gnome-terminal
 cd gnome-terminal
 ./install.sh
