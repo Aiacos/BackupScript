@@ -38,6 +38,7 @@ sudo flatpak install flathub nz.mega.MEGAsync -y
 
 # CasaOS
 curl -fsSL https://get.casaos.io | sudo bash
+sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Brew
