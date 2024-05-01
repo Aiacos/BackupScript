@@ -20,7 +20,6 @@ sudo apt install tmux -y
 sudo apt install gnome-tweaks -y
 
 # Snap
-sudo snap install upnp-router-control
 
 # Add Flatpack
 sudo apt install flatpak -y
