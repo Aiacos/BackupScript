@@ -13,11 +13,12 @@ sudo apt install openssh-server -y
 # Install Apps
 sudo apt install neofetch -y
 sudo apt install btop -y
+sudo apt install tmux -y
+sudo apt install cmatrix -y
+sudo apt install gnome-tweaks -y
+sudo apt install gnome-shell-extension-manager -y
 sudo apt install gedit -y
 sudo apt install geany -y
-sudo apt install cmatrix -y
-sudo apt install tmux -y
-sudo apt install gnome-tweaks -y
 
 # Snap
 
