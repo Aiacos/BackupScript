@@ -74,11 +74,22 @@ sudo apt-get install dconf-cli -y
 cd
 mkdir .settings
 cd .settings
+
+# Dracula Gnome Terminal
 git clone https://github.com/dracula/gnome-terminal
 cd gnome-terminal
 ./install.sh
+
+# Dracula Wallpaper
 cd ..
 git clone https://github.com/dracula/wallpaper.git
+
+# PoP Shell
+sudo apt install git node-typescript make -y
+git clone https://github.com/pop-os/shell.git
+cd shell
+make local-install
+
 cd 
 
 # Configure ZSH
