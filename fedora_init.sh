@@ -23,6 +23,9 @@ gnome-extensions-cli install trayIconsReloaded@selfmade.pl
 gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gnome-extensions-cli install tophat@fflewddur.github.io
 
+# PoP Shell
+sudo dnf install gnome-shell-extension-pop-shell -y
+
 sudo dnf install mint-y-icons -y
 sudo dnf install numix-icon-theme -y
 sudo dnf install numix-icon-theme-square -y
