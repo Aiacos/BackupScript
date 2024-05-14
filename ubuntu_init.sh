@@ -4,6 +4,8 @@ sudo apt upgrade -y
 sudo apt autoremove -y
 
 # Dev Tools
+sudo apt install git wget curl ruby zsh -y
+sudo apt install build-essential -y
 sudo apt install net-tools -y
 sudo apt install python3 python3-pip pipx -y
 
@@ -93,7 +95,6 @@ make local-install
 cd 
 
 # Configure ZSH
-sudo apt install git wget curl ruby zsh -y
 chsh -s $(which zsh)
 curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
 p10k configure
