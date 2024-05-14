@@ -52,17 +52,17 @@ brew install jesseduffield/lazydocker/lazydocker
 
 # Install Tweak
 pipx install gnome-extensions-cli --system-site-packages
-cd $HOME/.local/pipx/venvs/gnome-extensions-cli/bin
+#cd $HOME/.local/pipx/venvs/gnome-extensions-cli/bin
 
-./gnome-extensions-cli install extensions@abteil.org
-./gnome-extensions-cli install services-systemd@abteil.org
-#./gnome-extensions-cli install arcmenu@arcmenu.com
-#./gnome-extensions-cli install rocketbar@chepkun.github.com
-#./gnome-extensions-cli install tiling-assistant@leleat-on-github
-./gnome-extensions-cli install trayIconsReloaded@selfmade.pl
-./gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-#./gnome-extensions-cli install tophat@fflewddur.github.io
-./gnome-extensions-cli install blur-my-shell@aunetx
+gnome-extensions-cli install extensions@abteil.org
+gnome-extensions-cli install services-systemd@abteil.org
+#gnome-extensions-cli install arcmenu@arcmenu.com
+#gnome-extensions-cli install rocketbar@chepkun.github.com
+#gnome-extensions-cli install tiling-assistant@leleat-on-github
+gnome-extensions-cli install trayIconsReloaded@selfmade.pl
+gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+#gnome-extensions-cli install tophat@fflewddur.github.io
+gnome-extensions-cli install blur-my-shell@aunetx
 
 cd
 
