@@ -4,7 +4,7 @@ sudo apt upgrade -y
 sudo apt autoremove -y
 
 # Dev Tools
-sudo apt install git wget curl ruby zsh -y
+sudo apt install git wget curl ruby zsh lsd -y
 sudo apt install build-essential -y
 sudo apt install net-tools -y
 sudo apt install python3 python3-pip pipx -y
