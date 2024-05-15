@@ -113,7 +113,7 @@ done
 sudo chsh -s /bin/zsh
 
 # Add plugin anth theme
-sed -i "42i\  \'syntax-highlighting\' \\\ " .zpreztorc
+#sed -i "42i\  \'syntax-highlighting\' \\\ " .zpreztorc
 sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
 
 # Configure p10k
