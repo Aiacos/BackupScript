@@ -113,9 +113,9 @@ done
 sudo chsh -s /bin/zsh
 
 # Add plugin anth theme
+sed -i "40i\  \'git\' \\\ " .zpreztorc
 sed -i "42i\  \'syntax-highlighting\' \\\ " .zpreztorc
-sed -i "44i\  \'autosuggestions\' \\\ " .zpreztorc
-#sed -i "40i\  \'git\' \\\ " .zpreztorc
+sed -i "43i\  \'autosuggestions\' \\\ " .zpreztorc
 sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
 
 # Configure p10k
