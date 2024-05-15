@@ -114,7 +114,8 @@ done
 sudo chsh -s /bin/zsh
 
 # Add plugin anth theme
-sed 's/sorin/powerlevel10k/' .zpreztorc
+sed -i "33i\  \'syntax-highlighting\' \\\ " .zpreztorc
+sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
 
 # Configure p10k
 #p10k configure # Should start on new shell
