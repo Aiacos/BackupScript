@@ -91,13 +91,14 @@ sudo apt install git node-typescript make -y
 git clone https://github.com/pop-os/shell.git
 cd shell
 make local-install
-
 cd 
 
 # Configure ZSH
 # Terminal Setup with Prezto
 # Nerd Fonts
 (curl -Lo "~/.fonts/MesloLGS NF Regular.ttf" "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf") &> /dev/null
+# Reset cache font
+(fc-cache -f -v) &> /dev/null
 
 # Install Prezto
 zsh
