@@ -116,7 +116,6 @@ done
 
 # Set zsh as default shell
 chsh -s $(which zsh)
-#sudo chsh -s /bin/zsh
 
 # Add plugin anth theme
 #sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
