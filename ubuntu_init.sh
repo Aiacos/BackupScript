@@ -95,9 +95,14 @@ cd
 
 ## Configure ZSH with Prezto
 # Nerd Fonts
-(curl -Lo "~/.fonts/MesloLGS NF Regular.ttf" "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf") &> /dev/null
-# Reset cache font
-(fc-cache -f -v) &> /dev/null
+(curl -Lo "~/.local/share/fonts/MesloLGS NF Regular.ttf" "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf") &> /dev/null
+
+wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip \
+&& cd ~/.local/share/fonts \
+&& unzip JetBrainsMono.zip \
+&& rm JetBrainsMono.zip \
+&& fc-cache -fv
+cd
 
 # Install Prezto
 zsh
