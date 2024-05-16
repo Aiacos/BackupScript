@@ -110,7 +110,8 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
 done
 
 # Set zsh as default shell
-sudo chsh -s /bin/zsh
+chsh -s $(which zsh)
+#sudo chsh -s /bin/zsh
 
 # Add plugin anth theme
 #sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
