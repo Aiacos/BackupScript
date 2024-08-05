@@ -21,7 +21,6 @@ sudo apt install gnome-tweaks -y
 sudo apt install gnome-shell-extension-manager -y
 sudo apt install gedit -y
 sudo apt install geany -y
-bash <(curl -L zellij.dev/launch)
 
 ## Snap
 
@@ -48,6 +47,7 @@ sudo usermod -aG docker $USER
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/aiacos/.zshrc
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+brew install zellij
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
 
