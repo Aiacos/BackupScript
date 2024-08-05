@@ -21,6 +21,7 @@ sudo apt install gnome-tweaks -y
 sudo apt install gnome-shell-extension-manager -y
 sudo apt install gedit -y
 sudo apt install geany -y
+bash <(curl -L zellij.dev/launch)
 
 ## Snap
 
