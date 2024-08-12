@@ -55,7 +55,7 @@ brew install jesseduffield/lazydocker/lazydocker
 sudo apt install neovim -y
 
 # Dependencies
-sudo apt install npm nodejs cargo ripgrep -y  
+sudo apt install npm nodejs cargo ripgrep fd-find clang clangd -y  
 sudo apt install pipx python3-full python3-pynvim python3-ply -y  
 cargo install tree-sitter-cli
 brew install bottom
