@@ -21,6 +21,14 @@ sudo dnf install gnome-shell-extension-pop-shell -y
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
 sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts -y
 chsh -s $(which zsh)
+
+# Nerd Fonts
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
+cd .nerd-fonts
+sudo ./install.sh
+chsh -s /usr/bin/zsh
+sudo dnf install fontawesome-fonts -y
+
 curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
 
 # Add plugin anth theme
