@@ -10,34 +10,8 @@ sudo dnf upgrade -y
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
 sudo dnf install gcc gcc-c++ g++ cmake mesa-libGL-devel -y
 
-
 # PoP Shell
 sudo dnf install gnome-shell-extension-pop-shell -y
-
-# Deepin Desktop
-#sudo dnf group install "Deepin Desktop" -y
-
-# Configure ZSH
-sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
-sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts -y
-chsh -s $(which zsh)
-
-# Nerd Fonts
-git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
-cd .nerd-fonts
-sudo ./install.sh
-chsh -s /usr/bin/zsh
-sudo dnf install fontawesome-fonts -y
-
-curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
-
-# Add plugin anth theme
-#sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
-sed -i "/'history-substring-search' \\\/i \ \ \'syntax-highlighting\' \\\ " .zpreztorc
-sed -i "/'history-substring-search' \\\/a \ \ \'autosuggestions\' \\\ " .zpreztorc
-sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
-
-p10k configure
 
 ## Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -139,7 +113,29 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 
+# Configure ZSH
+sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
+sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts -y
+chsh -s $(which zsh)
 
+# Nerd Fonts
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
+cd .nerd-fonts
+sudo ./install.sh
+chsh -s /usr/bin/zsh
+sudo dnf install fontawesome-fonts -y
+
+curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
+
+# Add plugin anth theme
+#sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
+sed -i "/'history-substring-search' \\\/i \ \ \'syntax-highlighting\' \\\ " .zpreztorc
+sed -i "/'history-substring-search' \\\/a \ \ \'autosuggestions\' \\\ " .zpreztorc
+sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
+
+p10k configure
+
+# Zellij Base layout
 tee -a ~/.zellij_base_layout.kdl << EOF
 layout {
         default_tab_template {
@@ -178,3 +174,6 @@ git clone --depth=1 https://github.com/JaKooLit/Fedora-Hyprland.git ~/Fedora-Hyp
 cd ~/Fedora-Hyprland
 chmod +x install.sh
 ./install.sh
+
+# Deepin Desktop
+#sudo dnf group install "Deepin Desktop" -y
