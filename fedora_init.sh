@@ -177,3 +177,11 @@ chmod +x install.sh
 
 # Deepin Desktop
 #sudo dnf group install "Deepin Desktop" -y
+
+## Grub
+cd 
+cd .settings
+git clone https://github.com/vinceliuice/grub2-themes.git
+cd grub2-themes
+sudo ./install.sh -b -t tela
+cd
