@@ -10,63 +10,72 @@ sudo dnf upgrade -y
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
 sudo dnf install gcc gcc-c++ g++ cmake mesa-libGL-devel -y
 
-# Install Tweak
-#sudo dnf install gnome-tweaks -y
-sudo dnf install python3 python3-pip -y
-pip3 install --user gnome-extensions-cli
-gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
-
-#gnome-extensions-cli install arcmenu@arcmenu.com
-gnome-extensions-cli install rocketbar@chepkun.github.com
-#gnome-extensions-cli install tiling-assistant@leleat-on-github
-gnome-extensions-cli install trayIconsReloaded@selfmade.pl
-gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-gnome-extensions-cli install tophat@fflewddur.github.io
 
 # PoP Shell
 sudo dnf install gnome-shell-extension-pop-shell -y
-
-sudo dnf install mint-y-icons -y
-sudo dnf install numix-icon-theme -y
-sudo dnf install numix-icon-theme-square -y
-sudo dnf install numix-icon-theme-circle -y
-sudo dnf install yaru-theme -y
-gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
-#gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
 # Deepin Desktop
 #sudo dnf group install "Deepin Desktop" -y
 
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
-git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
-cd .nerd-fonts
-sudo ./install.sh
-
-chsh -s /usr/bin/zsh
-
-sudo dnf install fontawesome-fonts -y
 sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts -y
-
-# Configure ZSH
-sudo apt install git wget curl ruby zsh -y
 chsh -s $(which zsh)
 curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
+
+# Add plugin anth theme
+#sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
+sed -i "/'history-substring-search' \\\/i \ \ \'syntax-highlighting\' \\\ " .zpreztorc
+sed -i "/'history-substring-search' \\\/a \ \ \'autosuggestions\' \\\ " .zpreztorc
+sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
+
 p10k configure
+
+## Brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/aiacos/.zshrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+brew install zellij
+brew install jesseduffield/lazygit/lazygit
+brew install jesseduffield/lazydocker/lazydocker
+
+## Neovim setup
+sudo apt install neovim -y
+
+# Dependencies
+sudo apt install npm nodejs cargo ripgrep fd-find clang clangd -y  
+sudo apt install pipx python3-full python3-pynvim python3-ply -y  
+cargo install tree-sitter-cli
+brew install bottom
+
+# Go disk usage
+curl -L https://github.com/dundee/gdu/releases/latest/download/gdu_linux_amd64.tgz | tar xz
+sudo chmod +x gdu_linux_amd64
+sudo mv gdu_linux_amd64 /usr/bin/gdu
+
+# Nerd Fonts
+curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash  
+
+# LazyVim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+nvim
 
 # Dracula theme
 sudo apt-get install dconf-cli -y
 cd
-mkdir settings
-cd settings
+mkdir .settings
+cd .settings
+
+# Dracula Gnome Terminal
 git clone https://github.com/dracula/gnome-terminal
 cd gnome-terminal
 ./install.sh
+
+# Dracula Wallpaper
 cd ..
 git clone https://github.com/dracula/wallpaper.git
-cd 
 
 # Configure SSH
 sudo dnf install openssh-server -y
@@ -97,21 +106,27 @@ sudo flatpak install flathub com.axosoft.GitKraken -y
 sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
 
 
-## Tmux
-## Environment setup
-tee -a ~/.zshrc << EOF
-# Startup tmux admin console
-session="init"
+# Install Tweak
+#sudo dnf install gnome-tweaks -y
+sudo dnf install python3 python3-pip -y
+pip3 install --user gnome-extensions-cli
 
-# Check if the session exists, discarding output
-# We can check $? for the exit status (zero for success, non-zero for failure)
-tmux has-session -t $session 2>/dev/null
+#gnome-extensions-cli install arcmenu@arcmenu.com
+gnome-extensions-cli install rocketbar@chepkun.github.com
+#gnome-extensions-cli install tiling-assistant@leleat-on-github
+gnome-extensions-cli install trayIconsReloaded@selfmade.pl
+gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gnome-extensions-cli install tophat@fflewddur.github.io
+gnome-extensions-cli install blur-my-shell@aunetx
 
-if [ $? != 0 ]; then
-  # Set up your session
-  tmux new-session -s 'init' 'btop'\; split-window -h -p 40 \; split-window -v -p 50 \; select-pane -t 1 \; send-keys 'neofetch' C-m \; select-pane -t 2 \; send-keys 'clear' C-m \;
-fi
+cd
 
-# tmux attach-session -t $session
-# tmux kill-session
-EOF
+sudo dnf install mint-y-icons -y
+sudo dnf install numix-icon-theme -y
+sudo dnf install numix-icon-theme-square -y
+sudo dnf install numix-icon-theme-circle -y
+sudo dnf install yaru-theme -y
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
