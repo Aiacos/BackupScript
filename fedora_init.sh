@@ -89,7 +89,7 @@ sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
 
 
 # Install Tweak
-#sudo dnf install gnome-tweaks -y
+sudo dnf install gnome-tweaks -y
 sudo dnf install python3 python3-pip -y
 pip3 install --user gnome-extensions-cli
 
