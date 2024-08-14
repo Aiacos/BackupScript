@@ -171,3 +171,10 @@ session_name "Base"
 attach_to_session true
 
 EOF
+
+
+# Install Hyprland
+git clone --depth=1 https://github.com/JaKooLit/Fedora-Hyprland.git ~/Fedora-Hyprland
+cd ~/Fedora-Hyprland
+chmod +x install.sh
+./install.sh
