@@ -33,13 +33,13 @@ sudo dnf install pipx python3-full python3-pynvim python3-ply -y
 cargo install tree-sitter-cli
 brew install bottom
 
+# Nerd Fonts
+curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash  
+
 # Go disk usage
 curl -L https://github.com/dundee/gdu/releases/latest/download/gdu_linux_amd64.tgz | tar xz
 sudo chmod +x gdu_linux_amd64
 sudo mv gdu_linux_amd64 /usr/bin/gdu
-
-# Nerd Fonts
-curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash  
 
 # LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
@@ -60,6 +60,7 @@ cd gnome-terminal
 # Dracula Wallpaper
 cd ..
 git clone https://github.com/dracula/wallpaper.git
+cd 
 
 # Configure SSH
 sudo dnf install openssh-server -y
