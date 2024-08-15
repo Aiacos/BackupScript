@@ -117,7 +117,7 @@ gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
-sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts -y
+sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts lsd -y
 chsh -s $(which zsh)
 
 # Nerd Fonts
