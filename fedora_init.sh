@@ -9,6 +9,7 @@ sudo dnf upgrade -y
 # Dev Tools
 sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
 sudo dnf install gcc gcc-c++ g++ cmake mesa-libGL-devel -y
+sudo dnf install btrfs-assistant -y
 
 # PoP Shell
 sudo dnf install gnome-shell-extension-pop-shell -y
