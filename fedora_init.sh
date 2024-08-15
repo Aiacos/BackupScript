@@ -17,10 +17,12 @@ sudo dnf install gnome-shell-extension-pop-shell -y
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/aiacos/.zshrc
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >> ~/.zshrc
 
 brew install zellij
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
+brew install zsh-history-substring-search
 
 ## Neovim setup
 sudo dnf install neovim -y
