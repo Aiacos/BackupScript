@@ -84,6 +84,7 @@ sudo dnf install gedit -y
 sudo dnf install geany -y
 sudo dnf install cmatrix -y
 sudo dnf install sxiv -y
+sudo dnf install chafa -y
 sudo dnf install ranger -y
 
 touch ~/.config/ranger/rc.conf
