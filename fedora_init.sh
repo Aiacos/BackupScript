@@ -83,6 +83,10 @@ sudo dnf install btop -y
 sudo dnf install gedit -y
 sudo dnf install geany -y
 sudo dnf install cmatrix -y
+sudo dnf install ranger -y
+
+touch ~/.config/ranger/rc.conf
+echo "set preview_images true" >> ~/.config/ranger/rc.conf
 
 # Add Flatpack
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
