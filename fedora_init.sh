@@ -25,6 +25,7 @@ brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
 brew install zsh-history-substring-search
 brew install atuin
+brew install dust
 
 ## Neovim setup
 sudo dnf install neovim -y
