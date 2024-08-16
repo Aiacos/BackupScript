@@ -84,27 +84,6 @@ nvim --headless +q
 
 rm -rf ~/.config/nvim/.git
 
-## Install Tweak
-pipx install gnome-extensions-cli --system-site-packages
-cd $HOME/.local/share/pipx/venvs/gnome-extensions-cli/bin
-
-./gnome-extensions-cli install extensions@abteil.org
-./gnome-extensions-cli install services-systemd@abteil.org
-#./gnome-extensions-cli install arcmenu@arcmenu.com
-#./gnome-extensions-cli install rocketbar@chepkun.github.com
-#./gnome-extensions-cli install tiling-assistant@leleat-on-github
-./gnome-extensions-cli install trayIconsReloaded@selfmade.pl
-./gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-#./gnome-extensions-cli install tophat@fflewddur.github.io
-./gnome-extensions-cli install blur-my-shell@aunetx
-
-cd
-
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-#gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
-gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
-
 # Dracula theme
 sudo apt-get install dconf-cli -y
 cd
@@ -119,6 +98,7 @@ cd gnome-terminal
 # Dracula Wallpaper
 cd ..
 git clone https://github.com/dracula/wallpaper.git
+cd
 
 # PoP Shell
 sudo apt install git node-typescript make -y
@@ -197,3 +177,24 @@ git clone https://github.com/vinceliuice/grub2-themes.git
 cd grub2-themes
 sudo ./install.sh -b -t tela
 cd
+
+## Install Tweak
+pipx install gnome-extensions-cli --system-site-packages
+cd $HOME/.local/share/pipx/venvs/gnome-extensions-cli/bin
+
+./gnome-extensions-cli install extensions@abteil.org
+./gnome-extensions-cli install services-systemd@abteil.org
+#./gnome-extensions-cli install arcmenu@arcmenu.com
+#./gnome-extensions-cli install rocketbar@chepkun.github.com
+#./gnome-extensions-cli install tiling-assistant@leleat-on-github
+./gnome-extensions-cli install trayIconsReloaded@selfmade.pl
+./gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+#./gnome-extensions-cli install tophat@fflewddur.github.io
+./gnome-extensions-cli install blur-my-shell@aunetx
+
+cd
+
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+#gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
+gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
