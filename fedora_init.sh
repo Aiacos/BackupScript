@@ -47,7 +47,7 @@ sudo mv gdu_linux_amd64 /usr/bin/gdu
 # LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
-nvim
+nvim --headless +q
 
 # Dracula theme
 sudo dnf install dconf-cli -y
