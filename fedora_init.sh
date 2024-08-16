@@ -49,22 +49,6 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 nvim --headless +q
 
-# Dracula theme
-sudo dnf install dconf-cli -y
-cd
-mkdir .settings
-cd .settings
-
-# Dracula Gnome Terminal
-git clone https://github.com/dracula/gnome-terminal
-cd gnome-terminal
-./install.sh
-
-# Dracula Wallpaper
-cd ..
-git clone https://github.com/dracula/wallpaper.git
-cd 
-
 # Configure SSH
 sudo dnf install openssh-server -y
 sudo systemctl enable sshd
@@ -90,41 +74,6 @@ sudo dnf install ranger -y
 touch ~/.config/ranger/rc.conf
 echo "set preview_images true" >> ~/.config/ranger/rc.conf
 
-# Add Flatpack
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-sudo flatpak install flathub com.anydesk.Anydesk -y
-sudo flatpak install flathub org.blender.Blender -y
-sudo flatpak install flathub org.kde.krita -y
-sudo flatpak install flathub com.axosoft.GitKraken -y
-sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
-
-
-# Install Tweak
-sudo dnf install gnome-tweaks -y
-sudo dnf install python3 python3-pip -y
-pip3 install --user gnome-extensions-cli
-
-#gnome-extensions-cli install arcmenu@arcmenu.com
-gnome-extensions-cli install rocketbar@chepkun.github.com
-#gnome-extensions-cli install tiling-assistant@leleat-on-github
-gnome-extensions-cli install trayIconsReloaded@selfmade.pl
-gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-gnome-extensions-cli install tophat@fflewddur.github.io
-gnome-extensions-cli install blur-my-shell@aunetx
-
-cd
-
-sudo dnf install mint-y-icons -y
-sudo dnf install numix-icon-theme -y
-sudo dnf install numix-icon-theme-square -y
-sudo dnf install numix-icon-theme-circle -y
-sudo dnf install yaru-theme -y
-gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
-
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
 sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts lsd -y
@@ -146,6 +95,22 @@ sed -i "/'history-substring-search' \\\/a \ \ \'autosuggestions\' \\\ " .zprezto
 sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
 
 p10k configure
+
+# Dracula theme
+sudo dnf install dconf-cli -y
+cd
+mkdir .settings
+cd .settings
+
+# Dracula Gnome Terminal
+git clone https://github.com/dracula/gnome-terminal
+cd gnome-terminal
+./install.sh
+
+# Dracula Wallpaper
+cd ..
+git clone https://github.com/dracula/wallpaper.git
+cd 
 
 # Zellij Base layout
 tee -a ~/.zellij_base_layout.kdl << EOF
@@ -180,6 +145,31 @@ attach_to_session true
 
 EOF
 
+# Install Tweak
+sudo dnf install gnome-tweaks -y
+sudo dnf install python3 python3-pip -y
+pip3 install --user gnome-extensions-cli
+
+#gnome-extensions-cli install arcmenu@arcmenu.com
+gnome-extensions-cli install rocketbar@chepkun.github.com
+#gnome-extensions-cli install tiling-assistant@leleat-on-github
+gnome-extensions-cli install trayIconsReloaded@selfmade.pl
+gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gnome-extensions-cli install tophat@fflewddur.github.io
+gnome-extensions-cli install blur-my-shell@aunetx
+
+cd
+
+sudo dnf install mint-y-icons -y
+sudo dnf install numix-icon-theme -y
+sudo dnf install numix-icon-theme-square -y
+sudo dnf install numix-icon-theme-circle -y
+sudo dnf install yaru-theme -y
+gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
+
 
 # Install Hyprland
 git clone --depth=1 https://github.com/JaKooLit/Fedora-Hyprland.git ~/Fedora-Hyprland
@@ -197,3 +187,12 @@ git clone https://github.com/vinceliuice/grub2-themes.git
 cd grub2-themes
 sudo ./install.sh -b -t tela
 cd
+
+# Add Flatpack
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+sudo flatpak install flathub com.anydesk.Anydesk -y
+sudo flatpak install flathub org.blender.Blender -y
+sudo flatpak install flathub org.kde.krita -y
+sudo flatpak install flathub com.axosoft.GitKraken -y
+sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
