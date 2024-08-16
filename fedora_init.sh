@@ -17,8 +17,8 @@ sudo dnf install gnome-shell-extension-pop-shell -y
 ## Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/aiacos/.zshrc
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >> ~/.zshrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 brew install zellij
 brew install jesseduffield/lazygit/lazygit
@@ -77,24 +77,10 @@ echo "set preview_images true" >> ~/.config/ranger/rc.conf
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
 sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts lsd -y
+sudo dnf install fontawesome-fonts -y
 chsh -s $(which zsh)
 
-# Nerd Fonts
-git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
-cd .nerd-fonts
-sudo ./install.sh
-chsh -s /usr/bin/zsh
-sudo dnf install fontawesome-fonts -y
-
 curl -fsSL https://raw.githubusercontent.com/Aiacos/presto-prezto/main/presto-prezto.sh | bash -s -- --font
-
-# Add plugin anth theme
-#sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
-sed -i "/'history-substring-search' \\\/i \ \ \'syntax-highlighting\' \\\ " .zpreztorc
-sed -i "/'history-substring-search' \\\/a \ \ \'autosuggestions\' \\\ " .zpreztorc
-sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
-
-p10k configure
 
 # Dracula theme
 sudo dnf install dconf-cli -y
