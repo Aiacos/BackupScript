@@ -73,6 +73,7 @@ sudo dnf install ranger -y
 
 touch ~/.config/ranger/rc.conf
 echo "set preview_images true" >> ~/.config/ranger/rc.conf
+echo "set preview_images_method w3m" >> ~/.config/ranger/rc.conf
 
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
