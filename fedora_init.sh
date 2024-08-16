@@ -11,6 +11,28 @@ sudo dnf group install "C Development Tools and Libraries" "Development Tools" -
 sudo dnf install gcc gcc-c++ g++ cmake mesa-libGL-devel -y
 sudo dnf install btrfs-assistant -y
 
+# Configure SSH
+sudo dnf install openssh-server -y
+sudo systemctl enable sshd
+sudo systemctl start sshd
+
+sudo dnf install xrdp -y
+sudo systemctl enable --now xrdp
+
+# NVIDIA Driver
+#sudo dnf install akmod-nvidia -y
+#sudo dnf install xorg-x11-drv-nvidia-cuda -y
+
+sudo dnf install dnf-plugins-core -y
+sudo dnf copr enable t0xic0der/nvidia-auto-installer-for-fedora -y
+sudo dnf install nvautoinstall -y
+
+sudo nvautoinstall driver
+sudo nvautoinstall plcuda
+sudo nvautoinstall ffmpeg
+sudo nvautoinstall vulkan
+sudo nvautoinstall vidacc
+
 # PoP Shell
 sudo dnf install gnome-shell-extension-pop-shell -y
 
@@ -49,18 +71,6 @@ sudo mv gdu_linux_amd64 /usr/bin/gdu
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 nvim --headless +q
-
-# Configure SSH
-sudo dnf install openssh-server -y
-sudo systemctl enable sshd
-sudo systemctl start sshd
-
-sudo dnf install xrdp -y
-sudo systemctl enable --now xrdp
-
-# NVIDIA Driver
-sudo dnf install akmod-nvidia -y
-sudo dnf install xorg-x11-drv-nvidia-cuda -y
 
 # Install Apps
 sudo dnf install neofetch -y
