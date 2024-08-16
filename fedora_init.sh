@@ -86,7 +86,7 @@ sudo ./install.sh
 chsh -s /usr/bin/zsh
 sudo dnf install fontawesome-fonts -y
 
-curl -fsSL https://raw.githubusercontent.com/JGroxz/presto-prezto/main/presto-prezto.sh | bash -s -- --font
+curl -fsSL https://raw.githubusercontent.com/Aiacos/presto-prezto/main/presto-prezto.sh | bash -s -- --font
 
 # Add plugin anth theme
 #sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
