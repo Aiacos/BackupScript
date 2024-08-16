@@ -80,14 +80,10 @@ sudo mv gdu_linux_amd64 /usr/bin/gdu
 # Nerd Fonts
 curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash  
 
-# Astrovim
-#git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
-
-# Astrovim Custom
-git clone https://github.com/kabinspace/AstroNvim_user ~/.config/nvim
-nvim --headless +q
-
+# LazyVim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
+nvim --headless +q
 
 # Dracula theme
 sudo apt-get install dconf-cli -y
@@ -114,34 +110,11 @@ cd
 
 ## Configure ZSH with Prezto
 # Nerd Fonts
-wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip \
-&& cd ~/.local/share/fonts \
-&& unzip JetBrainsMono.zip \
-&& rm JetBrainsMono.zip \
-&& fc-cache -fv
-cd
-
-# Install Prezto
-zsh
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-
-# Create Prezto Configuration
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  sudo ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-
-# Set zsh as default shell
+sudo apt install git wget curl ruby zsh -y
 chsh -s $(which zsh)
 
-# Add plugin anth theme
-#sed -i "/'completion' \\\/i \ \ \'git\' \\\ " .zpreztorc
-sed -i "/'history-substring-search' \\\/i \ \ \'syntax-highlighting\' \\\ " .zpreztorc
-sed -i "/'history-substring-search' \\\/a \ \ \'autosuggestions\' \\\ " .zpreztorc
-sed -i "s/zstyle ':prezto:module:prompt' theme 'sorin'/zstyle ':prezto:module:prompt' theme 'powerlevel10k'/" .zpreztorc
-
-# Configure p10k
-#p10k configure # Should start on new shell
+# Install Prezto
+curl -fsSL https://raw.githubusercontent.com/Aiacos/presto-prezto/main/presto-prezto.sh | bash -s -- --font
 
 tee -a ~/.zellij_base_layout.kdl << EOF
 layout {
