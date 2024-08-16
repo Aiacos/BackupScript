@@ -20,18 +20,19 @@ sudo dnf install xrdp -y
 sudo systemctl enable --now xrdp
 
 # NVIDIA Driver
-#sudo dnf install akmod-nvidia -y
-#sudo dnf install xorg-x11-drv-nvidia-cuda -y
+sudo dnf install akmod-nvidia -y
+sudo dnf install xorg-x11-drv-nvidia-cuda -y
+sudo dnf install cuda-toolkit -y
 
-sudo dnf install dnf-plugins-core -y
-sudo dnf copr enable t0xic0der/nvidia-auto-installer-for-fedora -y
-sudo dnf install nvautoinstall -y
+#sudo dnf install dnf-plugins-core -y
+#sudo dnf copr enable t0xic0der/nvidia-auto-installer-for-fedora -y
+#sudo dnf install nvautoinstall -y
 
-sudo nvautoinstall driver
-sudo nvautoinstall plcuda
-sudo nvautoinstall ffmpeg
-sudo nvautoinstall vulkan
-sudo nvautoinstall vidacc
+#sudo nvautoinstall driver
+#sudo nvautoinstall plcuda
+#sudo nvautoinstall ffmpeg
+#sudo nvautoinstall vulkan
+#sudo nvautoinstall vidacc
 
 # PoP Shell
 sudo dnf install gnome-shell-extension-pop-shell -y
