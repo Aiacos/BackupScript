@@ -7,7 +7,8 @@ sudo dnf update -y
 sudo dnf upgrade -y
 
 # Dev Tools
-sudo dnf group install "C Development Tools and Libraries" "Development Tools" -y
+sudo dnf groupinstall "C Development Tools and Libraries" "Development Tools" -y
+sudo dnf install mpfr-devel gmp-devel libmpc-devel zlib-devel glibc-devel.i686 glibc-devel isl-devel g++ gcc-gnat gcc-gdc libgphobos-static -y
 sudo dnf install gcc gcc-c++ g++ cmake mesa-libGL-devel -y
 sudo dnf install btrfs-assistant -y
 
