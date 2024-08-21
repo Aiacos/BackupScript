@@ -83,6 +83,7 @@ sudo dnf install cmatrix -y
 sudo dnf install sxiv -y
 sudo dnf install chafa -y
 sudo dnf install ranger -y
+sudo dnf install ncdu -y
 
 touch ~/.config/ranger/rc.conf
 echo "set preview_images true" >> ~/.config/ranger/rc.conf
