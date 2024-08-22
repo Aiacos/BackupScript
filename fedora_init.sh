@@ -86,7 +86,7 @@ sudo dnf install ranger -y
 sudo dnf install ncdu -y
 
 sudo dnf install caca-utils highlight atool w3m poppler-utils mediainfo -y
-ranger Q
+ranger --cmd=quit!
 ranger --copy-config=all
 
 # Configure ZSH
