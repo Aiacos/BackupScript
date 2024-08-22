@@ -85,9 +85,9 @@ sudo dnf install chafa -y
 sudo dnf install ranger -y
 sudo dnf install ncdu -y
 
-touch ~/.config/ranger/rc.conf
-echo "set preview_images true" >> ~/.config/ranger/rc.conf
-echo "set preview_images_method ueberzug" >> ~/.config/ranger/rc.conf
+sudo dnf install caca-utils highlight atool w3m poppler-utils mediainfo -y
+ranger Q
+ranger --copy-config=all
 
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
