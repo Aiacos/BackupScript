@@ -52,7 +52,7 @@ brew install atuin
 brew install dust
 brew install jstkdng/programs/ueberzugpp
 brew install yazi
-brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide imagemagick font-symbols-only-nerd-font
+brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide imagemagick
 
 ## Neovim setup
 sudo dnf install neovim -y
