@@ -66,7 +66,7 @@ brew install zsh-history-substring-search
 brew install atuin
 brew install dust
 brew install jstkdng/programs/ueberzugpp
-brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide imagemagick
+brew install yazi ffmpegthumbnailer sevenzip jq poppler zoxide imagemagick
 
 ## Neovim setup
 sudo dnf install neovim -y
