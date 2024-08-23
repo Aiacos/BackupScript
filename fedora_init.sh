@@ -198,3 +198,4 @@ sudo flatpak install flathub org.blender.Blender -y
 sudo flatpak install flathub org.kde.krita -y
 sudo flatpak install flathub com.axosoft.GitKraken -y
 sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
+sudo flatpak install flathub md.obsidian.Obsidian -y
