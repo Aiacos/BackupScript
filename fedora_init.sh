@@ -38,6 +38,21 @@ sudo dnf install cuda-toolkit -y
 # PoP Shell
 sudo dnf install gnome-shell-extension-pop-shell -y
 
+# Install Apps
+sudo dnf install neofetch -y
+sudo dnf install btop -y
+sudo dnf install gedit -y
+sudo dnf install geany -y
+sudo dnf install cmatrix -y
+sudo dnf install sxiv -y
+sudo dnf install chafa -y
+sudo dnf install ranger -y
+sudo dnf install ncdu -y
+
+sudo dnf install caca-utils highlight atool w3m poppler-utils mediainfo -y
+ranger --cmd=quit!
+ranger --copy-config=all
+
 ## Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/aiacos/.zshrc
@@ -74,21 +89,6 @@ sudo mv gdu_linux_amd64 /usr/bin/gdu
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 nvim --headless +q
-
-# Install Apps
-sudo dnf install neofetch -y
-sudo dnf install btop -y
-sudo dnf install gedit -y
-sudo dnf install geany -y
-sudo dnf install cmatrix -y
-sudo dnf install sxiv -y
-sudo dnf install chafa -y
-sudo dnf install ranger -y
-sudo dnf install ncdu -y
-
-sudo dnf install caca-utils highlight atool w3m poppler-utils mediainfo -y
-ranger --cmd=quit!
-ranger --copy-config=all
 
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
