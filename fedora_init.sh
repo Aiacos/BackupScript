@@ -149,6 +149,27 @@ attach_to_session true
 
 EOF
 
+# Add Flatpack
+#flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+#sudo flatpak install flathub com.anydesk.Anydesk -y
+#sudo flatpak install flathub org.blender.Blender -y
+#sudo flatpak install flathub org.kde.krita -y
+#sudo flatpak install flathub com.axosoft.GitKraken -y
+#sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
+#sudo flatpak install flathub md.obsidian.Obsidian -y
+
+# Add Snap
+sudo dnf install snapd -y
+sudo ln -s /var/lib/snapd/snap /snap
+
+sudo snap install krita --classic
+sudo snap install blender --classic
+sudo snap install gitkraken --classic
+sudo snap install pycharm-community --classic
+sudo snap install obsidian --classic
+sudo snap install spotify --classic
+
 # Install Tweak
 sudo dnf install gnome-tweaks -y
 sudo dnf install python3 python3-pip -y
@@ -191,25 +212,3 @@ git clone https://github.com/vinceliuice/grub2-themes.git
 cd grub2-themes
 sudo ./install.sh -b -t tela
 cd
-
-# Add Flatpack
-#flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-#sudo flatpak install flathub com.anydesk.Anydesk -y
-#sudo flatpak install flathub org.blender.Blender -y
-#sudo flatpak install flathub org.kde.krita -y
-#sudo flatpak install flathub com.axosoft.GitKraken -y
-#sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
-#sudo flatpak install flathub md.obsidian.Obsidian -y
-
-# Add Snap
-sudo dnf install snapd -y
-sudo ln -s /var/lib/snapd/snap /snap
-
-sudo snap install krita --classic
-sudo snap install blender --classic
-sudo snap install gitkraken --classic
-sudo snap install pycharm-community --classic
-sudo snap install obsidian --classic
-sudo snap install spotify --classic
-
