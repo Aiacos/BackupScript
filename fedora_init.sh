@@ -37,6 +37,7 @@ sudo dnf install cuda-toolkit -y
 
 # PoP Shell
 sudo dnf install gnome-shell-extension-pop-shell -y
+sudo dnf install clutter -y 
 
 # Install Apps
 sudo dnf install neofetch -y
