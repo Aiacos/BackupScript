@@ -38,6 +38,8 @@ sudo dnf install libICE -y
 sudo dnf install gtk2 -y
 sudo dnf install libxcrypt-compat -y
 
+sudo ln -s /usr/lib64/libtiff.so.6 /usr/autodesk/maya2024/lib/libtiff.so.5
+
 # Download Maya .rpm
 mkdir -p ~/Downloads/maya_build
 cd ~/Downloads/maya_build
