@@ -89,10 +89,13 @@ curl -L https://github.com/dundee/gdu/releases/latest/download/gdu_linux_amd64.t
 sudo chmod +x gdu_linux_amd64
 sudo mv gdu_linux_amd64 /usr/bin/gdu
 
-# LazyVim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
+# AstroNvim
+cd
+git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
 rm -rf ~/.config/nvim/.git
-nvim --headless +q
+nvim +q
+curl -o ~/.config/nvim/lua/community.lua https://raw.githubusercontent.com/Aiacos/AstroNvim_Config/refs/heads/master/community.lua 
+nvim --headless "+MasonInstall pylama" +q  
 
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
