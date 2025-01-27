@@ -57,6 +57,10 @@ sudo dnf install caca-utils highlight atool w3m poppler-utils mediainfo -y
 ranger --cmd=quit!
 ranger --copy-config=all
 
+# Speedtest
+curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.rpm.sh | sudo bash
+sudo yum install speedtest
+
 ## Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/aiacos/.zshrc
