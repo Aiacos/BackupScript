@@ -101,7 +101,7 @@ nvim +q
 curl -o ~/.config/nvim/lua/community.lua https://raw.githubusercontent.com/Aiacos/AstroNvim_Config/refs/heads/master/community.lua 
 nvim --headless "+MasonInstall pylama" +q  
 nvim --headless "+MasonInstall pylint" +q
-nvim --headless "+MasonInstall pydocstring" +q
+nvim --headless "+MasonInstall pydocstyle" +q
 
 # Configure ZSH
 sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
