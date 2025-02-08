@@ -83,10 +83,16 @@ sudo mv gdu_linux_amd64 /usr/bin/gdu
 # Nerd Fonts
 curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash  
 
-# LazyVim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
+# AstroNvim
+cd
+git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
 rm -rf ~/.config/nvim/.git
-nvim --headless +q
+nvim +q
+curl -o ~/.config/nvim/lua/community.lua https://raw.githubusercontent.com/Aiacos/AstroNvim_Config/refs/heads/master/community.lua 
+nvim --headless "+MasonInstall ruff-lsp" +q  
+nvim --headless "+MasonInstall pylint" +q
+nvim --headless "+MasonInstall pyment" +q
+# nvim --headless "+MasonInstall pylama" +q  
 
 # Dracula theme
 sudo apt-get install dconf-cli -y
