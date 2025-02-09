@@ -14,6 +14,8 @@ choco install discord.install
 choco install megasync
 choco install qsync
 choco install filezilla
+choco install wireguard
+choco install tailscale
 
 # Graphics
 choco install wacom-drivers
