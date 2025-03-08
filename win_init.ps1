@@ -1,3 +1,35 @@
+## Winget
+# System
+winget install --id=aristocratos.btop4win -e
+winget install --id=DEVCOM.JetBrainsMonoNerdFont  -e
+winget install --id=Asus.ArmouryCrate -e
+winget install --id=Intel.IntelDriverAndSupportAssistant -e 
+
+# Internet
+winget install --id=Opera.Opera -e
+winget install --id=Discord.Discord -e
+winget install --id=Spotify.Spotify -e
+winget install --id=Mega.MEGASync -e
+winget install --id=WireGuard.WireGuard -e
+
+# Utility
+winget install --id=OBSProject.OBSStudio -e
+winget install --id=Parsec.Parsec -e
+
+# Graphics
+winget install --id=BlenderFoundation.Blender -e
+
+# Game
+winget install --id=Valve.Steam -e
+
+# Programming
+winget install --id=Git.Git  -e
+winget install --id=Neovim.Neovim -e
+winget install --id=Notepad++.Notepad++ -e
+winget install --id=Axosoft.GitKraken -e
+winget install --id=JetBrains.PyCharm.Community -e
+
+
 ## Install Chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
