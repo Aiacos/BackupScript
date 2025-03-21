@@ -11,6 +11,7 @@ winget install --id=Discord.Discord -e
 winget install --id=Spotify.Spotify -e
 winget install --id=Mega.MEGASync -e
 winget install --id=WireGuard.WireGuard -e
+winget install --id tailscale.tailscale -e
 
 # Utility
 winget install --id=OBSProject.OBSStudio -e
