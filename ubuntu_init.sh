@@ -119,13 +119,6 @@ cd ..
 git clone https://github.com/dracula/wallpaper.git
 cd
 
-# PoP Shell
-sudo apt install git node-typescript make -y
-git clone https://github.com/pop-os/shell.git
-cd shell
-make local-install
-cd 
-
 ## Configure ZSH with Prezto
 # Nerd Fonts
 sudo apt install git wget curl ruby zsh -y
@@ -194,3 +187,10 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 #gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
+
+# PoP Shell
+sudo apt install git node-typescript make -y
+git clone https://github.com/pop-os/shell.git
+cd shell
+make local-install
+cd 
