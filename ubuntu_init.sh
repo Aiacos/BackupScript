@@ -32,7 +32,7 @@ ranger --cmd=quit!
 ranger --copy-config=all
 
 # Add Snap
-sudo dnf install snapd -y
+sudo apt install snapd -y
 sudo ln -s /var/lib/snapd/snap /snap
 
 sudo snap install krita --classic
