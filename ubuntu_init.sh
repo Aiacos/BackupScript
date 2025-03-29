@@ -170,6 +170,7 @@ cd
 ## Install Tweak
 pipx install gnome-extensions-cli --system-site-packages
 cd $HOME/.local/share/pipx/venvs/gnome-extensions-cli/bin
+pipx ensurepath
 
 ./gnome-extensions-cli install extensions@abteil.org
 ./gnome-extensions-cli install services-systemd@abteil.org
