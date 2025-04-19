@@ -66,13 +66,17 @@ ranger --copy-config=all
 ## Configure ZSH
 chsh -s $(which zsh)
 
-# Zap
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-echo 'plug "wintermi/zsh-oh-my-posh"' >> .zshrc
-
 # Oh My Posh
 curl -s https://ohmyposh.dev/install.sh | bash -s
 oh-my-posh font install meslo
+
+mkdir -p ~/.config/oh-my-posh/themes
+curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json
+
+# Zap
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+echo 'export POSH_THEME="$HOME/.config/oh-my-posh/themes"' >> .zshrc
+echo 'plug "wintermi/zsh-oh-my-posh"' >> .zshrc
 
 # Install theme
 echo 'eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"' >> .zshrc
