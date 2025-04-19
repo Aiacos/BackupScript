@@ -78,6 +78,8 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 echo 'export POSH_THEME="$HOME/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json"' >> .zshrc
 echo 'plug "wintermi/zsh-oh-my-posh"' >> .zshrc
 echo 'plug "wintermi/zsh-lsd"' >> .zshrc
+echo 'plug "zsh-users/zsh-history-substring-search"' >> .zshrc
+echo 'zplug 'yuhonas/zsh-aliases-lsd'' >> .zshrc
 
 # Install theme
 echo 'eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"' >> .zshrc
