@@ -75,9 +75,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 oh-my-posh font install meslo
 
 # Install theme
-mkdir -p ~/.config/oh-my-posh/themes
-curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json
-echo 'eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"' >> .zshrc
+echo 'eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"' >> .zshrc
 
 # Refresh
 exec zsh
