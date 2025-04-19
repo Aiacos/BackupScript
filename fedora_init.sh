@@ -77,6 +77,7 @@ curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.g
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 echo 'export POSH_THEME="$HOME/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json"' >> .zshrc
 echo 'plug "wintermi/zsh-oh-my-posh"' >> .zshrc
+echo 'plug "wintermi/zsh-lsd"' >> .zshrc
 
 # Install theme
 echo 'eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"' >> .zshrc
