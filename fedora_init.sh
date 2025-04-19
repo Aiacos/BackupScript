@@ -1,24 +1,25 @@
-# Update
-sudo echo "max_parallel_downloads=10" >> /etc/dnf/dnf.conf
-sudo echo "fastestmirror=True" >> /etc/dnf/dnf.conf
+## Update
+#sudo echo "max_parallel_downloads=10" >> /etc/dnf/dnf.conf
+#sudo echo "fastestmirror=True" >> /etc/dnf/dnf.conf
 
-#sudo dnf upgrade --refresh -y
 sudo dnf update -y
 sudo dnf upgrade -y
 
+## System
+sudo dnf install git curl wget pipx python3 python3-pip python3-full python3-pynvim python3-ply -y
+sudo dnf install btrfs-assistant -y
+
 # Dev Tools
 sudo dnf groupinstall "C Development Tools and Libraries" "Development Tools" -y
-sudo dnf install mpfr-devel gmp-devel libmpc-devel zlib-devel glibc-devel.i686 glibc-devel isl-devel g++ gcc-gnat gcc-gdc libgphobos-static -y
-sudo dnf install gcc gcc-c++ g++ cmake mesa-libGL-devel -y
-sudo dnf install btrfs-assistant -y
+sudo dnf install mpfr-devel gmp-devel libmpc-devel zlib-devel glibc-devel.i686 glibc-devel isl-devel g++ gcc-gnat gcc-gdc libgphobos-static gcc gcc-c++ cmake mesa-libGL-devel clang clangd -y
 
 # Configure SSH
 sudo dnf install openssh-server -y
 sudo systemctl enable sshd
 sudo systemctl start sshd
 
-sudo dnf install xrdp -y
-sudo systemctl enable --now xrdp
+#sudo dnf install xrdp -y
+#sudo systemctl enable --now xrdp
 
 # NVIDIA Driver
 sudo dnf install akmod-nvidia -y
@@ -40,7 +41,7 @@ sudo dnf install gnome-shell-extension-pop-shell -y
 sudo dnf install clutter -y 
 
 # Install Apps
-sudo dnf install neofetch -y
+sudo dnf install fastfetch -y
 sudo dnf install btop -y
 sudo dnf install gedit -y
 sudo dnf install geany -y
@@ -58,8 +59,29 @@ ranger --cmd=quit!
 ranger --copy-config=all
 
 # Speedtest
-curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.rpm.sh | sudo bash
-sudo yum install speedtest
+#curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.rpm.sh | sudo bash
+#sudo yum install speedtest
+
+
+## Configure ZSH
+chsh -s $(which zsh)
+
+# Zap
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+echo 'plug "wintermi/zsh-oh-my-posh"' >> .zshrc
+
+# Oh My Posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
+oh-my-posh font install meslo
+
+# Install theme
+mkdir -p ~/.config/oh-my-posh/themes
+curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json
+echo 'eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"' >> .zshrc
+
+# Refresh
+exec zsh
+
 
 ## Brew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -76,12 +98,12 @@ brew install dust
 brew install jstkdng/programs/ueberzugpp
 brew install yazi ffmpegthumbnailer sevenzip jq poppler zoxide imagemagick
 
+
 ## Neovim setup
 sudo dnf install neovim -y
 
 # Dependencies
-sudo dnf install npm nodejs cargo ripgrep fd-find clang clangd fzf -y  
-sudo dnf install pipx python3-full python3-pynvim python3-ply -y  
+sudo dnf install npm nodejs cargo ripgrep fd-find fzf -y  
 cargo install tree-sitter-cli
 brew install bottom
 
@@ -104,24 +126,6 @@ nvim --headless "+MasonInstall pylint" +q
 nvim --headless "+MasonInstall pyment" +q
 # nvim --headless "+MasonInstall pylama" +q  
 
-# Configure ZSH
-sudo dnf install git wget curl ruby ruby-devel zsh util-linux-user redhat-rpm-config gcc gcc-c++ make -y
-sudo dnf install powerline vim-powerline tmux-powerline powerline-fonts lsd -y
-sudo dnf install fontawesome-fonts -y
-chsh -s $(which zsh)
-
-curl -fsSL https://raw.githubusercontent.com/Aiacos/presto-prezto/main/presto-prezto.sh | bash -s -- --font
-
-# Dracula theme
-sudo dnf install dconf-cli -y
-cd
-mkdir .settings
-cd .settings
-
-# Dracula Gnome Terminal
-git clone https://github.com/dracula/gnome-terminal
-cd gnome-terminal
-./install.sh
 
 # Dracula Wallpaper
 cd ..
@@ -146,7 +150,7 @@ layout {
 
             }
             pane split_direction="Horizontal" {
-                pane name="System" command="neofetch" {
+                pane name="System" command="fastfetch" {
 
                 }
                 pane focus=true name="Shell" {
@@ -161,16 +165,6 @@ attach_to_session true
 
 EOF
 
-# Add Flatpack
-#flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-#sudo flatpak install flathub com.anydesk.Anydesk -y
-#sudo flatpak install flathub org.blender.Blender -y
-#sudo flatpak install flathub org.kde.krita -y
-#sudo flatpak install flathub com.axosoft.GitKraken -y
-#sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
-#sudo flatpak install flathub md.obsidian.Obsidian -y
-
 # Add Snap
 sudo dnf install snapd -y
 sudo ln -s /var/lib/snapd/snap /snap
@@ -184,7 +178,6 @@ sudo snap install spotify --classic
 
 # Install Tweak
 sudo dnf install gnome-tweaks -y
-sudo dnf install python3 python3-pip -y
 pip3 install --user gnome-extensions-cli
 
 #gnome-extensions-cli install arcmenu@arcmenu.com
