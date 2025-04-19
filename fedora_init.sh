@@ -82,6 +82,7 @@ echo 'plug "zsh-users/zsh-history-substring-search"' >> .zshrc
 echo 'plug "yuhonas/zsh-aliases-lsd"' >> .zshrc
 echo 'plug "Aloxaf/fzf-tab"' >> .zshrc
 echo 'plug "Freed-Wu/fzf-tab-source"' >> .zshrc
+echo 'plug "tm4Bit/fzf-zellij"' >> .zshrc
 
 # Install theme
 echo 'eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"' >> .zshrc
