@@ -189,7 +189,8 @@ sudo snap install spotify --classic
 
 # Install Tweak
 sudo dnf install gnome-tweaks -y
-pip3 install --user gnome-extensions-cli
+sudo dnf install gnome-extensions-app -y 
+#pip3 install --user gnome-extensions-cli
 
 #gext install arcmenu@arcmenu.com
 gext install rocketbar@chepkun.github.com
