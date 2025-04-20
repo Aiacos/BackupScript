@@ -193,9 +193,8 @@ sudo dnf install gnome-tweaks -y
 sudo dnf install gnome-extensions-app -y 
 #pip3 install --user gnome-extensions-cli
 
-#gext install arcmenu@arcmenu.com
+gext install arcmenu@arcmenu.com
 gext install rocketbar@chepkun.github.com
-#gnome-extensions install tiling-assistant@leleat-on-github
 gext install trayIconsReloaded@selfmade.pl
 gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gext install tophat@fflewddur.github.io
