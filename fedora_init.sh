@@ -191,13 +191,13 @@ sudo snap install spotify --classic
 sudo dnf install gnome-tweaks -y
 pip3 install --user gnome-extensions-cli
 
-#gnome-extensions install arcmenu@arcmenu.com
-gnome-extensions install rocketbar@chepkun.github.com
+#gext install arcmenu@arcmenu.com
+gext install rocketbar@chepkun.github.com
 #gnome-extensions install tiling-assistant@leleat-on-github
-gnome-extensions install trayIconsReloaded@selfmade.pl
-gnome-extensions install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-gnome-extensions install tophat@fflewddur.github.io
-gnome-extensions install blur-my-shell@aunetx
+gext install trayIconsReloaded@selfmade.pl
+gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gext install tophat@fflewddur.github.io
+gext install blur-my-shell@aunetx
 
 cd
 
