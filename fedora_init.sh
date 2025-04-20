@@ -46,6 +46,7 @@ sudo dnf install btop -y
 sudo dnf install gedit -y
 sudo dnf install geany -y
 sudo dnf install cmatrix -y
+sudo dnf install seafile-client -y
 sudo dnf install rclone -y
 sudo dnf install sxiv -y
 sudo dnf install chafa -y
