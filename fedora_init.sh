@@ -164,7 +164,7 @@ layout {
 
             }
             pane split_direction="Horizontal" {
-                pane name="System" command="fastfetch" {
+                pane name="System" command="fastfetch --config paleofetch.jsonc" {
 
                 }
                 pane focus=true name="Shell" {
