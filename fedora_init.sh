@@ -141,7 +141,8 @@ nvim --headless "+MasonInstall pyment" +q
 
 
 # Dracula Wallpaper
-cd ..
+cd
+cd .settings
 git clone https://github.com/dracula/wallpaper.git
 cd 
 
