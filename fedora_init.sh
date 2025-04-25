@@ -198,9 +198,19 @@ sudo dnf install gnome-extensions-app -y
 gext install arcmenu@arcmenu.com
 gext install rocketbar@chepkun.github.com
 gext install trayIconsReloaded@selfmade.pl
-gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gext install tophat@fflewddur.github.io
-gext install blur-my-shell@aunetx
+#gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+#gext install blur-my-shell@aunetx
+
+sudo dnf install gnome-shell-extension-blur-my-shell -y
+sudo dnf install gnome-shell-extension-workspace-indicator -y
+
+gnome-extensions enable arcmenu@arcmenu.com
+gnome-extensions enable rocketbar@chepkun.github.com
+gnome-extensions enable trayIconsReloaded@selfmade.pl
+gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gnome-extensions enable tophat@fflewddur.github.io
+gnome-extensions enable blur-my-shell@aunetx
 
 cd
 
