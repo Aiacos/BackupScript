@@ -59,7 +59,7 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 oh-my-posh font install meslo
 
 mkdir -p ~/.config/oh-my-posh/themes
-curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json
+curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/powerlevel10k_rainbow_lucifer.omp.json
 
 # Zap
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
