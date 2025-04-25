@@ -31,30 +31,6 @@ sudo apt install caca-utils highlight atool w3m poppler-utils mediainfo -y
 ranger --cmd=quit!
 ranger --copy-config=all
 
-# Add Snap
-sudo apt install snapd -y
-sudo ln -s /var/lib/snapd/snap /snap
-
-sudo snap install krita --classic
-sudo snap install blender --classic
-sudo snap install gitkraken --classic
-sudo snap install pycharm-community --classic
-#sudo snap install obsidian --classic
-sudo snap install spotify --classic
-
-## Add Flatpack
-#sudo apt install flatpak -y
-#sudo apt install gnome-software-plugin-flatpak -y
-#flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-#sudo flatpak install flathub com.anydesk.Anydesk -y
-#sudo flatpak install flathub org.blender.Blender -y
-#sudo flatpak install flathub org.kde.krita -y
-#sudo flatpak install flathub com.axosoft.GitKraken -y
-#sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
-#sudo flatpak install flathub org.gnome.Builder -y
-#sudo flatpak install flathub nz.mega.MEGAsync -y
-
 ## CasaOS
 curl -fsSL https://get.casaos.io | sudo bash
 sudo groupadd docker
@@ -74,6 +50,36 @@ brew install atuin
 brew install dust
 brew install jstkdng/programs/ueberzugpp
 brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide imagemagick
+
+## Configure ZSH
+chsh -s $(which zsh)
+
+# Oh My Posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
+oh-my-posh font install meslo
+
+mkdir -p ~/.config/oh-my-posh/themes
+curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/powerlevel10k_rainbow.omp.json
+
+# Zap
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+echo 'export POSH_THEME="$HOME/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json"' >> .zshrc
+echo 'plug "wintermi/zsh-oh-my-posh"' >> .zshrc
+echo 'plug "wintermi/zsh-lsd"' >> .zshrc
+echo 'plug "zsh-users/zsh-history-substring-search"' >> .zshrc
+echo 'plug "yuhonas/zsh-aliases-lsd"' >> .zshrc
+echo 'plug "Aloxaf/fzf-tab"' >> .zshrc
+echo 'plug "Freed-Wu/fzf-tab-source"' >> .zshrc
+echo 'plug "tm4Bit/fzf-zellij"' >> .zshrc
+echo 'plug "wintermi/zsh-brew"' >> .zshrc
+
+# Load and initialise completion system
+autoload -Uz compinit
+compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
+
+# Refresh
+curl -o ~/.zshrc https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/.zshrc
+exec zsh
 
 ## Neovim setup
 sudo apt install neovim -y
@@ -103,61 +109,36 @@ nvim --headless "+MasonInstall pylint" +q
 nvim --headless "+MasonInstall pyment" +q
 # nvim --headless "+MasonInstall pylama" +q  
 
-# Dracula theme
-sudo apt-get install dconf-cli -y
-cd
-mkdir .settings
-cd .settings
 
-# Dracula Gnome Terminal
-git clone https://github.com/dracula/gnome-terminal
-cd gnome-terminal
-./install.sh
+# Add Snap
+sudo apt install snapd -y
+sudo ln -s /var/lib/snapd/snap /snap
+
+sudo snap install krita --classic
+sudo snap install blender --classic
+sudo snap install gitkraken --classic
+sudo snap install pycharm-community --classic
+#sudo snap install obsidian --classic
+sudo snap install spotify --classic
+
+## Add Flatpack
+#sudo apt install flatpak -y
+#sudo apt install gnome-software-plugin-flatpak -y
+#flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+#sudo flatpak install flathub com.anydesk.Anydesk -y
+#sudo flatpak install flathub org.blender.Blender -y
+#sudo flatpak install flathub org.kde.krita -y
+#sudo flatpak install flathub com.axosoft.GitKraken -y
+#sudo flatpak install flathub com.jetbrains.PyCharm-Community -y
+#sudo flatpak install flathub org.gnome.Builder -y
+#sudo flatpak install flathub nz.mega.MEGAsync -y
+
 
 # Dracula Wallpaper
 cd ..
 git clone https://github.com/dracula/wallpaper.git
 cd
-
-## Configure ZSH with Prezto
-# Nerd Fonts
-sudo apt install git wget curl ruby zsh -y
-chsh -s $(which zsh)
-
-# Install Prezto
-curl -fsSL https://raw.githubusercontent.com/Aiacos/presto-prezto/main/presto-prezto.sh | bash -s -- --font
-
-tee -a ~/.zellij_base_layout.kdl << EOF
-layout {
-        default_tab_template {
-                pane size=1 borderless=true {
-                plugin location="zellij:tab-bar"
-        }
-        children
-        pane size=2 borderless=true {
-                plugin location="zellij:status-bar"
-        }
-    }   
-        tab name="Work" split_direction="Vertical" {
-        pane split_direction="Vertical" {
-            pane name="Btop" command="btop" {
-
-            }
-            pane split_direction="Horizontal" {
-                pane name="System" command="neofetch" {
-
-                }
-                pane focus=true name="Shell" {
-
-                }
-            }
-        }
-    }
-}
-session_name "Base"
-attach_to_session true
-
-EOF
 
 ## Grub
 cd 
@@ -168,19 +149,16 @@ sudo ./install.sh -b -t tela
 cd
 
 ## Install Tweak
+sudo apt install gnome-tweaks gnome-shell-extensions -y
 pipx install gnome-extensions-cli --system-site-packages
-cd $HOME/.local/share/pipx/venvs/gnome-extensions-cli/bin
-pipx ensurepath
+pipx ensurepath 
 
-./gnome-extensions-cli install extensions@abteil.org
-./gnome-extensions-cli install services-systemd@abteil.org
-#./gnome-extensions-cli install arcmenu@arcmenu.com
-#./gnome-extensions-cli install rocketbar@chepkun.github.com
-#./gnome-extensions-cli install tiling-assistant@leleat-on-github
-./gnome-extensions-cli install trayIconsReloaded@selfmade.pl
-./gnome-extensions-cli install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-#./gnome-extensions-cli install tophat@fflewddur.github.io
-./gnome-extensions-cli install blur-my-shell@aunetx
+gext install arcmenu@arcmenu.com
+gext install rocketbar@chepkun.github.com
+gext install trayIconsReloaded@selfmade.pl
+gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gext install tophat@fflewddur.github.io
+gext install blur-my-shell@aunetx
 
 cd
 
