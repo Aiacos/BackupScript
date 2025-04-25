@@ -160,6 +160,13 @@ gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gext install tophat@fflewddur.github.io
 gext install blur-my-shell@aunetx
 
+#gnome-extensions enable arcmenu@arcmenu.com
+#gnome-extensions enable rocketbar@chepkun.github.com
+#gnome-extensions enable trayIconsReloaded@selfmade.pl
+#gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.github.com
+#gnome-extensions enable tophat@fflewddur.github.io
+#gnome-extensions enable blur-my-shell@aunetx
+
 cd
 
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
