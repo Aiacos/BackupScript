@@ -199,8 +199,9 @@ gext install arcmenu@arcmenu.com
 gext install rocketbar@chepkun.github.com
 gext install trayIconsReloaded@selfmade.pl
 gext install tophat@fflewddur.github.io
-#gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
-#gext install blur-my-shell@aunetx
+gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
+gext install blur-my-shell@aunetx
+gext install panel-corners@aunetx
 
 sudo dnf install gnome-shell-extension-blur-my-shell -y
 sudo dnf install gnome-shell-extension-workspace-indicator -y
@@ -211,6 +212,7 @@ gnome-extensions enable trayIconsReloaded@selfmade.pl
 gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gnome-extensions enable tophat@fflewddur.github.io
 gnome-extensions enable blur-my-shell@aunetx
+gnome-extensions enable panel-corners@aunetx
 
 cd
 
