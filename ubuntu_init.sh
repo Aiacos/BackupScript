@@ -169,7 +169,9 @@ sudo snap install spotify --classic
 
 
 # Dracula Wallpaper
-cd ..
+mkdir .settings
+
+cd .settings
 git clone https://github.com/dracula/wallpaper.git
 cd
 
@@ -202,10 +204,12 @@ gext install blur-my-shell@aunetx
 
 cd
 
+sudo apt install numix-icon-theme numix-icon-theme-square -y 
+
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-#gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
-gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
+gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
+#gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 
 # PoP Shell
 sudo apt install git node-typescript make -y
