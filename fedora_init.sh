@@ -221,10 +221,11 @@ sudo dnf install numix-icon-theme -y
 sudo dnf install numix-icon-theme-square -y
 sudo dnf install numix-icon-theme-circle -y
 sudo dnf install yaru-theme -y
+sudo dnf install papirus-icon-theme -y 
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 
 
 # Install Hyprland
