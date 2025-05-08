@@ -65,6 +65,22 @@ ranger --copy-config=all
 #sudo yum install speedtest
 
 
+## Brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
+echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >> ~/.zshrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+brew install zellij
+brew install jesseduffield/lazygit/lazygit
+brew install jesseduffield/lazydocker/lazydocker
+brew install zsh-history-substring-search
+brew install atuin
+brew install dust
+brew install jstkdng/programs/ueberzugpp
+brew install yazi ffmpegthumbnailer sevenzip jq poppler zoxide imagemagick
+
+
 ## Configure ZSH
 chsh -s $(which zsh)
 
@@ -94,22 +110,6 @@ compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
 # Refresh
 curl -o ~/.zshrc https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/.zshrc
 exec zsh
-
-
-## Brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
-echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >> ~/.zshrc
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-brew install zellij
-brew install jesseduffield/lazygit/lazygit
-brew install jesseduffield/lazydocker/lazydocker
-brew install zsh-history-substring-search
-brew install atuin
-brew install dust
-brew install jstkdng/programs/ueberzugpp
-brew install yazi ffmpegthumbnailer sevenzip jq poppler zoxide imagemagick
 
 
 ## Neovim setup
