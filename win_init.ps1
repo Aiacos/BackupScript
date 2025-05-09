@@ -16,6 +16,8 @@ winget install --id tailscale.tailscale -e
 # Utility
 winget install --id=OBSProject.OBSStudio -e
 winget install --id=Parsec.Parsec -e
+winget install --id Elgato.StreamDeck -e
+winget install --id Elgato.WaveLink -e
 
 # Graphics
 winget install --id=BlenderFoundation.Blender -e
