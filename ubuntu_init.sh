@@ -13,7 +13,7 @@ sudo apt install python3 python3-pip pipx -y
 sudo apt install openssh-server -y
 
 ## Install Apps
-sudo apt install neofetch -y
+sudo apt install fastfetch -y
 sudo apt install btop -y
 sudo apt install gedit -y
 sudo apt install geany -y
