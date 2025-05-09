@@ -214,6 +214,7 @@ gext install tophat@fflewddur.github.io
 gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gext install blur-my-shell@aunetx
 gext install panel-corners@aunetx
+gext install openbar@neuromorph
 
 sudo dnf install gnome-shell-extension-blur-my-shell -y
 sudo dnf install gnome-shell-extension-workspace-indicator -y
@@ -225,7 +226,6 @@ gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.githu
 gnome-extensions enable tophat@fflewddur.github.io
 gnome-extensions enable blur-my-shell@aunetx
 gnome-extensions enable panel-corners@aunetx
-gext install openbar@neuromorph
 
 cd
 
