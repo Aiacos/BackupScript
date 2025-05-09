@@ -172,12 +172,23 @@ nvim --headless "+MasonInstall pylint" +q
 nvim --headless "+MasonInstall pyment" +q
 # nvim --headless "+MasonInstall pylama" +q  
 
+## Settings Folder
+cd
+mkdir .settings
 
 # Dracula Wallpaper
 cd
 cd .settings
 git clone https://github.com/dracula/wallpaper.git
 cd 
+
+## Grub
+cd 
+cd .settings
+git clone https://github.com/vinceliuice/grub2-themes.git
+cd grub2-themes
+sudo ./install.sh -b -t tela
+cd
 
 
 # Add Snap
@@ -229,6 +240,7 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 
 
+## Desktop Environments
 # Install Hyprland
 git clone --depth=1 https://github.com/JaKooLit/Fedora-Hyprland.git ~/Fedora-Hyprland
 cd ~/Fedora-Hyprland
@@ -237,11 +249,3 @@ chmod +x install.sh
 
 # Deepin Desktop
 #sudo dnf group install "Deepin Desktop" -y
-
-## Grub
-cd 
-cd .settings
-git clone https://github.com/vinceliuice/grub2-themes.git
-cd grub2-themes
-sudo ./install.sh -b -t tela
-cd
