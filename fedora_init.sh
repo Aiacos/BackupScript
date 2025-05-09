@@ -225,6 +225,7 @@ gnome-extensions enable workspace-indicator@gnome-shell-extensions.gcampax.githu
 gnome-extensions enable tophat@fflewddur.github.io
 gnome-extensions enable blur-my-shell@aunetx
 gnome-extensions enable panel-corners@aunetx
+gext install openbar@neuromorph
 
 cd
 
