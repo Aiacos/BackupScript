@@ -143,6 +143,25 @@ nvim --headless "+MasonInstall pyment" +q
 # nvim --headless "+MasonInstall pylama" +q  
 
 
+## Settings Folder
+cd
+mkdir .settings
+
+# Dracula Wallpaper
+cd
+cd .settings
+git clone https://github.com/dracula/wallpaper.git
+cd 
+
+## Grub
+cd 
+cd .settings
+git clone https://github.com/vinceliuice/grub2-themes.git
+cd grub2-themes
+sudo ./install.sh -b -t tela
+cd
+
+
 # Add Snap
 sudo apt install snapd -y
 sudo ln -s /var/lib/snapd/snap /snap
@@ -167,21 +186,6 @@ sudo snap install spotify --classic
 #sudo flatpak install flathub org.gnome.Builder -y
 #sudo flatpak install flathub nz.mega.MEGAsync -y
 
-
-# Dracula Wallpaper
-mkdir .settings
-
-cd .settings
-git clone https://github.com/dracula/wallpaper.git
-cd
-
-## Grub
-cd 
-cd .settings
-git clone https://github.com/vinceliuice/grub2-themes.git
-cd grub2-themes
-sudo ./install.sh -b -t tela
-cd
 
 ## Install Tweak
 sudo apt install gnome-tweaks gnome-shell-extensions -y
@@ -208,8 +212,8 @@ sudo apt install numix-icon-theme numix-icon-theme-square -y
 
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
-#gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
+#gsettings set org.gnome.desktop.interface icon-theme 'Numix-Square'
+gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 
 # PoP Shell
 sudo apt install git node-typescript make -y
