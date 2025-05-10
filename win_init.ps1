@@ -1,7 +1,7 @@
 ## Winget
 # System
 winget install --id=aristocratos.btop4win -e
-winget install --id=DEVCOM.JetBrainsMonoNerdFont  -e
+winget install --id=DEVCOM.JetBrainsMonoNerdFont -e
 winget install --id=Asus.ArmouryCrate -e
 winget install --id=Intel.IntelDriverAndSupportAssistant -e 
 
@@ -24,7 +24,7 @@ winget install --id=BlenderFoundation.Blender -e
 
 # Game
 winget install --id=Valve.Steam -e
-winget install --id Voicemod.Voicemod -e
+winget install Voicemod --accept-source-agreements --accept-package-agreements
 
 # Programming
 winget install --id=Git.Git  -e
