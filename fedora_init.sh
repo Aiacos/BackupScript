@@ -215,6 +215,7 @@ gext install workspace-indicator@gnome-shell-extensions.gcampax.github.com
 gext install blur-my-shell@aunetx
 gext install panel-corners@aunetx
 gext install openbar@neuromorph
+gext install dash2dock-lite@icedman.github.com
 
 sudo dnf install gnome-shell-extension-blur-my-shell -y
 sudo dnf install gnome-shell-extension-workspace-indicator -y
