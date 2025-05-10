@@ -24,6 +24,7 @@ winget install --id=BlenderFoundation.Blender -e
 
 # Game
 winget install --id=Valve.Steam -e
+winget install --id Voicemod.Voicemod -e
 
 # Programming
 winget install --id=Git.Git  -e
