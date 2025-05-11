@@ -144,6 +144,9 @@ attach_to_session true
 
 EOF
 
+# Enable Atuin
+eval "$(atuin init zsh)"
+
 
 ## Neovim setup
 sudo dnf install neovim -y
