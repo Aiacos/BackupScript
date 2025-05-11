@@ -145,6 +145,7 @@ attach_to_session true
 EOF
 
 # Enable Atuin
+atuin import auto
 eval "$(atuin init zsh)"
 
 
