@@ -10,6 +10,7 @@ winget install --id=Opera.Opera -e
 winget install --id=Discord.Discord -e
 winget install --id=Spotify.Spotify -e
 winget install --id=Mega.MEGASync -e
+winget install --id Seafile.Seafile -e
 winget install --id=WireGuard.WireGuard -e
 winget install --id tailscale.tailscale -e
 
@@ -116,3 +117,4 @@ if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyCon
 } else {
     Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
 }
+
