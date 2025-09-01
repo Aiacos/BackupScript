@@ -44,6 +44,8 @@ echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >>
 
 brew install zellij
 brew install jesseduffield/lazygit/lazygit
+# for RaspbianOS
+# go install github.com/jesseduffield/lazygit@latest
 brew install jesseduffield/lazydocker/lazydocker
 brew install zsh-history-substring-search
 brew install atuin
