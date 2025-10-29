@@ -52,6 +52,7 @@ brew install atuin
 brew install dust
 brew install jstkdng/programs/ueberzugpp
 brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide imagemagick
+brew install luarocks
 
 ## Configure ZSH
 chsh -s $(which zsh)
