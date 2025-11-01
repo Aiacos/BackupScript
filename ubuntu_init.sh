@@ -144,7 +144,7 @@ git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 nvim +q
 curl -o ~/.config/nvim/lua/community.lua https://raw.githubusercontent.com/Aiacos/AstroNvim_Config/refs/heads/master/community.lua 
-nvim --headless "+MasonInstall ruff-lsp" +q  
+nvim --headless "+MasonInstall ruff" +q  
 nvim --headless "+MasonInstall pylint" +q
 nvim --headless "+MasonInstall pyment" +q
 # nvim --headless "+MasonInstall pylama" +q  
