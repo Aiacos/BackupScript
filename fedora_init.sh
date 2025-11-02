@@ -6,7 +6,7 @@ sudo dnf update -y
 sudo dnf upgrade -y
 
 ## System
-sudo dnf install git curl wget pipx python3 python3-pip python3-full python3-pynvim python3-ply -y
+sudo dnf install git gh curl wget pipx python3 python3-pip python3-full python3-pynvim python3-ply -y
 sudo dnf install btrfs-assistant -y
 
 # Dev Tools
