@@ -147,6 +147,7 @@ curl -o ~/.config/nvim/lua/community.lua https://raw.githubusercontent.com/Aiaco
 nvim --headless "+MasonInstall ruff" +q  
 nvim --headless "+MasonInstall pylint" +q
 nvim --headless "+MasonInstall pyment" +q
+nvim --headless "+MasonInstall mypy" +q
 # nvim --headless "+MasonInstall pylama" +q  
 
 
