@@ -207,6 +207,7 @@ sudo snap install gitkraken --classic
 sudo snap install pycharm-community --classic
 sudo snap install obsidian --classic
 sudo snap install spotify --classic
+sudo snap install termius-app --classic
 
 # Install Tweak
 sudo dnf install gnome-tweaks -y
