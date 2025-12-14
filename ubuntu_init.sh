@@ -24,6 +24,7 @@ sudo apt install sxiv -y
 sudo apt install chafa -y
 sudo apt install cmatrix -y
 sudo apt install ncdu -y
+sudo apt install timewarrior -y
 sudo apt install gnome-tweaks -y
 sudo apt install gnome-shell-extension-manager -y
 
@@ -53,6 +54,10 @@ brew install dust
 brew install jstkdng/programs/ueberzugpp
 brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide imagemagick
 brew install luarocks
+
+# AI npn
+npm i -g @openai/codex
+npm install -g @anthropic-ai/claude-code
 
 ## Configure ZSH
 chsh -s $(which zsh)
