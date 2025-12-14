@@ -54,6 +54,7 @@ sudo dnf install chafa -y
 sudo dnf install ranger -y
 sudo dnf install ncdu -y
 sudo dnf install nvtop -y
+sudo dnf install timew -y
 sudo pipx install nvitop  
 
 sudo dnf install caca-utils highlight atool w3m poppler-utils mediainfo -y
@@ -81,6 +82,9 @@ brew install jstkdng/programs/ueberzugpp
 brew install yazi ffmpegthumbnailer sevenzip jq poppler zoxide imagemagick
 brew install luarocks
 
+# AI npn
+npm i -g @openai/codex
+npm install -g @anthropic-ai/claude-code
 
 ## Configure ZSH
 chsh -s $(which zsh)
