@@ -229,6 +229,7 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 
 # PoP Shell
+cd .settings
 sudo apt install git node-typescript make -y
 git clone https://github.com/pop-os/shell.git
 cd shell
