@@ -1,3 +1,6 @@
+# Standalone
+irm "https://get.winhance.net" | iex
+
 ## Winget
 # System
 winget install --id=aristocratos.btop4win -e
@@ -117,4 +120,5 @@ if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyCon
 } else {
     Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
 }
+
 
