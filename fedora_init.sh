@@ -146,6 +146,8 @@ layout {
 }
 session_name "Base"
 attach_to_session true
+pane_frames true
+pane_frame_style "full"
 
 EOF
 
