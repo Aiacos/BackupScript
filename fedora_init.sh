@@ -86,6 +86,11 @@ brew install luarocks
 npm i -g @openai/codex
 npm install -g @anthropic-ai/claude-code
 
+brew trust --formula slima4/claude-tui/claude-tui  
+brew tap slima4/claude-tui
+brew install claude-tui
+claudetui setup       # configure statusline, hooks, and commands
+
 ## Configure ZSH
 chsh -s $(which zsh)
 
