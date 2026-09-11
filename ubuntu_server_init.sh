@@ -79,7 +79,10 @@ claudetui setup       # configure statusline, hooks, and commands
 
 
 ## Configure ZSH
-chsh -s $(which zsh)
+command -v zsh
+grep -Fx "$(command -v zsh)" /etc/shells
+
+chsh -s "$(command -v zsh)"
 
 # Oh My Posh
 curl -s https://ohmyposh.dev/install.sh | bash -s
