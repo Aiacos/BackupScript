@@ -45,13 +45,28 @@ brew trust jesseduffield/lazydocker
 brew install zellij
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
-brew install docker
-brew install docker-compose
 brew install zsh-history-substring-search
 brew install atuin
 brew install dust
 brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide
 #brew install luarocks
+
+# Docker
+brew install docker
+brew install docker-compose
+
+mkdir -p ~/.docker
+cat > ~/.docker/config.json <<JSON
+{
+  "cliPluginsExtraDirs": [
+    "$(brew --prefix)/lib/docker/cli-plugins"
+  ]
+}
+JSON
+
+sudo groupadd --force docker
+sudo usermod -aG docker "$USER"
+newgrp docker
 
 # AI npn
 sudo npm install -g @anthropic-ai/claude-code
