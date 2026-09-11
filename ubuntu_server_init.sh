@@ -73,7 +73,7 @@ brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide
 #brew install luarocks
 
 # AI npn
-npm install -g @anthropic-ai/claude-code
+sudo npm install -g @anthropic-ai/claude-code
 
 brew trust --formula slima4/claude-tui/claude-tui  
 brew tap slima4/claude-tui
