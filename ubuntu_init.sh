@@ -43,6 +43,9 @@ sudo usermod -aG docker $USER
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >> ~/.zshrc
 
+brew trust jesseduffield/lazygit
+brew trust jesseduffield/lazydocker
+
 brew install zellij
 brew install jesseduffield/lazygit/lazygit
 # for RaspbianOS
