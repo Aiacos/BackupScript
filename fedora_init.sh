@@ -72,6 +72,9 @@ ranger --copy-config=all
 echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >> ~/.zshrc
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+brew trust jesseduffield/lazygit
+brew trust jesseduffield/lazydocker
+
 brew install zellij
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
@@ -83,7 +86,6 @@ brew install yazi ffmpegthumbnailer sevenzip jq poppler zoxide imagemagick
 brew install luarocks
 
 # AI npn
-npm i -g @openai/codex
 npm install -g @anthropic-ai/claude-code
 
 brew trust --formula slima4/claude-tui/claude-tui  
@@ -262,10 +264,12 @@ gsettings set org.gnome.desktop.interface icon-theme 'Papirus'
 
 ## Desktop Environments
 # Install Hyprland
-git clone --depth=1 https://github.com/JaKooLit/Fedora-Hyprland.git ~/Fedora-Hyprland
-cd ~/Fedora-Hyprland
-chmod +x install.sh
-./install.sh
+
+# Install Niri
+sudo dnf install niri -y
+sudo dnf install noctalia -y
+
+systemctl --user add-wants niri.service
 
 # Deepin Desktop
 #sudo dnf group install "Deepin Desktop" -y
