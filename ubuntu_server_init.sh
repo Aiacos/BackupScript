@@ -43,18 +43,18 @@ echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >>
 brew trust jesseduffield/lazygit
 brew trust jesseduffield/lazydocker
 
-brew install zellij
-brew install jesseduffield/lazygit/lazygit
-brew install jesseduffield/lazydocker/lazydocker
-brew install zsh-history-substring-search
-brew install atuin
-brew install dust
-brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide
-#brew install luarocks
+brew install zellij -y
+brew install jesseduffield/lazygit/lazygit -y
+brew install jesseduffield/lazydocker/lazydocker -y
+brew install zsh-history-substring-search -y
+brew install atuin -y
+brew install dust -y
+brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide -y
+#brew install luarocks -y
 
 # Docker
-brew install docker
-brew install docker-compose
+brew install docker -y
+brew install docker-compose -y
 
 mkdir -p ~/.docker
 cat > ~/.docker/config.json <<JSON
@@ -74,7 +74,7 @@ sudo npm install -g @anthropic-ai/claude-code
 
 brew trust --formula slima4/claude-tui/claude-tui  
 brew tap slima4/claude-tui
-brew install claude-tui
+brew install claude-tui -y
 claudetui setup       # configure statusline, hooks, and commands
 
 
@@ -151,13 +151,13 @@ atuin import auto
 eval "$(atuin init zsh)"
 
 ## Neovim setup
-brew install neovim
+brew install neovim -y
 
 # Dependencies
 sudo apt install npm nodejs cargo ripgrep fd-find clang clangd -y  
 sudo apt install pipx python3-full python3-pynvim python3-ply -y  
 cargo install tree-sitter-cli
-brew install bottom
+brew install bottom -y
 
 # Go disk usage
 curl -L https://github.com/dundee/gdu/releases/latest/download/gdu_linux_amd64.tgz | tar xz
