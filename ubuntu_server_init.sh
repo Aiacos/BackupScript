@@ -1,184 +1,311 @@
-## Update
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt autoremove -y
+#!/usr/bin/env bash
+#
+# ubuntu_server_init.sh — bootstrap for a headless Ubuntu Server 26.04 LTS.
+#
+# Everything comes from apt except four tools Ubuntu does not package at all
+# (zellij, lazydocker, yazi, bottom) plus neovim, which come from Homebrew.
+#
+# Usage: bash ubuntu_server_init.sh
+# Safe to re-run.
 
-## Dev Tools
-sudo apt install git gh wget curl ruby zsh lsd -y
-sudo apt install build-essential -y
-sudo apt install net-tools -y
-sudo apt install python3 python3-pip pipx -y
+set -uo pipefail   # not -e: a single failing tool must not abort the bootstrap
 
-## Configure SSH
-sudo apt install openssh-server -y
+# ─────────────────────────────── helpers ───────────────────────────────
 
-## Install Apps
-sudo apt install fastfetch -y
-sudo apt install btop -y
-sudo apt install tmux -y
-sudo apt install rclone -y
-sudo apt install ranger -y
-sudo apt install sxiv -y
-sudo apt install chafa -y
-sudo apt install cmatrix -y
-sudo apt install ncdu -y
-sudo apt install timewarrior -y
-sudo apt install npm -y
+FAILURES=()
+log()  { printf '\n\033[1;34m==>\033[0m \033[1m%s\033[0m\n' "$*"; }
+warn() { printf '\033[1;33m[skip]\033[0m %s\n' "$*" >&2; FAILURES+=("$*"); }
 
-sudo apt install caca-utils highlight atool w3m poppler-utils mediainfo -y
-ranger --cmd=quit!
-ranger --copy-config=all
-
-## CasaOS
-#curl -fsSL https://get.casaos.io | sudo bash
-#sudo groupadd docker
-#sudo usermod -aG docker $USER
-
-## Brew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-(echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.zshrc
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-echo 'export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"' >> ~/.zshrc
-
-brew trust jesseduffield/lazygit
-brew trust jesseduffield/lazydocker
-
-brew install zellij -y
-brew install jesseduffield/lazygit/lazygit -y
-brew install jesseduffield/lazydocker/lazydocker -y
-brew install zsh-history-substring-search -y
-brew install atuin -y
-brew install dust -y
-brew install yazi ffmpegthumbnailer sevenzip jq poppler fd zoxide -y
-#brew install luarocks -y
-
-# Docker
-brew install docker -y
-brew install docker-compose -y
-
-mkdir -p ~/.docker
-cat > ~/.docker/config.json <<JSON
-{
-  "cliPluginsExtraDirs": [
-    "$(brew --prefix)/lib/docker/cli-plugins"
-  ]
+apt_install() {
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "$@" || warn "apt: $*"
 }
-JSON
 
+# run_installer <url> [args…] — fetch a remote install script, then execute it.
+# Never `curl … | bash`: a pipeline reports the exit status of its LAST command,
+# so a failed download turns into bash reading empty input and "succeeding",
+# and the piped script itself occupies bash's stdin.
+run_installer() {
+  local url=$1; shift
+  local tmp; tmp=$(mktemp)
+  if curl -fsSL -o "$tmp" "$url"; then
+    bash "$tmp" "$@" </dev/null || warn "$url: installer failed"
+  else
+    warn "$url: download failed"
+  fi
+  rm -f "$tmp"
+}
+
+# Ask for sudo once, then keep the timestamp warm for the whole run. The loop
+# must not be `while sudo -n true`: one transient failure would end it for good,
+# and `sudo -n` cannot revive a timestamp that has already been dropped.
+sudo -v || { echo "This script needs sudo."; exit 1; }
+while true; do sudo -n true 2>/dev/null; sleep 50; kill -0 "$$" 2>/dev/null || exit; done &
+trap 'kill %1 2>/dev/null' EXIT
+
+# ─────────────────────────── 1. apt packages ────────────────────────────
+
+BASE=(git gh wget curl unzip ca-certificates gnupg ruby zsh build-essential fontconfig
+      net-tools openssh-server python3 python3-pip python3-full pipx)
+
+CLI=(btop tmux rclone ranger sxiv chafa cmatrix ncdu timewarrior
+     lsd bat ripgrep fd-find zoxide jq 7zip gdu
+     fastfetch atuin du-dust lazygit
+     poppler-utils ffmpegthumbnailer mediainfo highlight atool w3m caca-utils)
+
+DOCKER=(docker.io docker-compose-v2 docker-buildx containerd)
+
+# neovim itself comes from Homebrew below (0.12 vs 0.11 on apt). brew's
+# tree-sitter is the library only, so the CLI parser compiler stays on apt.
+NVIM=(tree-sitter-cli nodejs npm clang clangd python3-pynvim python3-ply)
+
+log "Updating the system"
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
+sudo apt-get autoremove -y
+
+log "Installing apt packages"
+apt_install "${BASE[@]}" "${CLI[@]}" "${DOCKER[@]}" "${NVIM[@]}"
+
+# Ubuntu ships these two under prefixed binary names; every other tool
+# (yazi, fzf, nvim…) expects to find the plain names on PATH.
+[ -x /usr/bin/fdfind ] && sudo ln -sfn /usr/bin/fdfind /usr/local/bin/fd
+[ -x /usr/bin/batcat ] && sudo ln -sfn /usr/bin/batcat /usr/local/bin/bat
+
+sudo systemctl enable --now ssh || warn "could not enable the ssh service"
+[ -d "$HOME/.config/ranger" ] || ranger --copy-config=all
+
+# ────────────────────────────── 2. Docker ───────────────────────────────
+
+# Ubuntu 26.04 ships Docker 29.x as docker.io, with compose and buildx as
+# separate packages — all installed above. Docker's own apt repository is
+# deliberately NOT used: docker-ce conflicts with docker.io and would have to
+# replace it, which buys nothing on a release this current.
+log "Docker"
+sudo systemctl enable --now docker || warn "could not enable the docker service"
 sudo groupadd --force docker
 sudo usermod -aG docker "$USER"
-newgrp docker
+# No `newgrp docker` here: it spawns a subshell and would stall the script.
+# The new group applies at the next login.
 
-# AI npn
-sudo npm install -g @anthropic-ai/claude-code
+# ──────────────────────────────── 3. zsh ────────────────────────────────
 
-brew trust --formula slima4/claude-tui/claude-tui  
-brew tap slima4/claude-tui
-brew install claude-tui -y
-claudetui setup       # configure statusline, hooks, and commands
+log "Making zsh the login shell"
+# Deliberately the apt zsh, not `command -v zsh`: brew shellenv is already on
+# PATH by this point and would resolve to a Homebrew build, and a login shell
+# should not depend on /home/linuxbrew being present and intact.
+ZSH_PATH=/usr/bin/zsh
+if [ ! -x "$ZSH_PATH" ]; then
+  warn "$ZSH_PATH missing — login shell left unchanged"
+else
+  # chsh refuses any shell missing from /etc/shells — the old script checked
+  # for this but never added the entry, which is why the switch never took.
+  grep -qxF "$ZSH_PATH" /etc/shells || echo "$ZSH_PATH" | sudo tee -a /etc/shells >/dev/null
+  if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$ZSH_PATH" ]; then
+    # `sudo chsh -s … "$USER"` works unattended; bare chsh would prompt for a password.
+    sudo chsh -s "$ZSH_PATH" "$USER" || warn "chsh failed: sudo chsh -s $ZSH_PATH $USER"
+  fi
+fi
 
+# oh-my-posh, claude and claudetui all install into ~/.local/bin. Ubuntu adds
+# that to PATH from ~/.profile, which zsh never reads — so put it in ~/.zprofile,
+# which zsh does read at login and which the .zshrc download below leaves alone.
+PATH_LINE='export PATH="$HOME/.local/bin:$PATH"'
+touch "$HOME/.zprofile"
+grep -qxF "$PATH_LINE" "$HOME/.zprofile" || printf '%s\n' "$PATH_LINE" >> "$HOME/.zprofile"
+export PATH="$HOME/.local/bin:$PATH"
 
-## Configure ZSH
-command -v zsh
-grep -Fx "$(command -v zsh)" /etc/shells
+log "Oh My Posh"
+command -v oh-my-posh >/dev/null ||
+  run_installer https://ohmyposh.dev/install.sh -d "$HOME/.local/bin"
+mkdir -p "$HOME/.config/oh-my-posh/themes"
+curl -fsSL -o "$HOME/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json" \
+  https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/powerlevel10k_rainbow_lucifer.omp.json ||
+  warn "oh-my-posh theme download failed"
 
-chsh -s "$(command -v zsh)"
+log "Zap (zsh plugin manager)"
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] ||
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) \
+      --branch release-v1 --keep || warn "zap install failed"
 
-# Oh My Posh
-curl -s https://ohmyposh.dev/install.sh | bash -s
-oh-my-posh font install meslo
+# The shared .zshrc is the single source of truth and simply overwrites whatever
+# is here — including the lines Zap just appended, which it already contains,
+# and the `brew shellenv` eval that puts the Homebrew tools on PATH.
+# The old script did this *before* appending its own config, so the download
+# silently wiped every line it had just written.
+log "Fetching the shared .zshrc"
+curl -fsSL -o "$HOME/.zshrc" \
+  https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/.zshrc ||
+  warn ".zshrc download failed"
 
-mkdir -p ~/.config/oh-my-posh/themes
-curl -o ~/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/powerlevel10k_rainbow_lucifer.omp.json
+command -v atuin >/dev/null && atuin import auto >/dev/null 2>&1
 
-# Zap
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-echo 'export POSH_THEME="$HOME/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json"' >> .zshrc
-echo 'plug "wintermi/zsh-oh-my-posh"' >> .zshrc
-echo 'plug "wintermi/zsh-lsd"' >> .zshrc
-echo 'plug "zsh-users/zsh-history-substring-search"' >> .zshrc
-echo 'plug "yuhonas/zsh-aliases-lsd"' >> .zshrc
-echo 'plug "Aloxaf/fzf-tab"' >> .zshrc
-echo 'plug "Freed-Wu/fzf-tab-source"' >> .zshrc
-echo 'plug "tm4Bit/fzf-zellij"' >> .zshrc
-echo 'plug "wintermi/zsh-brew"' >> .zshrc
+# ────────────────────────── 4. Homebrew tools ───────────────────────────
 
-# Load and initialise completion system
-autoload -Uz compinit
-compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
+# zellij, lazydocker, yazi and bottom have no apt package on 26.04, and neovim
+# is newer here (0.12) than on apt (0.11). All five are in homebrew-core, so a
+# plain `brew install` is enough — `brew trust` is only needed for third-party
+# taps, which is how the old script pulled lazygit and lazydocker.
+# Homebrew deliberately comes after every step that needs root. brew.sh runs
+# `sudo --reset-timestamp` on *every* invocation ("Reset sudo timestamp to avoid
+# running unauthorized sudo commands"), and its own installer additionally ends
+# with `trap '/usr/bin/sudo -k' EXIT`. No amount of keeping the timestamp warm
+# survives that, so instead nothing below this line calls sudo at all — which is
+# also why fontconfig is in the apt list rather than in the fonts step.
+log "Homebrew"
+BREW=/home/linuxbrew/.linuxbrew/bin/brew
+if [ ! -x "$BREW" ]; then
+  FREE_GB=$(df -BG --output=avail / | tail -1 | tr -dc '0-9')
+  [ "${FREE_GB:-99}" -lt 3 ] &&
+    warn "only ${FREE_GB}G free on / — Homebrew needs ~1G, plus room to build lazydocker"
+  export NONINTERACTIVE=1   # the installer's documented unattended switch
+  run_installer https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+  unset NONINTERACTIVE
+fi
 
-# Refresh
-curl -o ~/.zshrc https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/.zshrc
-exec zsh
+if [ -x "$BREW" ]; then
+  eval "$("$BREW" shellenv)"
+  # An earlier version of this script installed lazydocker from jesseduffield's
+  # tap. homebrew-core carries it now, and brew refuses to install a formula
+  # that already exists under the same name from another tap, so retire that
+  # copy first — otherwise the whole install below aborts on it.
+  if brew list --formula jesseduffield/lazydocker/lazydocker >/dev/null 2>&1; then
+    log "Replacing the tapped lazydocker with the homebrew-core one"
+    brew uninstall --force lazydocker
+    brew untap jesseduffield/lazydocker
+  fi
 
-# Zellij Base layout
-tee -a ~/.zellij_base_layout.kdl << EOF
+  # One formula per iteration: `brew install a b c` stops at the first failure
+  # and silently skips everything after it.
+  log "Installing neovim, zellij, lazydocker, yazi and bottom via Homebrew"
+  for formula in neovim zellij lazydocker yazi bottom; do
+    brew install --yes "$formula" || warn "brew: $formula"
+  done
+  # The earlier, Homebrew-centric version of this script installed a dozen tools
+  # that 26.04 now packages. brew's bin directory sits ahead of /usr/bin on
+  # PATH, so those copies silently shadow the apt ones installed above — and you
+  # end up running a different version from the one apt reports. None of them is
+  # a dependency of the five kept above, so they can go.
+  SUPERSEDED=(atuin docker docker-compose dust fd ffmpegthumbnailer jq lazygit
+              poppler sevenzip zoxide zsh zsh-history-substring-search)
+  TO_REMOVE=()
+  for formula in "${SUPERSEDED[@]}"; do
+    brew list --formula "$formula" >/dev/null 2>&1 && TO_REMOVE+=("$formula")
+  done
+  # One call rather than one per formula: brew only refuses a removal when a
+  # dependent stays behind, so removing the whole set together lets zsh go even
+  # though zsh-history-substring-search requires it. Removing them one at a time
+  # would depend on listing every dependent before its dependency.
+  if [ ${#TO_REMOVE[@]} -gt 0 ]; then
+    brew uninstall "${TO_REMOVE[@]}" || warn "brew uninstall: ${TO_REMOVE[*]}"
+  fi
+
+  # Building lazydocker pulls in the Go toolchain (~700M) purely as a build
+  # dependency; autoremove drops it again once the binary exists.
+  brew autoremove
+  brew cleanup --prune=all
+else
+  warn "Homebrew unavailable — neovim, zellij, lazydocker, yazi and bottom were skipped"
+fi
+
+# ────────────────────────────── 5. AI CLIs ──────────────────────────────
+
+log "Claude Code"
+command -v claude >/dev/null || run_installer https://claude.ai/install.sh
+
+log "claude-tui"
+# Its installer aborts unless ~/.claude already exists, and Claude Code only
+# creates that directory the first time it runs.
+mkdir -p "$HOME/.claude"
+# Its installer also prompts for a statusline mode; run_installer feeds it
+# /dev/null so it takes the default instead of hanging forever. Re-run
+# `claudetui setup` by hand to pick a different one.
+command -v claudetui >/dev/null ||
+  run_installer https://raw.githubusercontent.com/slima4/claude-tui/main/install.sh
+
+# ──────────────────────── 6. zellij base layout ─────────────────────────
+
+# This used to live after `exec zsh`, which replaces the shell process, so it
+# never ran at all. It also used `tee -a`, which appended a second copy of the
+# layout on every re-run; `cat >` rewrites it instead.
+log "Zellij base layout"
+ZELLIJ_LAYOUT="$HOME/.zellij_base_layout.kdl"
+cat > "$ZELLIJ_LAYOUT" <<'KDL'
 layout {
-        default_tab_template {
-                pane size=1 borderless=true {
-                plugin location="zellij:tab-bar"
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
         }
         children
         pane size=2 borderless=true {
-                plugin location="zellij:status-bar"
+            plugin location="zellij:status-bar"
         }
-    }   
-        tab name="Work" split_direction="Vertical" {
+    }
+    tab name="Work" split_direction="Vertical" {
         pane split_direction="Vertical" {
-            pane name="Btop" command="btop" {
-
-            }
+            pane name="Btop" command="btop"
             pane split_direction="Horizontal" {
                 pane name="System" command="fastfetch" {
-                        args "--config" "paleofetch.jsonc"
+                    args "--config" "paleofetch.jsonc"
                 }
-                pane focus=true name="Shell" {
-
-                }
+                pane focus=true name="Shell"
             }
         }
     }
 }
+
 session_name "Base"
 attach_to_session true
 pane_frames true
 pane_frame_style "full"
+KDL
 
-EOF
+# zellij only auto-discovers layouts inside its own layouts/ directory, so point
+# default_layout at this one by absolute path — that makes a bare `zellij` open
+# it. Nothing already in config.kdl is touched.
+ZELLIJ_CONFIG="$HOME/.config/zellij/config.kdl"
+mkdir -p "$(dirname "$ZELLIJ_CONFIG")"
+touch "$ZELLIJ_CONFIG"
+grep -qE '^[[:space:]]*default_layout' "$ZELLIJ_CONFIG" ||
+  echo "default_layout \"$ZELLIJ_LAYOUT\"" >> "$ZELLIJ_CONFIG"
 
-# Enable Atuin
-atuin import auto
-eval "$(atuin init zsh)"
+# ───────────────────────────── 7. AstroNvim ─────────────────────────────
 
-## Neovim setup
-brew install neovim -y
+log "AstroNvim"
+if [ ! -d "$HOME/.config/nvim" ]; then
+  git clone --depth 1 https://github.com/AstroNvim/template "$HOME/.config/nvim" &&
+    rm -rf "$HOME/.config/nvim/.git"
+fi
+curl -fsSL -o "$HOME/.config/nvim/lua/community.lua" \
+  https://raw.githubusercontent.com/Aiacos/AstroNvim_Config/refs/heads/master/community.lua ||
+  warn "community.lua download failed"
+nvim --headless "+Lazy! sync" +qa 2>/dev/null
+for tool in ruff pylint pyment mypy; do
+  nvim --headless "+MasonInstall $tool" +qa 2>/dev/null || warn "mason: $tool"
+done
 
-# Dependencies
-sudo apt install npm nodejs cargo ripgrep fd-find clang clangd -y  
-sudo apt install pipx python3-full python3-pynvim python3-ply -y  
-cargo install tree-sitter-cli
-brew install bottom -y
+# ──────────────────────── 8. Nerd Fonts (opt-in) ────────────────────────
 
-# Go disk usage
-curl -L https://github.com/dundee/gdu/releases/latest/download/gdu_linux_amd64.tgz | tar xz
-sudo chmod +x gdu_linux_amd64
-sudo mv gdu_linux_amd64 /usr/bin/gdu
+# Pointless on a headless box: the fonts have to live on the machine running
+# the terminal emulator. Re-run with INSTALL_FONTS=1 if this host has a display.
+if [ "${INSTALL_FONTS:-0}" = 1 ]; then
+  log "Nerd Fonts"
+  run_installer https://raw.githubusercontent.com/getnf/getnf/main/install.sh
+  oh-my-posh font install meslo
+fi
 
-# Nerd Fonts
-curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash  
+# ─────────────────────────────── summary ────────────────────────────────
 
-# AstroNvim
-cd
-git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-nvim +q
-curl -o ~/.config/nvim/lua/community.lua https://raw.githubusercontent.com/Aiacos/AstroNvim_Config/refs/heads/master/community.lua 
-nvim --headless "+MasonInstall ruff" +q  
-nvim --headless "+MasonInstall pylint" +q
-nvim --headless "+MasonInstall pyment" +q
-nvim --headless "+MasonInstall mypy" +q
-# nvim --headless "+MasonInstall pylama" +q  
+log "Done"
+if [ ${#FAILURES[@]} -gt 0 ]; then
+  printf '\033[1;33mSteps that did not complete:\033[0m\n'
+  printf '  - %s\n' "${FAILURES[@]}"
+fi
+cat <<'NEXT'
 
+Log out and back in to pick up the zsh login shell and the docker group, then:
+  echo $SHELL                    # /usr/bin/zsh
+  docker run --rm hello-world    # no sudo needed
+  zellij                         # opens ~/.zellij_base_layout.kdl
+  claudetui setup                # only to change the statusline mode
 
-
-cd 
+NEXT
