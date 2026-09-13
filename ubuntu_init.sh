@@ -87,12 +87,18 @@ BREW_FORMULAE=(atuin neovim zellij lazydocker yazi bottom)
 
 SNAP=(krita blender gitkraken pycharm-community spotify)
 
+# PaperWM is scrollable tiling — the same paradigm as niri. It is not packaged
+# by either distro, so it comes from extensions.gnome.org through gext.
+# NOTE: it conflicts with Pop Shell, which this script also installs. Both take
+# over window placement, and enabling the two at once gives unpredictable
+# behaviour. Enable one of them, not both.
 GNOME_EXT=(arcmenu@arcmenu.com
            rocketbar@chepkun.github.com
            trayIconsReloaded@selfmade.pl
            tophat@fflewddur.github.io
            workspace-indicator@gnome-shell-extensions.gcampax.github.com
-           blur-my-shell@aunetx)
+           blur-my-shell@aunetx
+           paperwm@paperwm.github.com)
 
 # ─────────────────────────── 1. apt packages ────────────────────────────
 

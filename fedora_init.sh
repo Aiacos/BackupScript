@@ -103,6 +103,11 @@ BREW_FORMULAE=(atuin zellij lazygit lazydocker yazi bottom dust)
 SNAP=(krita blender gitkraken pycharm-community obsidian spotify termius-app)
 
 # Installed with `gext install`, then enabled when a session bus is available.
+# PaperWM is scrollable tiling — the same paradigm as niri. It is not packaged
+# by either distro, so it comes from extensions.gnome.org through gext.
+# NOTE: it conflicts with Pop Shell, which this script also installs. Both take
+# over window placement, and enabling the two at once gives unpredictable
+# behaviour. Enable one of them, not both.
 GNOME_EXT=(arcmenu@arcmenu.com
            rocketbar@chepkun.github.com
            trayIconsReloaded@selfmade.pl
@@ -111,7 +116,8 @@ GNOME_EXT=(arcmenu@arcmenu.com
            blur-my-shell@aunetx
            panel-corners@aunetx
            openbar@neuromorph
-           dash2dock-lite@icedman.github.com)
+           dash2dock-lite@icedman.github.com
+           paperwm@paperwm.github.com)
 
 # ─────────────────────────── 1. dnf packages ────────────────────────────
 
