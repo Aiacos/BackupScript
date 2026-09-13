@@ -45,21 +45,40 @@ sudo -v || { echo "This script needs sudo."; exit 1; }
 while true; do sudo -n true 2>/dev/null; sleep 50; kill -0 "$$" 2>/dev/null || exit; done &
 trap 'kill %1 2>/dev/null' EXIT
 
-# ─────────────────────────── 1. apt packages ────────────────────────────
+# ══════════════════════════ WHAT GETS INSTALLED ══════════════════════════
+#
+# This block is the only part you need to edit. Add a name to the right list
+# and re-run the script — everything below reads these lists and nothing else.
+#
+#   APT_*      packages from Ubuntu       apt-get install
+#   BREW_*     Homebrew formulae          only for what Ubuntu does not package
+#
+# Where does a new tool belong? `apt-cache policy <name>` answers it: if apt
+# has a candidate, put it in APT_CLI. Reach for BREW_FORMULAE only when apt has
+# nothing, and say why in a comment.
 
-BASE=(git gh wget curl unzip ca-certificates gnupg ruby zsh build-essential fontconfig
-      net-tools openssh-server python3 python3-pip python3-full pipx)
+APT_BASE=(git gh wget curl unzip ca-certificates gnupg ruby zsh build-essential
+          fontconfig net-tools openssh-server python3 python3-pip python3-full
+          pipx)
 
-CLI=(btop tmux rclone ranger sxiv chafa cmatrix ncdu timewarrior
-     lsd bat ripgrep fd-find zoxide jq 7zip gdu
-     fastfetch du-dust lazygit
-     poppler-utils ffmpegthumbnailer mediainfo highlight atool w3m caca-utils)
+APT_CLI=(btop tmux rclone ranger sxiv chafa cmatrix ncdu timewarrior
+         lsd bat ripgrep fd-find zoxide jq 7zip gdu
+         fastfetch du-dust lazygit
+         poppler-utils ffmpegthumbnailer mediainfo highlight atool w3m caca-utils)
 
-DOCKER=(docker.io docker-compose-v2 docker-buildx containerd)
+APT_DOCKER=(docker.io docker-compose-v2 docker-buildx containerd)
 
-# neovim itself comes from Homebrew below (0.12 vs 0.11 on apt). brew's
+# neovim itself comes from Homebrew (0.12 there vs 0.11 on apt). brew's
 # tree-sitter is the library only, so the CLI parser compiler stays on apt.
-NVIM=(tree-sitter-cli nodejs npm clang clangd python3-pynvim python3-ply)
+APT_NVIM=(tree-sitter-cli nodejs npm clang clangd python3-pynvim python3-ply)
+
+# Not packaged by Ubuntu 26.04 at all, plus neovim for the newer release.
+# atuin is here for a different reason: its sqlite history DB applies one-way
+# schema migrations, so the older apt build refuses a DB a newer binary has
+# already migrated, costing the whole shell history.
+BREW_FORMULAE=(atuin neovim zellij lazydocker yazi bottom)
+
+# ─────────────────────────── 1. apt packages ────────────────────────────
 
 log "Updating the system"
 sudo apt-get update
@@ -67,7 +86,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 sudo apt-get autoremove -y
 
 log "Installing apt packages"
-apt_install "${BASE[@]}" "${CLI[@]}" "${DOCKER[@]}" "${NVIM[@]}"
+apt_install "${APT_BASE[@]}" "${APT_CLI[@]}" "${APT_DOCKER[@]}" "${APT_NVIM[@]}"
 
 # Ubuntu ships these two under prefixed binary names; every other tool
 # (yazi, fzf, nvim…) expects to find the plain names on PATH.
@@ -168,8 +187,8 @@ log "Zap (zsh plugin manager)"
 # survives that, so instead nothing below this line calls sudo at all — which is
 # also why fontconfig is in the apt list rather than in the fonts step.
 log "Homebrew"
-BREW=/home/linuxbrew/.linuxbrew/bin/brew
-if [ ! -x "$BREW" ]; then
+BREW_BIN=/home/linuxbrew/.linuxbrew/bin/brew
+if [ ! -x "$BREW_BIN" ]; then
   FREE_GB=$(df -BG --output=avail / | tail -1 | tr -dc '0-9')
   [ "${FREE_GB:-99}" -lt 3 ] &&
     warn "only ${FREE_GB}G free on / — Homebrew needs ~1G, plus room to build lazydocker"
@@ -178,8 +197,8 @@ if [ ! -x "$BREW" ]; then
   unset NONINTERACTIVE
 fi
 
-if [ -x "$BREW" ]; then
-  eval "$("$BREW" shellenv)"
+if [ -x "$BREW_BIN" ]; then
+  eval "$("$BREW_BIN" shellenv)"
   # An earlier version of this script installed lazydocker from jesseduffield's
   # tap. homebrew-core carries it now, and brew refuses to install a formula
   # that already exists under the same name from another tap, so retire that
@@ -193,34 +212,15 @@ if [ -x "$BREW" ]; then
   # One formula per iteration: `brew install a b c` stops at the first failure
   # and silently skips everything after it.
   log "Installing neovim, zellij, lazydocker, yazi and bottom via Homebrew"
-  for formula in atuin neovim zellij lazydocker yazi bottom; do
+  for formula in "${BREW_FORMULAE[@]}"; do
     brew install --yes "$formula" || warn "brew: $formula"
   done
-  # The earlier, Homebrew-centric version of this script installed a dozen tools
-  # that 26.04 now packages. brew's bin directory sits ahead of /usr/bin on
-  # PATH, so those copies silently shadow the apt ones installed above — and you
-  # end up running a different version from the one apt reports. None of them is
-  # a dependency of the five kept above, so they can go.
-  # atuin is deliberately NOT on this list, and not in the distro package list
-  # either: its sqlite history DB applies one-way schema migrations, and an
-  # older binary refuses a DB a newer one has migrated ("migration … was
-  # previously applied but is missing in the resolved migrations"). Ubuntu 26.04
-  # ships 18.8.0 and Fedora 44 ships 18.12.1, both older than the migrations
-  # already in the DB, so downgrading to the distro build costs the entire
-  # shell history. Revisit when the distros catch up.
-  SUPERSEDED=(docker docker-compose dust fd ffmpegthumbnailer jq lazygit
-              poppler sevenzip zoxide zsh zsh-history-substring-search)
-  TO_REMOVE=()
-  for formula in "${SUPERSEDED[@]}"; do
-    brew list --formula "$formula" >/dev/null 2>&1 && TO_REMOVE+=("$formula")
-  done
-  # One call rather than one per formula: brew only refuses a removal when a
-  # dependent stays behind, so removing the whole set together lets zsh go even
-  # though zsh-history-substring-search requires it. Removing them one at a time
-  # would depend on listing every dependent before its dependency.
-  if [ ${#TO_REMOVE[@]} -gt 0 ]; then
-    brew uninstall "${TO_REMOVE[@]}" || warn "brew uninstall: ${TO_REMOVE[*]}"
-  fi
+  # Nothing else is installed through Homebrew on purpose: its bin directory
+  # precedes /usr/bin on PATH, so a formula that the distro also packages would
+  # silently shadow the distro build — you would run a different version from
+  # the one the package manager reports. If an older, Homebrew-centric version
+  # of this script left such duplicates on a machine, remove them by hand:
+  #   brew uninstall docker docker-compose dust fd jq lazygit zoxide zsh
 
   # Building lazydocker pulls in the Go toolchain (~700M) purely as a build
   # dependency; autoremove drops it again once the binary exists.
