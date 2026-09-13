@@ -169,14 +169,41 @@ fi
 
 log "Niri"
 dnf_install "${DNF_WM[@]}"
-# The old script had `systemctl --user add-wants niri.service`, which fails with
-# "Too few arguments": the syntax is `add-wants TARGET UNIT...`, so niri.service
-# is the target and the unit to attach to it is missing. niri ships only
-# niri.service and niri-shutdown.target, and the noctalia package ships no unit
-# at all, so there is no way to tell which unit was meant. Fill in the blank and
-# uncomment, e.g.:
-#   systemctl --user add-wants niri.service xdg-desktop-portal-gnome.service
-warn "niri: 'systemctl --user add-wants niri.service <UNIT>' left commented out, unit unknown"
+
+# Noctalia is started by niri itself, not by systemd. Upstream deprecated the
+# systemd path — it caused delayed shell startup and unreliable IPC — and the
+# Fedora package ships no unit at all, only /usr/bin/noctalia. The documented
+# way is a spawn-at-startup line in niri's own config:
+#   https://docs.noctalia.dev/noctalia/getting-started/running-the-shell/
+#
+# `systemctl --user add-wants niri.service <UNIT>` (what an earlier version of
+# this script attempted, without its second argument) is for companion daemons
+# that DO ship a unit — waybar, mako, swaybg, swayidle. noctalia is not one.
+NIRI_CONFIG="$HOME/.config/niri/config.kdl"
+mkdir -p "$(dirname "$NIRI_CONFIG")"
+
+if [ ! -f "$NIRI_CONFIG" ] && [ -f /usr/share/doc/niri/default-config.kdl ]; then
+  # Seed from the packaged default. This matters: niri reads config.kdl as the
+  # whole configuration, so a file holding only the spawn line would leave the
+  # session with no key bindings at all.
+  cp /usr/share/doc/niri/default-config.kdl "$NIRI_CONFIG" &&
+    printf '    seeded %s from the packaged default\n' "$NIRI_CONFIG"
+fi
+
+if [ -f "$NIRI_CONFIG" ]; then
+  # That default starts waybar, and noctalia draws its own bar — the niri wiki
+  # calls out the two-bars-on-screen result explicitly. // is a KDL comment.
+  sed -i 's|^spawn-at-startup "waybar"|// spawn-at-startup "waybar"   // replaced by noctalia|' \
+    "$NIRI_CONFIG"
+  if grep -q 'spawn-at-startup "noctalia"' "$NIRI_CONFIG"; then
+    printf '    noctalia already in %s\n' "$NIRI_CONFIG"
+  else
+    printf '\n// Noctalia shell (see docs.noctalia.dev)\nspawn-at-startup "noctalia"\n' >> "$NIRI_CONFIG"
+    printf '    added spawn-at-startup "noctalia"\n'
+  fi
+else
+  warn "no $NIRI_CONFIG and no packaged default — start noctalia by hand"
+fi
 
 # ──────────────────────────────── 6. zsh ────────────────────────────────
 
