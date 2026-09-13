@@ -20,15 +20,18 @@ apt_install() {
   sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "$@" || warn "apt: $*"
 }
 
-# run_installer <url> [args…] — fetch a remote install script, then execute it.
+# run_installer [--no-tty] <url> [args…] — fetch a remote install script, then execute it.
 # Never `curl … | bash`: a pipeline reports the exit status of its LAST command,
 # so a failed download turns into bash reading empty input and "succeeding",
 # and the piped script itself occupies bash's stdin.
 run_installer() {
+  local runner=(bash)
+  [ "${1:-}" = "--root" ]   && { runner=(sudo bash); shift; }
+  [ "${1:-}" = "--no-tty" ] && { runner=(setsid -w bash); shift; }
   local url=$1; shift
   local tmp; tmp=$(mktemp)
   if curl -fsSL -o "$tmp" "$url"; then
-    bash "$tmp" "$@" </dev/null || warn "$url: installer failed"
+    "${runner[@]}" "$tmp" "$@" </dev/null || warn "$url: installer failed"
   else
     warn "$url: download failed"
   fi
@@ -70,6 +73,13 @@ apt_install "${BASE[@]}" "${CLI[@]}" "${DOCKER[@]}" "${NVIM[@]}"
 # (yazi, fzf, nvim…) expects to find the plain names on PATH.
 [ -x /usr/bin/fdfind ] && sudo ln -sfn /usr/bin/fdfind /usr/local/bin/fd
 [ -x /usr/bin/batcat ] && sudo ln -sfn /usr/bin/batcat /usr/local/bin/bat
+
+# atuin comes from Homebrew (see the Homebrew section): the distro build is
+# older than the schema migrations already in ~/.local/share/atuin/history.db
+# and would refuse to open it. Drop the apt copy an earlier version of this
+# script may have installed, so the two cannot shadow each other.
+dpkg -s atuin >/dev/null 2>&1 &&
+  sudo DEBIAN_FRONTEND=noninteractive apt-get purge -y atuin
 
 sudo systemctl enable --now ssh || warn "could not enable the ssh service"
 [ -d "$HOME/.config/ranger" ] || ranger --copy-config=all
@@ -144,7 +154,6 @@ log "Zap (zsh plugin manager)"
   zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) \
       --branch release-v1 --keep || warn "zap install failed"
 
-command -v atuin >/dev/null && atuin import auto >/dev/null 2>&1
 
 # ────────────────────────── 4. Homebrew tools ───────────────────────────
 
@@ -221,20 +230,38 @@ else
   warn "Homebrew unavailable — neovim, zellij, lazydocker, yazi and bottom were skipped"
 fi
 
+# atuin only exists from here on — it is installed by Homebrew above, not by the
+# distro — so its one-time import of the pre-existing shell history has to run
+# after that section, not in the zsh one where it used to sit.
+command -v atuin >/dev/null && atuin import auto >/dev/null 2>&1
+
 # ────────────────────────────── 5. AI CLIs ──────────────────────────────
 
 log "Claude Code"
 command -v claude >/dev/null || run_installer https://claude.ai/install.sh
 
 log "claude-tui"
-# Its installer aborts unless ~/.claude already exists, and Claude Code only
-# creates that directory the first time it runs.
+# Two quirks of its installer:
+#  - it aborts unless ~/.claude already exists, and Claude Code only creates
+#    that directory the first time it actually runs;
+#  - it asks for a statusline mode with `read -rn1 mode_choice < /dev/tty`,
+#    reading straight from the controlling terminal, so redirecting stdin has
+#    no effect at all and it blocks forever when nobody is there to type.
+# --no-tty runs it under setsid, in a new session with no controlling terminal:
+# the read fails, the installer falls back to mode_choice="" and its own
+# `case "${mode_choice}" in 1|"")` maps that to "full" — option 1, which is the
+# mode we want. Verified below rather than assumed.
 mkdir -p "$HOME/.claude"
-# Its installer also prompts for a statusline mode; run_installer feeds it
-# /dev/null so it takes the default instead of hanging forever. Re-run
-# `claudetui setup` by hand to pick a different one.
 command -v claudetui >/dev/null ||
-  run_installer https://raw.githubusercontent.com/slima4/claude-tui/main/install.sh
+  run_installer --no-tty https://raw.githubusercontent.com/slima4/claude-tui/main/install.sh
+
+# "full" writes `claudetui statusline`; "compact" would append --compact.
+CLAUDE_SETTINGS="$HOME/.claude/settings.json"
+if [ -f "$CLAUDE_SETTINGS" ] && grep -q '"claudetui statusline"' "$CLAUDE_SETTINGS"; then
+  printf '    statusline mode: full\n'
+elif [ -f "$CLAUDE_SETTINGS" ] && grep -q 'claudetui statusline' "$CLAUDE_SETTINGS"; then
+  warn "claude-tui statusline is not in full mode — run: claudetui setup"
+fi
 
 # ──────────────────────── 6. zellij base layout ─────────────────────────
 
