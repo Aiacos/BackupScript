@@ -85,7 +85,12 @@ DNF_DESKTOP=(gnome-tweaks gnome-extensions-app gnome-shell-extension-pop-shell
 
 DNF_NVIDIA=(akmod-nvidia xorg-x11-drv-nvidia-cuda)
 
-DNF_WM=(niri noctalia)
+DNF_WM=(niri noctalia
+        # niri recommends these: -gtk is the default fallback portal, -gnome is
+        # what screencasting needs, gnome-keyring implements the Secret portal.
+        # systemd starts them on demand, so no unit wiring is required.
+        xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-gnome
+        gnome-keyring)
 
 # Not packaged by stock Fedora 44. (zellij, yazi and bottom exist in the
 # third-party Terra repo, but that is not enabled on a fresh install.) atuin is
@@ -182,27 +187,35 @@ dnf_install "${DNF_WM[@]}"
 NIRI_CONFIG="$HOME/.config/niri/config.kdl"
 mkdir -p "$(dirname "$NIRI_CONFIG")"
 
+NIRI_SEEDED=0
 if [ ! -f "$NIRI_CONFIG" ] && [ -f /usr/share/doc/niri/default-config.kdl ]; then
   # Seed from the packaged default. This matters: niri reads config.kdl as the
   # whole configuration, so a file holding only the spawn line would leave the
   # session with no key bindings at all.
-  cp /usr/share/doc/niri/default-config.kdl "$NIRI_CONFIG" &&
+  cp /usr/share/doc/niri/default-config.kdl "$NIRI_CONFIG" && NIRI_SEEDED=1 &&
     printf '    seeded %s from the packaged default\n' "$NIRI_CONFIG"
 fi
 
-if [ -f "$NIRI_CONFIG" ]; then
-  # That default starts waybar, and noctalia draws its own bar — the niri wiki
-  # calls out the two-bars-on-screen result explicitly. // is a KDL comment.
-  sed -i 's|^spawn-at-startup "waybar"|// spawn-at-startup "waybar"   // replaced by noctalia|' \
-    "$NIRI_CONFIG"
-  if grep -q 'spawn-at-startup "noctalia"' "$NIRI_CONFIG"; then
-    printf '    noctalia already in %s\n' "$NIRI_CONFIG"
-  else
-    printf '\n// Noctalia shell (see docs.noctalia.dev)\nspawn-at-startup "noctalia"\n' >> "$NIRI_CONFIG"
-    printf '    added spawn-at-startup "noctalia"\n'
-  fi
-else
+if [ ! -f "$NIRI_CONFIG" ]; then
   warn "no $NIRI_CONFIG and no packaged default — start noctalia by hand"
+elif grep -qE '^[[:space:]]*spawn(-sh)?-at-startup .*noctalia' "$NIRI_CONFIG"; then
+  # Match any live spawn line mentioning noctalia, not the literal
+  # `spawn-at-startup "noctalia"`: a hand-written config may well start it as
+  # `spawn-at-startup "qs" "-c" "noctalia-shell"`, and appending a second line
+  # would run two shells at once. Lines disabled with KDL's /- prefix do not
+  # match, so a commented-out shell is correctly treated as absent.
+  printf '    noctalia already started from %s, left alone\n' "$NIRI_CONFIG"
+else
+  if [ "$NIRI_SEEDED" = 1 ]; then
+    # The packaged default runs waybar and noctalia draws its own bar — the
+    # niri wiki calls out the two-bars-on-screen result. Only touched in a file
+    # this script just created: in a config you wrote, an active waybar line is
+    # a deliberate choice. // is a KDL line comment.
+    sed -i 's|^spawn-at-startup "waybar"|// spawn-at-startup "waybar"   // replaced by noctalia|' \
+      "$NIRI_CONFIG"
+  fi
+  printf '\n// Noctalia shell (see docs.noctalia.dev)\nspawn-at-startup "noctalia"\n' >> "$NIRI_CONFIG"
+  printf '    added spawn-at-startup "noctalia" to %s\n' "$NIRI_CONFIG"
 fi
 
 # ──────────────────────────────── 6. zsh ────────────────────────────────
