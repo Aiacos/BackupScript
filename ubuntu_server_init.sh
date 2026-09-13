@@ -49,7 +49,7 @@ BASE=(git gh wget curl unzip ca-certificates gnupg ruby zsh build-essential font
 
 CLI=(btop tmux rclone ranger sxiv chafa cmatrix ncdu timewarrior
      lsd bat ripgrep fd-find zoxide jq 7zip gdu
-     fastfetch atuin du-dust lazygit
+     fastfetch du-dust lazygit
      poppler-utils ffmpegthumbnailer mediainfo highlight atool w3m caca-utils)
 
 DOCKER=(docker.io docker-compose-v2 docker-buildx containerd)
@@ -115,6 +115,9 @@ grep -qxF "$PATH_LINE" "$HOME/.zprofile" || printf '%s\n' "$PATH_LINE" >> "$HOME
 export PATH="$HOME/.local/bin:$PATH"
 
 log "Oh My Posh"
+# Its installer refuses to create the target directory: "Directory … does not
+# exist, set a different directory and try again."
+mkdir -p "$HOME/.local/bin"
 command -v oh-my-posh >/dev/null ||
   run_installer https://ohmyposh.dev/install.sh -d "$HOME/.local/bin"
 mkdir -p "$HOME/.config/oh-my-posh/themes"
@@ -122,20 +125,24 @@ curl -fsSL -o "$HOME/.config/oh-my-posh/themes/powerlevel10k_rainbow.omp.json" \
   https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/powerlevel10k_rainbow_lucifer.omp.json ||
   warn "oh-my-posh theme download failed"
 
-log "Zap (zsh plugin manager)"
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] ||
-  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) \
-      --branch release-v1 --keep || warn "zap install failed"
-
-# The shared .zshrc is the single source of truth and simply overwrites whatever
-# is here — including the lines Zap just appended, which it already contains,
-# and the `brew shellenv` eval that puts the Homebrew tools on PATH.
-# The old script did this *before* appending its own config, so the download
-# silently wiped every line it had just written.
+# The shared .zshrc is the single source of truth and overwrites whatever is
+# here. It already carries Zap's `source …/zap.zsh` line, the plug list and the
+# `brew shellenv` eval, so it has to land BEFORE Zap runs: install.zsh ends with
+# `source "${ZDOTDIR:-$HOME}/.zshrc"` and returns non-zero when that file does
+# not exist yet — which on a fresh machine it does not. (The original script had
+# the opposite problem: it fetched the file *after* appending its own plugin
+# lines, so the download silently wiped every line it had just written.)
 log "Fetching the shared .zshrc"
 curl -fsSL -o "$HOME/.zshrc" \
   https://raw.githubusercontent.com/Aiacos/terminal_config/refs/heads/master/.zshrc ||
   warn ".zshrc download failed"
+
+log "Zap (zsh plugin manager)"
+# --keep leaves the .zshrc just downloaded alone; without it Zap renames it and
+# writes its own template in its place.
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] ||
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) \
+      --branch release-v1 --keep || warn "zap install failed"
 
 command -v atuin >/dev/null && atuin import auto >/dev/null 2>&1
 
@@ -177,7 +184,7 @@ if [ -x "$BREW" ]; then
   # One formula per iteration: `brew install a b c` stops at the first failure
   # and silently skips everything after it.
   log "Installing neovim, zellij, lazydocker, yazi and bottom via Homebrew"
-  for formula in neovim zellij lazydocker yazi bottom; do
+  for formula in atuin neovim zellij lazydocker yazi bottom; do
     brew install --yes "$formula" || warn "brew: $formula"
   done
   # The earlier, Homebrew-centric version of this script installed a dozen tools
@@ -185,7 +192,14 @@ if [ -x "$BREW" ]; then
   # PATH, so those copies silently shadow the apt ones installed above — and you
   # end up running a different version from the one apt reports. None of them is
   # a dependency of the five kept above, so they can go.
-  SUPERSEDED=(atuin docker docker-compose dust fd ffmpegthumbnailer jq lazygit
+  # atuin is deliberately NOT on this list, and not in the distro package list
+  # either: its sqlite history DB applies one-way schema migrations, and an
+  # older binary refuses a DB a newer one has migrated ("migration … was
+  # previously applied but is missing in the resolved migrations"). Ubuntu 26.04
+  # ships 18.8.0 and Fedora 44 ships 18.12.1, both older than the migrations
+  # already in the DB, so downgrading to the distro build costs the entire
+  # shell history. Revisit when the distros catch up.
+  SUPERSEDED=(docker docker-compose dust fd ffmpegthumbnailer jq lazygit
               poppler sevenzip zoxide zsh zsh-history-substring-search)
   TO_REMOVE=()
   for formula in "${SUPERSEDED[@]}"; do
