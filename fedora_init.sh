@@ -47,6 +47,15 @@ trap 'kill %1 2>/dev/null' EXIT
 
 FEDORA_VER=$(rpm -E %fedora)
 
+# Only pull the proprietary driver on machines that actually have an NVIDIA GPU.
+# On Intel/AMD-only boxes akmod-nvidia is dead weight: it rebuilds on every
+# kernel update and drags in nvidia-persistenced/nvidia-powerd for nothing.
+if lspci -nn 2>/dev/null | grep -qiE '(VGA|3D|Display).*NVIDIA'; then
+  HAS_NVIDIA=1
+else
+  HAS_NVIDIA=0
+fi
+
 # ══════════════════════════ WHAT GETS INSTALLED ══════════════════════════
 #
 # This block is the only part you need to edit. Add a name to the right list
@@ -141,10 +150,12 @@ rpm -q atuin >/dev/null 2>&1 && sudo dnf remove -y atuin
 sudo systemctl enable --now sshd || warn "could not enable sshd"
 [ -d "$HOME/.config/ranger" ] || ranger --copy-config=all
 
-log "nvitop"
-# `sudo pipx install` would drop this into root's home, where the user cannot
-# reach it. pipx is per-user by design.
-command -v nvitop >/dev/null || pipx install nvitop || warn "nvitop install failed"
+if [ "$HAS_NVIDIA" = 1 ]; then
+  log "nvitop"
+  # `sudo pipx install` would drop this into root's home, where the user cannot
+  # reach it. pipx is per-user by design.
+  command -v nvitop >/dev/null || pipx install nvitop || warn "nvitop install failed"
+fi
 
 # ──────────────────────── 2. RPM Fusion and NVIDIA ──────────────────────
 
@@ -155,8 +166,12 @@ dnf_install \
   "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-${FEDORA_VER}.noarch.rpm" \
   "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${FEDORA_VER}.noarch.rpm"
 
-log "NVIDIA driver"
-dnf_install "${DNF_NVIDIA[@]}"
+if [ "$HAS_NVIDIA" = 1 ]; then
+  log "NVIDIA driver"
+  dnf_install "${DNF_NVIDIA[@]}"
+else
+  log "NVIDIA driver: no NVIDIA GPU found, skipping"
+fi
 
 # ───────────────────────────── 3. Snap apps ─────────────────────────────
 
@@ -482,11 +497,16 @@ if [ ${#FAILURES[@]} -gt 0 ]; then
   printf '\033[1;33mSteps that did not complete:\033[0m\n'
   printf '  - %s\n' "${FAILURES[@]}"
 fi
+if [ "$HAS_NVIDIA" = 1 ]; then
+  echo
+  echo "Reboot to load the NVIDIA akmod, then log in again to pick up the zsh shell:"
+  echo "  modinfo -F version nvidia      # akmod built against the running kernel"
+else
+  echo
+  echo "Log out and back in to pick up the zsh shell:"
+fi
 cat <<'NEXT'
-
-Reboot to load the NVIDIA akmod, then log in again to pick up the zsh shell:
   echo $SHELL                    # /usr/bin/zsh
-  modinfo -F version nvidia      # akmod built against the running kernel
   zellij                         # opens ~/.zellij_base_layout.kdl
   claudetui setup                # only to change the statusline mode
 
