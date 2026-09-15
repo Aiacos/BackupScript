@@ -118,7 +118,6 @@ GNOME_EXT=(arcmenu@arcmenu.com
            workspace-indicator@gnome-shell-extensions.gcampax.github.com
            blur-my-shell@aunetx
            panel-corners@aunetx
-           openbar@neuromorph
            dash2dock-lite@icedman.github.com)
 
 # ─────────────────────────── 1. dnf packages ────────────────────────────
