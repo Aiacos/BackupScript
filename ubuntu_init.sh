@@ -87,18 +87,11 @@ BREW_FORMULAE=(atuin neovim zellij lazydocker yazi bottom)
 
 SNAP=(krita blender gitkraken pycharm-community spotify)
 
-# PaperWM is scrollable tiling — the same paradigm as niri. It is not packaged
-# by either distro, so it comes from extensions.gnome.org through gext.
-# NOTE: it conflicts with Pop Shell, which this script also installs. Both take
-# over window placement, and enabling the two at once gives unpredictable
-# behaviour. Enable one of them, not both.
 GNOME_EXT=(arcmenu@arcmenu.com
-           rocketbar@chepkun.github.com
-           trayIconsReloaded@selfmade.pl
+           appindicatorsupport@rgcjonas.gmail.com
            tophat@fflewddur.github.io
            workspace-indicator@gnome-shell-extensions.gcampax.github.com
-           blur-my-shell@aunetx
-           paperwm@paperwm.github.com)
+           blur-my-shell@aunetx)
 
 # ─────────────────────────── 1. apt packages ────────────────────────────
 
@@ -379,10 +372,20 @@ command -v gext >/dev/null || {
   pipx install gnome-extensions-cli --system-site-packages || warn "gext install failed"
   pipx ensurepath
 }
+# The venv sees system site-packages, so pip skips any dependency the distro
+# happened to ship at install time. When that package later disappears gext
+# dies on import. Inject the missing piece into the venv so it no longer
+# depends on the system copy.
+if command -v gext >/dev/null && ! gext --version >/dev/null 2>&1; then
+  pipx inject gnome-extensions-cli typing_extensions || warn "gext venv repair failed"
+fi
 
 if command -v gext >/dev/null; then
   for ext in "${GNOME_EXT[@]}"; do
-    gext install "$ext" || warn "gext: $ext"
+    # --filesystem unpacks straight into ~/.local/share/gnome-shell/extensions.
+    # The default D-Bus path asks GNOME Shell to install, which pops a
+    # confirmation dialog on screen and silently does nothing unattended.
+    gext --filesystem install "$ext" || warn "gext: $ext"
   done
 fi
 
